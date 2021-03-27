@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+}
+
+.Container {
+  padding: 1rem;
+}
+
+.grid-4-column-layout {
+  gap: 2.5rem;
+}
+.column-20-pc {
+  width: 111px;
+  height: 148px;
+}
+.padding-1rem-borderbox {
+  box-sizing: border-box;
+  padding: 1rem;
+}
+.column-80-pc {
+  width: calc(100% - 111px);
+}
+.column-60-pc {
+  width: 60%;
+}
+.column-40-pc {
+  width: 40%;
+}
+.width-600px {
+  max-width: 800px;
+  width: 100%;
+  margin: auto;
+}
+.btn-close {
+  background-color: white;
+  border-radius: 50%;
+  padding: 4px 6px 6px 4px;
+  line-height: 14px;
+}
+.page-title {
+  padding: 2rem 0;
+}
+@media screen and (max-width: 450px) {
+  .grid-4-column-layout {
+    gap: 1rem;
+  }
+  .column-40-pc,
+  .column-60-pc {
+    width: 100%;
+  }
+}

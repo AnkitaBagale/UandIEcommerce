@@ -1,0 +1,25 @@
+.grid-left-filter {
+  width: 20%;
+  padding: 0 1rem 1rem;
+}
+.padding-around-1rem {
+  padding: 1rem;
+}
+.grid-right-of-filter {
+  width: calc(80% - 2rem);
+}
+.title_of_filters {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+  .grid-left-filter {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .grid-right-of-filter {
+    width: 100%;
+  }
+}

@@ -1,0 +1,29 @@
+@import "https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500&display=swap";
+
+.nav-title {
+  margin-top: 1rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  box-sizing: border-box;
+}
+.nav-logo {
+  width: 100%;
+  /* padding: 0 3rem 0 2rem; */
+  width: fit-content;
+  box-sizing: border-box;
+}
+.logo-title {
+  font-size: 2rem;
+  font-family: "Roboto Slab", serif;
+  font-weight: 500;
+  box-sizing: border-box;
+}
+.nav-bar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+}
