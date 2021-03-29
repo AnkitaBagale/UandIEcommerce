@@ -4,44 +4,39 @@ import { ProductListing } from "./Product-listing";
 import { Cart } from "./Cart";
 import { Wishlist } from "./Wishlist";
 import { serverRequest } from "./server-request";
-import { useStateContext } from "./context";
+import { useStateContext, ToastContextProvider } from "./context";
 import { Nav } from "./Header";
+
 export default function App() {
   const { state, dispatch } = useStateContext();
 
   useEffect(() => {
     (async () => {
-      const { response, errorFlag, loadingFlag } = await serverRequest(
-        "api/products",
-        "GET"
-      );
-      if (!errorFlag) {
+      try {
+        const { response } = await serverRequest({
+          url: "api/products",
+          requestType: "GET"
+        });
         dispatch({ type: "SET_PRODUCTS", payload: response.data.products });
-        console.log("found data", response, loadingFlag);
-      }
-    })();
-    (async () => {
-      const { response, errorFlag, loadingFlag } = await serverRequest(
-        "api/carts",
-        "GET"
-      );
-      if (!errorFlag) {
+      } catch {}
+      try {
+        const { response } = await serverRequest({
+          url: "api/carts",
+          requestType: "GET"
+        });
         dispatch({ type: "SET_CART", payload: response.data.carts });
-        console.log("found data", response, loadingFlag);
-      }
-    })();
-    (async () => {
-      const { response, errorFlag, loadingFlag } = await serverRequest(
-        "api/wishlists",
-        "GET"
-      );
-      if (!errorFlag) {
+      } catch {}
+      try {
+        const { response } = await serverRequest({
+          url: "api/wishlists",
+          requestType: "GET"
+        });
+
         dispatch({
           type: "SET_WISHLIST",
           payload: response.data.wishlists
         });
-        console.log("found data", response, loadingFlag);
-      }
+      } catch {}
     })();
   }, []);
 

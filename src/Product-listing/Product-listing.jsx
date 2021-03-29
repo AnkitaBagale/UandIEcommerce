@@ -1,4 +1,4 @@
-import { useStateContext } from "../context";
+import { useStateContext, useToast } from "../context";
 import { getSortedData, getFilteredData, Filter } from "./Data-filter";
 import "./filter-section.css";
 import { ProductCard } from "./Product-card";
@@ -7,6 +7,7 @@ export const ProductListing = () => {
   const { state } = useStateContext();
   const sortedData = getSortedData(state, state.products);
   const filterdData = getFilteredData(state, sortedData);
+
   return (
     <>
       <h1 className="text-center h6 page-title">

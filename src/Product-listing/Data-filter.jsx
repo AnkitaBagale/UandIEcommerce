@@ -25,6 +25,10 @@ export const getFilteredData = (state, data) => {
   return newData;
 };
 
+export const filterDataOnStatus = (state) => {
+  return state.filter((item) => item.status.exists);
+};
+
 export const Filter = () => {
   const { state, dispatch } = useStateContext();
   return (
@@ -32,7 +36,7 @@ export const Filter = () => {
       <li className="title_of_filters">
         <h6 className="p">Filters</h6>
         <button
-          onChange={() => {
+          onClick={() => {
             dispatch({ type: "CLEAR_ALL_FILTERS" });
           }}
           className="link-text link-no-style link-text-primary"

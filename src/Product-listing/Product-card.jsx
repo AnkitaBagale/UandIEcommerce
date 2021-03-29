@@ -1,13 +1,19 @@
-import { useStateContext } from "../context";
 import { AddToCartButton } from "../Cart";
-import { isAlreadyAdded } from "../array-update-functions";
+import { LikeButton } from "./Like-button";
+import { useState } from "react";
+import { Toast } from "../Toast";
 
 export const ProductCard = ({ product }) => {
-  const { state, dispatch } = useStateContext();
+  const [message, setMessage] = useState({ msg: "", msgType: "" });
+  const [disableButtonWhileProcessing, setDisableButton] = useState(false);
 
   return (
     <div className="card-vertical">
-      <div class="overlay-container">
+      {message.msgType === "toast-inform" && <Toast {...message} />}
+      {message.msgType === "toast-success" && <Toast {...message} />}
+      {message.msgType === "toast-error" && <Toast {...message} />}
+
+      <div className="overlay-container">
         <div className="image-container">
           <img
             className="img-responsive card-img"
@@ -20,24 +26,13 @@ export const ProductCard = ({ product }) => {
           <div className="text-container-title">
             <h6 className="text-regular-weight product-title">
               {product.name}
-              <button
-                className="like-btn link-no-style"
-                style={{
-                  color: isAlreadyAdded(state.itemsInWishlist, product.id)
-                    ? "var(--primary-color)"
-                    : ""
-                }}
-                onClick={() => {
-                  dispatch({
-                    type: "ADD_OR_REMOVE_TO_WISHLIST",
-                    payload: product
-                  });
-                }}
-              >
-                <span>
-                  <i className="fas fa-heart"></i>
-                </span>
-              </button>
+              <LikeButton
+                key={product.id}
+                product={product}
+                setMessage={setMessage}
+                disableButtonWhileProcessing={disableButtonWhileProcessing}
+                setDisableButton={setDisableButton}
+              />
             </h6>
           </div>
           <div className="text-container-desc">
@@ -52,18 +47,25 @@ export const ProductCard = ({ product }) => {
               </span>
             </p>
           </div>
-        </div>
-
-        <div className="CTA-Container">
-          <AddToCartButton product={product} />
+          <div className="CTA-Container">
+            <AddToCartButton
+              key={product.id}
+              product={product}
+              setMessage={setMessage}
+              disableButtonWhileProcessing={disableButtonWhileProcessing}
+              setDisableButton={setDisableButton}
+            />
+          </div>
         </div>
       </div>
 
       <div
         style={{ display: product.inStock ? "none" : "flex" }}
-        class="overlay-text"
+        className="overlay-text"
       >
-        <div class="body-cp-lg text-container">Out Of Stock</div>
+        <div className="body-cp-lg text-container text-center">
+          Out Of Stock
+        </div>
       </div>
     </div>
   );

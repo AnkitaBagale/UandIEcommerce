@@ -14,113 +14,33 @@ export default function setupMockServer() {
 
     routes() {
       this.namespace = "api";
-      this.timing = 3000;
+      this.timing = 2000;
       this.resource("products");
       this.resource("carts");
       this.resource("wishlists");
     },
 
     seeds(server) {
-      database.forEach(
-        ({
-          id,
-          name,
-          image,
-          price,
-          category,
-          brand,
-          inStock,
-          fastDelivery,
-          ratings,
-          offer,
-          level,
-          color,
-          avalQty
-        }) => {
-          server.create("product", {
-            id,
-            name,
-            image,
-            price,
-            category,
-            brand,
-            inStock,
-            fastDelivery,
-            ratings,
-            offer,
-            color,
-            level,
-            avalQty
-          });
-        }
-      );
+      database.forEach((product) => {
+        server.create("product", {
+          ...product
+        });
+      });
 
-      [database[1]].forEach(
-        ({
-          id,
-          name,
-          image,
-          price,
-          category,
-          brand,
-          inStock,
-          fastDelivery,
-          ratings,
-          offer,
-          level,
-          color,
-          avalQty
-        }) => {
-          server.create("cart", {
-            id,
-            name,
-            image,
-            price,
-            category,
-            brand,
-            inStock,
-            fastDelivery,
-            ratings,
-            offer,
-            color,
-            level,
-            avalQty,
-            cartQty: 1
-          });
-        }
-      );
+      [database[1]].forEach((product) => {
+        server.create("cart", {
+          ...product,
+          cartQty: 1,
+          status: { exists: true }
+        });
+      });
 
-      [database[1]].forEach(
-        ({
-          id,
-          name,
-          image,
-          price,
-          category,
-          brand,
-          inStock,
-          fastDelivery,
-          ratings,
-          offer,
-          level,
-          color
-        }) => {
-          server.create("wishlist", {
-            id,
-            name,
-            image,
-            price,
-            category,
-            brand,
-            inStock,
-            fastDelivery,
-            ratings,
-            offer,
-            color,
-            level
-          });
-        }
-      );
+      [database[1]].forEach((product) => {
+        server.create("wishlist", {
+          ...product,
+          status: { exists: true }
+        });
+      });
     }
   });
 }

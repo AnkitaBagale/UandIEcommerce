@@ -2,7 +2,7 @@ import {
   isAlreadyAdded,
   updateQty,
   addNewItem,
-  removeItem
+  toggleStatus
 } from "../array-update-functions";
 
 export const stateReducer = (state, action) => {
@@ -20,21 +20,32 @@ export const stateReducer = (state, action) => {
       return isAlreadyAdded(state.itemsInWishlist, action.payload.id)
         ? {
             ...state,
-            itemsInWishlist: removeItem(
+            itemsInWishlist: toggleStatus(
               state.itemsInWishlist,
               action.payload.id
             )
           }
         : {
             ...state,
-            itemsInWishlist: addNewItem(state.itemsInWishlist, action.payload)
+            itemsInWishlist: addNewItem(state.itemsInWishlist, {
+              ...action.payload,
+              status: { exists: true }
+            })
           };
     }
     case "ADD_TO_CART": {
-      return {
-        ...state,
-        itemsInCart: addNewItem(state.itemsInCart, action.payload)
-      };
+      return isAlreadyAdded(state.itemsInCart, action.payload.id)
+        ? {
+            ...state,
+            itemsInCart: toggleStatus(state.itemsInCart, action.payload.id)
+          }
+        : {
+            ...state,
+            itemsInCart: addNewItem(state.itemsInCart, {
+              ...action.payload,
+              status: { exists: true }
+            })
+          };
     }
 
     case "INCREMENT_CART_QTY":
@@ -51,7 +62,7 @@ export const stateReducer = (state, action) => {
     case "REMOVE_FROM_CART":
       return {
         ...state,
-        itemsInCart: removeItem(state.itemsInCart, action.payload.id)
+        itemsInCart: toggleStatus(state.itemsInCart, action.payload.id)
       };
     case "ROUTE":
       return {

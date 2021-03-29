@@ -1,6 +1,8 @@
 import { useRef } from "react";
 import { useStateContext } from "../context";
 import "./nav.css";
+import { filterDataOnStatus } from "../Product-listing";
+
 export const Nav = () => {
   const { state, dispatch } = useStateContext();
   const navRef = useRef(null);
@@ -96,7 +98,7 @@ export const Nav = () => {
               <span className="nav-icon badge-container">
                 <i className="fas fa-heart"></i>
                 <span className="status-badge status-badge-number">
-                  {state.itemsInWishlist.length}
+                  {filterDataOnStatus(state.itemsInWishlist).length}
                 </span>
               </span>
               <span className="nav-icon-text">Wishlist</span>
@@ -110,7 +112,7 @@ export const Nav = () => {
               <span className="nav-icon  badge-container">
                 <i className="fas fa-shopping-cart"></i>
                 <span className="status-badge status-badge-number">
-                  {state.itemsInCart.length}
+                  {filterDataOnStatus(state.itemsInCart).length}
                 </span>
               </span>
               <span className="nav-icon-text">Cart</span>
