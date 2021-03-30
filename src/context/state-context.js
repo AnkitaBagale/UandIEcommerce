@@ -9,7 +9,7 @@ export const CartContextProvider = ({ children }) => {
     products: [],
     itemsInCart: [],
     itemsInWishlist: [],
-    route: "PLP",
+    route: "home",
     sortBy: "",
     removeOutOfStock: false,
     removeWithoutFastDeliery: false

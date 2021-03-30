@@ -32,8 +32,8 @@ export const filterDataOnStatus = (state) => {
 export const Filter = () => {
   const { state, dispatch } = useStateContext();
   return (
-    <ul className="styled-list list-style-none">
-      <li className="title_of_filters">
+    <>
+      <div className="title_of_filters">
         <h6 className="p">Filters</h6>
         <button
           onClick={() => {
@@ -43,69 +43,71 @@ export const Filter = () => {
         >
           Clear All
         </button>
-      </li>
-      <li>Sort by:</li>
-      <li>
-        <label className="form-label">
-          <input
-            className="form-checkbox-field"
-            type="radio"
-            name="sort"
-            onChange={() =>
-              dispatch({ type: "SORT", payload: "HIGH_TO_LOW_PRICE" })
-            }
-            checked={"HIGH_TO_LOW_PRICE" === state.sortBy}
-          />
-          High to low
-        </label>
-      </li>
-      <li>
-        <label className="form-label">
-          <input
-            className="form-checkbox-field"
-            type="radio"
-            name="sort"
-            checked={"LOW_TO_HIGH_PRICE" === state.sortBy}
-            onChange={() =>
-              dispatch({ type: "SORT", payload: "LOW_TO_HIGH_PRICE" })
-            }
-          />
-          Low to High
-        </label>
-      </li>
-      <li> Filter:</li>
-      <li>
-        <label className="form-label">
-          <input
-            className="form-checkbox-field"
-            type="checkbox"
-            checked={state.removeOutOfStock}
-            onChange={() => {
-              dispatch({
-                type: "FILTER_OUT_OF_STOCK",
-                payload: !state.removeOutOfStock
-              });
-            }}
-          />
-          filter out of stock products
-        </label>
-      </li>
-      <li>
-        <label className="form-label">
-          <input
-            className="form-checkbox-field"
-            type="checkbox"
-            checked={state.removeWithoutFastDeliery}
-            onChange={() => {
-              dispatch({
-                type: "FILTER_WITHOUT_FAST_DELIVERY",
-                payload: !state.removeWithoutFastDeliery
-              });
-            }}
-          />
-          filter out products without fast delivery
-        </label>
-      </li>
-    </ul>
+      </div>
+      <ul className="styled-list list-style-none filter-section">
+        <li>Sort by:</li>
+        <li>
+          <label className="form-label">
+            <input
+              className="form-checkbox-field"
+              type="radio"
+              name="sort"
+              onChange={() =>
+                dispatch({ type: "SORT", payload: "HIGH_TO_LOW_PRICE" })
+              }
+              checked={"HIGH_TO_LOW_PRICE" === state.sortBy}
+            />
+            High to low
+          </label>
+        </li>
+        <li>
+          <label className="form-label">
+            <input
+              className="form-checkbox-field"
+              type="radio"
+              name="sort"
+              checked={"LOW_TO_HIGH_PRICE" === state.sortBy}
+              onChange={() =>
+                dispatch({ type: "SORT", payload: "LOW_TO_HIGH_PRICE" })
+              }
+            />
+            Low to High
+          </label>
+        </li>
+        <li> Filter:</li>
+        <li>
+          <label className="form-label">
+            <input
+              className="form-checkbox-field"
+              type="checkbox"
+              checked={state.removeOutOfStock}
+              onChange={() => {
+                dispatch({
+                  type: "FILTER_OUT_OF_STOCK",
+                  payload: !state.removeOutOfStock
+                });
+              }}
+            />
+            filter out of stock products
+          </label>
+        </li>
+        <li>
+          <label className="form-label">
+            <input
+              className="form-checkbox-field"
+              type="checkbox"
+              checked={state.removeWithoutFastDeliery}
+              onChange={() => {
+                dispatch({
+                  type: "FILTER_WITHOUT_FAST_DELIVERY",
+                  payload: !state.removeWithoutFastDeliery
+                });
+              }}
+            />
+            filter out products without fast delivery
+          </label>
+        </li>
+      </ul>
+    </>
   );
 };

@@ -68,8 +68,8 @@ export const CartActionButtons = ({
       <button
         className={
           disableButtonWhileProcessing
-            ? "btn btn-icon-secondary btn-disabled"
-            : "btn btn-icon-secondary"
+            ? "btn btn-icon-secondary border-1px-square btn-disabled"
+            : "btn btn-icon-secondary border-1px-square"
         }
         onClick={() => cartQtyHandler(false)}
         disabled={disableButtonWhileProcessing}
@@ -82,20 +82,15 @@ export const CartActionButtons = ({
           ></i>
         </span>
       </button>
-      <span
-        style={{
-          padding: "0.5rem",
-          background: "pink"
-        }}
-      >
+      <span className="border-1px-square cart-qty-style">
         {product.cartQty}
       </span>
 
       <button
         className={
           disableButtonWhileProcessing
-            ? "btn btn-icon-secondary btn-disabled"
-            : "btn btn-icon-secondary"
+            ? "btn btn-icon-secondary border-1px-square btn-disabled"
+            : "btn btn-icon-secondary border-1px-square"
         }
         disabled={disableButtonWhileProcessing}
         onClick={() => cartQtyHandler(true)}

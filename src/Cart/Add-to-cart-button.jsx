@@ -64,11 +64,12 @@ export const AddToCartButton = ({
   return (
     <>
       <button
+        style={{ display: !product.inStock ? "none" : "block" }}
         disabled={disableButtonWhileProcessing}
         className={
           disableButtonWhileProcessing
-            ? "btn btn-text-icon-primary btn-disabled"
-            : "btn btn-text-icon-primary"
+            ? "btn btn-outline-primary btn-disabled btn-sm-size"
+            : "btn btn-outline-primary btn-sm-size"
         }
         onClick={addToCartHandler}
       >

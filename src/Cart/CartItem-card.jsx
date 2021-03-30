@@ -8,12 +8,12 @@ export const CartItemCard = ({ product }) => {
   const [disableButtonWhileProcessing, setDisableButton] = useState(false);
 
   return (
-    <div className="card-horizontal shadow-box">
+    <div className="card-horizontal border-width-1px default-container">
       {message.msgType === "toast-inform" && <Toast {...message} />}
       {message.msgType === "toast-success" && <Toast {...message} />}
       {message.msgType === "toast-error" && <Toast {...message} />}
 
-      <div className="column-20-pc image-container">
+      <div className="image-container">
         <img
           className="img-responsive card-img"
           src={product.image}
@@ -26,11 +26,18 @@ export const CartItemCard = ({ product }) => {
         </div>
 
         <div className="text-container-desc">
-          <p className="text-regular-weight">
-            Rs.{product.price * product.cartQty}
+          <p className="text-regular-weight body-cp-md">
+            Rs.
+            {(product.price * product.cartQty * (100 - Number(product.offer))) /
+              100}{" "}
+            <span className="text-light-weight body-cp-sm text-strike-through">
+              Rs.{product.price * product.cartQty}
+            </span>{" "}
+            <span className="text-light-weight body-cp-sm primary-text-color">
+              ({product.offer}%OFF)
+            </span>
           </p>
         </div>
-
         <div className="CTA-Container">
           <CartActionButtons
             product={product}
@@ -38,6 +45,7 @@ export const CartItemCard = ({ product }) => {
             disableButtonWhileProcessing={disableButtonWhileProcessing}
             setDisableButton={setDisableButton}
           />
+
           <WishlistButton
             product={product}
             setMessage={setMessage}

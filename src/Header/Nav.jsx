@@ -22,59 +22,46 @@ export const Nav = () => {
         </div>
 
         <div className="nav-logo nav-section-items">
-          <span className="primary-text-color logo-title">
-            U
-            <span
-              className="tertiary-text-color"
-              style={{ fontSize: "1rem", marginRight: "3px" }}
-            >
-              &
-            </span>
-            I
-          </span>
-          <br />
-          <span
-            className="tertiary-text-color"
-            style={{
-              fontSize: "0.625rem",
-              fontWeight: "500",
-              letterSpacing: "1px"
+          <button
+            className="link-no-style text-left"
+            onClick={() => {
+              dispatch({ type: "ROUTE", payload: "PLP" });
             }}
           >
-            LET'S DESIGN TOGETHER
-          </span>
+            <span className="primary-text-color logo-title">
+              U
+              <span className="tertiary-text-color logo-and-symbol-style">
+                &
+              </span>
+              I
+            </span>
+
+            <span className="tertiary-text-color logo-tagline">
+              LET'S DESIGN TOGETHER
+            </span>
+          </button>
         </div>
 
         <ul className="nav-bar-links list-style-none nav-section-items">
           <li className="list-inline-item avatar-in-nav-links">
             <div className="primary-text-color logo-title">
               U
-              <span
-                className="tertiary-text-color"
-                style={{ fontSize: "1rem", marginRight: "3px" }}
-              >
+              <span className="tertiary-text-color logo-and-symbol-style">
                 &
               </span>
               I
             </div>
-            <div
-              className="tertiary-text-color"
-              style={{
-                fontSize: "0.625rem",
-                fontWeight: "500",
-                letterSpacing: "1px"
-              }}
-            >
+            <div className="tertiary-text-color logo-tagline">
               LET'S DESIGN TOGETHER
             </div>
           </li>
 
           <li className="list-inline-item">
             <button
-              onClick={() => dispatch({ type: "ROUTE", payload: "PLP" })}
+              onClick={() => dispatch({ type: "ROUTE", payload: "home" })}
               className="link-no-style text-left"
             >
-              Shop by Category
+              Home
             </button>
           </li>
           <li className="list-inline-item">
@@ -82,7 +69,7 @@ export const Nav = () => {
               onClick={() => dispatch({ type: "ROUTE", payload: "PLP" })}
               className="link-no-style text-left"
             >
-              Shop by Brand
+              Shop Now
             </button>
           </li>
         </ul>

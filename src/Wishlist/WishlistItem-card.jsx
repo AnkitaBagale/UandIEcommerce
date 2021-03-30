@@ -47,7 +47,7 @@ export const WishlistItemCard = ({ product }) => {
   };
 
   return (
-    <div className="card-vertical">
+    <div className="card-vertical border-width-1px">
       {message.msgType === "toast-inform" && <Toast {...message} />}
       {message.msgType === "toast-success" && <Toast {...message} />}
       {message.msgType === "toast-error" && <Toast {...message} />}
@@ -60,12 +60,18 @@ export const WishlistItemCard = ({ product }) => {
         }
         onClick={removeFromWishlist}
       ></button>
-      <div className="image-container">
+      <div className="image-container badge-container">
         <img
           className="img-responsive card-img"
           src={product.image}
           alt={product.name}
         />
+        <span
+          style={{ display: product.inStock ? "none" : "block" }}
+          class="badge bg-secondary"
+        >
+          sold out
+        </span>
       </div>
       <div className="text-container">
         <div className="text-container-title">
@@ -73,12 +79,12 @@ export const WishlistItemCard = ({ product }) => {
         </div>
         <div className="text-container-desc">
           <p className="body-cp-md">{product.brand}</p>
-          <p className="text-regular-weight">
+          <p className="text-regular-weight body-cp-md">
             Rs.{product.price}
             <span className="text-light-weight">
-              <span className="primary-text-color body-cp-md">
+              <span className="primary-text-color body-cp-sm">
                 {" "}
-                {product.offer}
+                ({product.offer}% OFF)
               </span>
             </span>
           </p>

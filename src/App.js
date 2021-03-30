@@ -4,8 +4,10 @@ import { ProductListing } from "./Product-listing";
 import { Cart } from "./Cart";
 import { Wishlist } from "./Wishlist";
 import { serverRequest } from "./server-request";
-import { useStateContext, ToastContextProvider } from "./context";
+import { useStateContext } from "./context";
 import { Nav } from "./Header";
+import { Home } from "./Home";
+import { Footer } from "./Footer";
 
 export default function App() {
   const { state, dispatch } = useStateContext();
@@ -43,10 +45,12 @@ export default function App() {
   return (
     <div className="App">
       <Nav />
-
+      {state.route === "home" && <Home />}
       {state.route === "PLP" && <ProductListing />}
       {state.route === "wishlist" && <Wishlist />}
       {state.route === "cart" && <Cart />}
+      <div className="spacer-3rem"></div>
+      <Footer />
     </div>
   );
 }

@@ -17,11 +17,11 @@ export const ProductListing = () => {
           - {state.products.length} items
         </span>
       </h1>
-      <div className="display-flex padding-around-1rem">
-        <div className="grid-left-filter">
+      <div className="display-flex-filter">
+        <div className="grid-left-filter padding-around-1rem">
           <Filter />
         </div>
-        <div className="grid-4-column-layout grid-right-of-filter">
+        <div className="grid-4-column-layout grid-right-of-filter padding-around-1rem">
           {filterdData.map((product) => {
             return <ProductCard key={product.id} product={product} />;
           })}
