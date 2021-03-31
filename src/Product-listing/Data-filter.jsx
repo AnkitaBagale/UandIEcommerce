@@ -1,4 +1,6 @@
 import { useStateContext } from "../context";
+import { useState } from "react";
+import { categories, brands } from "../database";
 
 export const getSortedData = (state, data) => {
   if (state.sortBy === "HIGH_TO_LOW_PRICE") {
@@ -16,12 +18,17 @@ export const getSortedData = (state, data) => {
 
 export const getFilteredData = (state, data) => {
   let newData = [...data];
-  if (state.removeOutOfStock) {
+  if (!state.includeOutOfStock) {
     newData = newData.filter((product) => product.inStock);
   }
-  if (state.removeWithoutFastDeliery) {
-    newData = newData.filter((product) => product.fastDelivery);
-  }
+  if (state.filterByCategories.length !== 0)
+    newData = newData.filter((product) =>
+      state.filterByCategories.includes(product.category)
+    );
+  if (state.filterByBrands.length !== 0)
+    newData = newData.filter((product) =>
+      state.filterByBrands.includes(product.brand)
+    );
   return newData;
 };
 
@@ -31,21 +38,35 @@ export const filterDataOnStatus = (state) => {
 
 export const Filter = () => {
   const { state, dispatch } = useStateContext();
+  const [openFilter, setFilter] = useState(false);
   return (
-    <>
+    <div
+      className={
+        openFilter
+          ? "padding-around-filter position-fixed filter-open"
+          : "padding-around-filter position-fixed"
+      }
+    >
       <div className="title_of_filters">
-        <h6 className="p">Filters</h6>
+        <button
+          onClick={() => setFilter((openFilter) => !openFilter)}
+          className="p link-no-style pointer-event-none-L text-regular-weight"
+        >
+          {openFilter ? "APPLY" : "FILTERS"}
+        </button>
         <button
           onClick={() => {
             dispatch({ type: "CLEAR_ALL_FILTERS" });
           }}
-          className="link-text link-no-style link-text-primary"
+          className="link-text p link-no-style link-text-primary text-regular-weight"
         >
-          Clear All
+          CLEAR ALL
         </button>
       </div>
-      <ul className="styled-list list-style-none filter-section">
-        <li>Sort by:</li>
+
+      <ul className="list-style-none filter-section">
+        <hr className="filter-divider-line" />
+        <li className="text-regular-weight filter-section-title">Sort by</li>
         <li>
           <label className="form-label">
             <input
@@ -57,7 +78,7 @@ export const Filter = () => {
               }
               checked={"HIGH_TO_LOW_PRICE" === state.sortBy}
             />
-            High to low
+            Price High to low
           </label>
         </li>
         <li>
@@ -71,43 +92,76 @@ export const Filter = () => {
                 dispatch({ type: "SORT", payload: "LOW_TO_HIGH_PRICE" })
               }
             />
-            Low to High
+            Price Low to High
           </label>
         </li>
-        <li> Filter:</li>
+        <hr className="filter-divider-line" />
+        <li className="text-regular-weight filter-section-title">Categories</li>
+
+        {categories.map((category) => {
+          return (
+            <li>
+              <label className="form-label">
+                <input
+                  className="form-checkbox-field"
+                  type="checkbox"
+                  checked={state.filterByCategories.includes(category)}
+                  onChange={() => {
+                    dispatch({
+                      type: "FILTER_BY_CATEGORIES",
+                      payload: category
+                    });
+                  }}
+                />
+                {category}
+              </label>
+            </li>
+          );
+        })}
+
+        <hr className="filter-divider-line" />
+        <li className="text-regular-weight filter-section-title">Brands</li>
+
+        {brands.map((brand) => {
+          return (
+            <li>
+              <label className="form-label">
+                <input
+                  className="form-checkbox-field"
+                  type="checkbox"
+                  checked={state.filterByBrands.includes(brand)}
+                  onChange={() => {
+                    dispatch({
+                      type: "FILTER_BY_BRANDS",
+                      payload: brand
+                    });
+                  }}
+                />
+                {brand}
+              </label>
+            </li>
+          );
+        })}
+
+        <hr className="filter-divider-line" />
+        <li className="text-regular-weight filter-section-title">Other</li>
         <li>
           <label className="form-label">
             <input
               className="form-checkbox-field"
               type="checkbox"
-              checked={state.removeOutOfStock}
+              checked={state.includeOutOfStock}
               onChange={() => {
                 dispatch({
-                  type: "FILTER_OUT_OF_STOCK",
-                  payload: !state.removeOutOfStock
+                  type: "INCLUDE_OUT_OF_STOCK",
+                  payload: !state.includeOutOfStock
                 });
               }}
             />
-            filter out of stock products
-          </label>
-        </li>
-        <li>
-          <label className="form-label">
-            <input
-              className="form-checkbox-field"
-              type="checkbox"
-              checked={state.removeWithoutFastDeliery}
-              onChange={() => {
-                dispatch({
-                  type: "FILTER_WITHOUT_FAST_DELIVERY",
-                  payload: !state.removeWithoutFastDeliery
-                });
-              }}
-            />
-            filter out products without fast delivery
+            Include out of stock
           </label>
         </li>
       </ul>
-    </>
+    </div>
   );
 };

@@ -9,10 +9,11 @@ export const CartContextProvider = ({ children }) => {
     products: [],
     itemsInCart: [],
     itemsInWishlist: [],
-    route: "home",
+    route: "PLP",
     sortBy: "",
-    removeOutOfStock: false,
-    removeWithoutFastDeliery: false
+    includeOutOfStock: true,
+    filterByCategories: [],
+    filterByBrands: []
   });
   return (
     <CartContext.Provider value={{ state, dispatch }}>

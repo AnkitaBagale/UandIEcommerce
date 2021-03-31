@@ -44,12 +44,14 @@ export default function App() {
 
   return (
     <div className="App">
-      <Nav />
-      {state.route === "home" && <Home />}
-      {state.route === "PLP" && <ProductListing />}
-      {state.route === "wishlist" && <Wishlist />}
-      {state.route === "cart" && <Cart />}
-      <div className="spacer-3rem"></div>
+      <div className="App-container">
+        <Nav />
+        {state.route === "home" && <Home />}
+        {state.route === "PLP" && <ProductListing />}
+        {state.route === "wishlist" && <Wishlist />}
+        {state.route === "cart" && <Cart />}
+        <div className="spacer-3rem"></div>
+      </div>
       <Footer />
     </div>
   );

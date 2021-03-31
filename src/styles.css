@@ -1,7 +1,9 @@
 * {
   box-sizing: border-box;
 }
-
+.App-container {
+  min-height: calc(100vh - 10rem);
+}
 .Container {
   padding: 1rem;
 }
@@ -36,7 +38,7 @@
   line-height: 14px;
 }
 .page-title {
-  padding: 2rem 0;
+  padding: 2rem 1rem;
 }
 .border-width-1px {
   box-shadow: 0 0 0 1px inset #e9e9eb;

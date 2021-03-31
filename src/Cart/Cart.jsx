@@ -8,7 +8,8 @@ export const Cart = () => {
   const { state } = useStateContext();
   const [userSelectedCoupon, setCoupon] = useState({
     couponName: "",
-    couponPrice: 0
+    couponPrice: 0,
+    minOrderValue: ""
   });
   const [showOfferModal, setOfferModal] = useState(false);
 
@@ -32,7 +33,16 @@ export const Cart = () => {
     cartDetails.totalMRP -
     cartDetails.discount -
     Number(userSelectedCoupon.couponPrice);
-
+  const checkOffersValid = () => {
+    if (cartTotal < Number(userSelectedCoupon.minOrderValue)) {
+      setCoupon({
+        couponName: "",
+        couponPrice: 0,
+        minOrderValue: ""
+      });
+    }
+  };
+  checkOffersValid();
   return (
     <>
       <h1 className="text-center h6 page-title">My Cart</h1>
@@ -135,7 +145,11 @@ export const Cart = () => {
                         value={off}
                         checked={coupon === userSelectedCoupon.couponName}
                         onChange={(e) => {
-                          setCoupon({ couponName: coupon, couponPrice: off });
+                          setCoupon({
+                            couponName: coupon,
+                            couponPrice: off,
+                            minOrderValue: minOrder
+                          });
                         }}
                       />
 

@@ -79,22 +79,43 @@ export const stateReducer = (state, action) => {
       return { ...state, sortBy: "" };
     }
 
-    case "FILTER_OUT_OF_STOCK": {
-      return action.payload === true
-        ? { ...state, removeOutOfStock: true }
-        : { ...state, removeOutOfStock: false };
+    case "INCLUDE_OUT_OF_STOCK": {
+      return { ...state, includeOutOfStock: action.payload };
     }
-    case "FILTER_WITHOUT_FAST_DELIVERY": {
-      return action.payload === true
-        ? { ...state, removeWithoutFastDeliery: true }
-        : { ...state, removeWithoutFastDeliery: false };
+
+    case "FILTER_BY_CATEGORIES": {
+      return state.filterByCategories.includes(action.payload)
+        ? {
+            ...state,
+            filterByCategories: state.filterByCategories.filter(
+              (item) => item !== action.payload
+            )
+          }
+        : {
+            ...state,
+            filterByCategories: state.filterByCategories.concat(action.payload)
+          };
+    }
+    case "FILTER_BY_BRANDS": {
+      return state.filterByBrands.includes(action.payload)
+        ? {
+            ...state,
+            filterByBrands: state.filterByBrands.filter(
+              (item) => item !== action.payload
+            )
+          }
+        : {
+            ...state,
+            filterByBrands: state.filterByBrands.concat(action.payload)
+          };
     }
     case "CLEAR_ALL_FILTERS": {
       return {
         ...state,
-        removeWithoutFastDeliery: false,
-        removeOutOfStock: false,
-        sortBy: ""
+        includeOutOfStock: true,
+        sortBy: "",
+        filterByCategories: [],
+        filterByBrands: []
       };
     }
 
