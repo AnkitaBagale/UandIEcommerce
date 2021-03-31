@@ -1,5 +1,14 @@
 import "./homepage.css";
 import { useStateContext } from "../context";
+import heroImg from "./Images/hero2.jpg";
+import brand1 from "./Images/brand-bianyo.jpg";
+import brand2 from "./Images/brand-brusto.png";
+import brand3 from "./Images/brand-camlin.png";
+import brand4 from "./Images/brand-doms.png";
+import category1 from "./Images/category1.jpg";
+import category2 from "./Images/category2.jpg";
+import category4 from "./Images/category4.jpg";
+import category5 from "./Images/category5.jpg";
 
 export const Home = () => {
   const { dispatch } = useStateContext();
@@ -13,7 +22,12 @@ export const Home = () => {
           </button>
         </div>
 
-        <div className="hero-image display-flex vertical-middle">
+        <div
+          style={{
+            background: `url(${heroImg}) no-repeat center/100% 100%`
+          }}
+          className="hero-image display-flex vertical-middle"
+        >
           <div className="text-center">
             <div>
               <span className="primary-text-color logo-title">
@@ -56,7 +70,7 @@ export const Home = () => {
                 <div className="image-container">
                   <img
                     className="img-responsive"
-                    src="/Images/category5.jpg"
+                    src={category5}
                     alt="brand-img"
                   />
                 </div>
@@ -70,7 +84,7 @@ export const Home = () => {
                 <div className="image-container">
                   <img
                     className="img-responsive"
-                    src="/Images/category2.jpg"
+                    src={category2}
                     alt="brand-img"
                   />
                 </div>
@@ -84,7 +98,7 @@ export const Home = () => {
                 <div className="image-container">
                   <img
                     className="img-responsive"
-                    src="/Images/category1.jpg"
+                    src={category1}
                     alt="brand-img"
                   />
                 </div>
@@ -98,7 +112,7 @@ export const Home = () => {
                 <div className="image-container">
                   <img
                     className="img-responsive"
-                    src="/Images/category4.jpg"
+                    src={category4}
                     alt="brand-img"
                   />
                 </div>
@@ -117,38 +131,22 @@ export const Home = () => {
           <div className="grid-4-column-layout brand-list">
             <div className="card-vertical">
               <div className="image-container">
-                <img
-                  className="img-responsive"
-                  src="/Images/brand-bianyo.jpg"
-                  alt="brand-img"
-                />
+                <img className="img-responsive" src={brand1} alt="brand-img" />
               </div>
             </div>
             <div className="card-vertical">
               <div className="image-container">
-                <img
-                  className="img-responsive"
-                  src="/Images/brand-brusto.png"
-                  alt="brand-img"
-                />
+                <img className="img-responsive" src={brand2} alt="brand-img" />
               </div>
             </div>
             <div className="card-vertical">
               <div className="image-container">
-                <img
-                  className="img-responsive"
-                  src="/Images/brand-camlin.png"
-                  alt="brand-img"
-                />
+                <img className="img-responsive" src={brand3} alt="brand-img" />
               </div>
             </div>
             <div className="card-vertical">
               <div className="image-container">
-                <img
-                  className="img-responsive"
-                  src="/Images/brand-doms.png"
-                  alt="brand-img"
-                />
+                <img className="img-responsive" src={brand4} alt="brand-img" />
               </div>
             </div>
           </div>
