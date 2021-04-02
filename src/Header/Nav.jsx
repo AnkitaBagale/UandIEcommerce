@@ -25,7 +25,7 @@ export const Nav = () => {
           <button
             className="link-no-style text-left"
             onClick={() => {
-              dispatch({ type: "ROUTE", payload: "PLP" });
+              dispatch({ type: "ROUTE", payload: "home" });
             }}
           >
             <span className="primary-text-color logo-title">

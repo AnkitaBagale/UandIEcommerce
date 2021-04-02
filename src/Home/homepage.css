@@ -7,6 +7,9 @@
 .hero-image .logo-and-symbol-style {
   color: #3e4152;
 }
+.cursor-pointer {
+  cursor: pointer;
+}
 .alert-box {
   margin: 0;
   border-radius: 0;

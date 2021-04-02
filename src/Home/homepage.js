@@ -10,6 +10,19 @@ import category2 from "./Images/category2.jpg";
 import category4 from "./Images/category4.jpg";
 import category5 from "./Images/category5.jpg";
 
+const featuredCategories = [
+  { name: "Drawing Boards", img: category5 },
+  { name: "Drawing Pencils", img: category2 },
+  { name: "Painting Brush", img: category1 },
+  { name: "Colours", img: category4 }
+];
+const featuredBrands = [
+  { name: "Bianyo", img: brand1 },
+  { name: "Brustro", img: brand2 },
+  { name: "Camel", img: brand3 },
+  { name: "DOMS", img: brand4 }
+];
+
 export const Home = () => {
   const { dispatch } = useStateContext();
   return (
@@ -17,7 +30,12 @@ export const Home = () => {
       <div>
         <div className="alert-box alert-secondary text-center">
           Bestsellers at 70% off. Offer till midnight{" "}
-          <button className="link-no-style link-text link-text-secondary">
+          <button
+            className="link-no-style link-text link-text-secondary"
+            onClick={() => {
+              dispatch({ type: "ROUTE", payload: "PLP" });
+            }}
+          >
             Shop Now.
           </button>
         </div>
@@ -48,7 +66,7 @@ export const Home = () => {
             <div>
               <button
                 onClick={() => {
-                  dispatch({ type: "ROUTE", payload: "home" });
+                  dispatch({ type: "ROUTE", payload: "PLP" });
                 }}
                 className="btn btn-solid-primary"
               >
@@ -65,62 +83,34 @@ export const Home = () => {
           <h2 className="text-center">Featured Categories</h2>
           <div className="spacer-1rem"></div>
           <div className="grid-4-column-layout">
-            <div className="card-vertical card-hover">
-              <div className="overlay-container">
-                <div className="image-container">
-                  <img
-                    className="img-responsive"
-                    src={category5}
-                    alt="brand-img"
-                  />
+            {featuredCategories.map((category) => {
+              return (
+                <div
+                  key={category.name}
+                  className="card-vertical card-hover"
+                  onClick={() => {
+                    dispatch({
+                      type: "FILTER_BY_CATEGORIES",
+                      payload: category.name
+                    });
+                    dispatch({ type: "ROUTE", payload: "PLP" });
+                  }}
+                >
+                  <div className="overlay-container">
+                    <div className="image-container">
+                      <img
+                        className="img-responsive"
+                        src={category.img}
+                        alt={category.name}
+                      />
+                    </div>
+                  </div>
+                  <div className="overlay-text text-center">
+                    <div className="h6">{category.name}</div>
+                  </div>
                 </div>
-              </div>
-              <div className="overlay-text text-center">
-                <div className="h6">Drawing Board</div>
-              </div>
-            </div>
-            <div className="card-vertical  card-hover">
-              <div className="overlay-container">
-                <div className="image-container">
-                  <img
-                    className="img-responsive"
-                    src={category2}
-                    alt="brand-img"
-                  />
-                </div>
-              </div>
-              <div className="overlay-text text-center">
-                <div className="h6">Graphite Pencil</div>
-              </div>
-            </div>
-            <div className="card-vertical  card-hover">
-              <div className="overlay-container">
-                <div className="image-container">
-                  <img
-                    className="img-responsive"
-                    src={category1}
-                    alt="brand-img"
-                  />
-                </div>
-              </div>
-              <div className="overlay-text text-center">
-                <div className="h6">Nylon Brush</div>
-              </div>
-            </div>
-            <div className="card-vertical  card-hover">
-              <div className="overlay-container">
-                <div className="image-container">
-                  <img
-                    className="img-responsive"
-                    src={category4}
-                    alt="brand-img"
-                  />
-                </div>
-              </div>
-              <div className="overlay-text text-center">
-                <div className="h6">Pencil Colour</div>
-              </div>
-            </div>
+              );
+            })}
           </div>
 
           <div className="spacer-3rem"></div>
@@ -129,26 +119,29 @@ export const Home = () => {
           <h2 className="text-center">Featured Brands</h2>
 
           <div className="grid-4-column-layout brand-list">
-            <div className="card-vertical">
-              <div className="image-container">
-                <img className="img-responsive" src={brand1} alt="brand-img" />
-              </div>
-            </div>
-            <div className="card-vertical">
-              <div className="image-container">
-                <img className="img-responsive" src={brand2} alt="brand-img" />
-              </div>
-            </div>
-            <div className="card-vertical">
-              <div className="image-container">
-                <img className="img-responsive" src={brand3} alt="brand-img" />
-              </div>
-            </div>
-            <div className="card-vertical">
-              <div className="image-container">
-                <img className="img-responsive" src={brand4} alt="brand-img" />
-              </div>
-            </div>
+            {featuredBrands.map((brand) => {
+              return (
+                <div
+                  key={brand.name}
+                  className="card-vertical cursor-pointer"
+                  onClick={() => {
+                    dispatch({
+                      type: "FILTER_BY_BRANDS",
+                      payload: brand.name
+                    });
+                    dispatch({ type: "ROUTE", payload: "PLP" });
+                  }}
+                >
+                  <div className="image-container">
+                    <img
+                      className="img-responsive"
+                      src={brand.img}
+                      alt={brand.name}
+                    />
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

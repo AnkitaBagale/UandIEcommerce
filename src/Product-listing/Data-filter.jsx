@@ -100,7 +100,7 @@ export const Filter = () => {
 
         {categories.map((category) => {
           return (
-            <li>
+            <li key={category}>
               <label className="form-label">
                 <input
                   className="form-checkbox-field"
@@ -124,7 +124,7 @@ export const Filter = () => {
 
         {brands.map((brand) => {
           return (
-            <li>
+            <li key={brand}>
               <label className="form-label">
                 <input
                   className="form-checkbox-field"
