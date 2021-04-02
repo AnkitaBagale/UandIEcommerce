@@ -34,7 +34,7 @@ export const Cart = () => {
     cartDetails.discount -
     Number(userSelectedCoupon.couponPrice);
   const checkOffersValid = () => {
-    if (cartTotal < Number(userSelectedCoupon.minOrderValue)) {
+    if (cartTotalWithoutOffer <= Number(userSelectedCoupon.minOrderValue)) {
       setCoupon({
         couponName: "",
         couponPrice: 0,
@@ -136,7 +136,7 @@ export const Cart = () => {
                     <label className="field-label" htmlFor={coupon}>
                       <input
                         disabled={
-                          Number(cartTotalWithoutOffer) < Number(minOrder)
+                          Number(cartTotalWithoutOffer) <= Number(minOrder)
                         }
                         id={coupon}
                         type="checkbox"
@@ -145,11 +145,20 @@ export const Cart = () => {
                         value={off}
                         checked={coupon === userSelectedCoupon.couponName}
                         onChange={(e) => {
-                          setCoupon({
-                            couponName: coupon,
-                            couponPrice: off,
-                            minOrderValue: minOrder
-                          });
+                          console.log(e.target.checked);
+                          if (!e.target.checked) {
+                            setCoupon({
+                              couponName: "",
+                              couponPrice: 0,
+                              minOrderValue: ""
+                            });
+                          } else {
+                            setCoupon({
+                              couponName: coupon,
+                              couponPrice: off,
+                              minOrderValue: minOrder
+                            });
+                          }
                         }}
                       />
 
