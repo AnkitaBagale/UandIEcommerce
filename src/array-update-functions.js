@@ -21,10 +21,10 @@ export const toggleStatus = (itemsArray, id) => {
     }
   });
 };
-export const removeItemChangeStatus = (itemsArray, id) => {
+export const removeItemFromCart = (itemsArray, id) => {
   return itemsArray.map((item) => {
     if (item.id === id) {
-      return { ...item, status: { exists: false } };
+      return { ...item, cartQty: 1, status: { exists: false } };
     } else {
       return item;
     }

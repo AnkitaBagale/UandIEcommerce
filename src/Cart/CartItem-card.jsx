@@ -40,6 +40,7 @@ export const CartItemCard = ({ product }) => {
         </div>
         <div className="CTA-Container">
           <CartActionButtons
+            key={product.id}
             product={product}
             setMessage={setMessage}
             disableButtonWhileProcessing={disableButtonWhileProcessing}
@@ -47,6 +48,7 @@ export const CartItemCard = ({ product }) => {
           />
 
           <WishlistButton
+            key={product.id}
             product={product}
             setMessage={setMessage}
             disableButtonWhileProcessing={disableButtonWhileProcessing}

@@ -9,6 +9,7 @@ export const CartActionButtons = ({
   setDisableButton
 }) => {
   let isRendered = useRef(false);
+
   useEffect(() => {
     isRendered.current = true;
     return () => {
@@ -17,9 +18,12 @@ export const CartActionButtons = ({
   }, []);
 
   const { dispatch } = useStateContext();
+
   const cartQtyHandler = async (incOrDec) => {
     setDisableButton(true);
+
     setMessage({ msg: "updating...", msgType: "toast-inform" });
+
     try {
       if (!incOrDec && product.cartQty === 1) {
         await serverRequest({

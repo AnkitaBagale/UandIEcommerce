@@ -2,7 +2,8 @@ import {
   isAlreadyAdded,
   updateQty,
   addNewItem,
-  toggleStatus
+  toggleStatus,
+  removeItemFromCart
 } from "../array-update-functions";
 
 export const stateReducer = (state, action) => {
@@ -59,11 +60,13 @@ export const stateReducer = (state, action) => {
         ...state,
         itemsInCart: updateQty(state.itemsInCart, action.payload.id, false)
       };
+
     case "REMOVE_FROM_CART":
       return {
         ...state,
-        itemsInCart: toggleStatus(state.itemsInCart, action.payload.id)
+        itemsInCart: removeItemFromCart(state.itemsInCart, action.payload.id)
       };
+
     case "ROUTE":
       return {
         ...state,
