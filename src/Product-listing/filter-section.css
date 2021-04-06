@@ -15,6 +15,7 @@
 }
 .grid-right-of-filter {
   width: 80%;
+  align-self: flex-start;
 }
 .title_of_filters {
   display: flex;

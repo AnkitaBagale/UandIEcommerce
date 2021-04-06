@@ -26,10 +26,10 @@
 .row {
   justify-content: space-between;
 }
-.width-600px {
+.width-800px {
   max-width: 800px;
   width: 100%;
-  margin: auto;
+  margin: 0 auto;
 }
 .btn-close {
   background-color: white;
