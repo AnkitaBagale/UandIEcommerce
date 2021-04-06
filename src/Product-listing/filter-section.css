@@ -14,7 +14,7 @@
   box-sizing: border-box;
 }
 .grid-right-of-filter {
-  width: calc(80%);
+  width: 80%;
 }
 .title_of_filters {
   display: flex;

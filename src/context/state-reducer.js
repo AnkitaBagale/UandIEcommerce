@@ -83,42 +83,63 @@ export const stateReducer = (state, action) => {
     }
 
     case "INCLUDE_OUT_OF_STOCK": {
-      return { ...state, includeOutOfStock: action.payload };
+      return {
+        ...state,
+        dataFilter: { ...state.dataFilter, includeOutOfStock: action.payload }
+      };
     }
 
     case "FILTER_BY_CATEGORIES": {
-      return state.filterByCategories.includes(action.payload)
+      return state.dataFilter.filterByCategories.includes(action.payload)
         ? {
             ...state,
-            filterByCategories: state.filterByCategories.filter(
-              (item) => item !== action.payload
-            )
+            dataFilter: {
+              ...state.dataFilter,
+              filterByCategories: state.dataFilter.filterByCategories.filter(
+                (item) => item !== action.payload
+              )
+            }
           }
         : {
             ...state,
-            filterByCategories: state.filterByCategories.concat(action.payload)
+            dataFilter: {
+              ...state.dataFilter,
+              filterByCategories: state.dataFilter.filterByCategories.concat(
+                action.payload
+              )
+            }
           };
     }
     case "FILTER_BY_BRANDS": {
-      return state.filterByBrands.includes(action.payload)
+      return state.dataFilter.filterByBrands.includes(action.payload)
         ? {
             ...state,
-            filterByBrands: state.filterByBrands.filter(
-              (item) => item !== action.payload
-            )
+            dataFilter: {
+              ...state.dataFilter,
+              filterByBrands: state.dataFilter.filterByBrands.filter(
+                (item) => item !== action.payload
+              )
+            }
           }
         : {
             ...state,
-            filterByBrands: state.filterByBrands.concat(action.payload)
+            dataFilter: {
+              ...state.dataFilter,
+              filterByBrands: state.dataFilter.filterByBrands.concat(
+                action.payload
+              )
+            }
           };
     }
     case "CLEAR_ALL_FILTERS": {
       return {
         ...state,
-        includeOutOfStock: true,
         sortBy: "",
-        filterByCategories: [],
-        filterByBrands: []
+        dataFilter: {
+          includeOutOfStock: true,
+          filterByCategories: [],
+          filterByBrands: []
+        }
       };
     }
 

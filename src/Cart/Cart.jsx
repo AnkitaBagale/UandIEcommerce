@@ -11,7 +11,7 @@ export const Cart = () => {
       <h1 className="text-center h6 page-title">My Cart</h1>
       <div className="display-flex width-600px">
         <ul className="column-60-pc list-style-none styled-list padding-1rem-borderbox">
-          {state.itemsInCart.length === 0 ? (
+          {dataToMap.length === 0 ? (
             <h3 className="text-center">Cart is empty</h3>
           ) : (
             dataToMap.map((product) => {

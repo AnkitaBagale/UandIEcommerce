@@ -4,6 +4,8 @@ import { coupons } from "../database";
 import { useStateContext } from "../context";
 import "./cart.css";
 
+const indianRupeeSymbol = `\u20B9`;
+
 export const CartValueDetails = () => {
   const { state } = useStateContext();
   const [userSelectedCoupon, setCoupon] = useState({
@@ -70,26 +72,29 @@ export const CartValueDetails = () => {
         <div className="row body-cp-md ">
           <div className="column-80-pc">Total MRP</div>
           <div className="column-20-pc text-right">
-            &#8377;{cartDetails.totalMRP.toFixed(2)}
+            {indianRupeeSymbol}
+            {cartDetails.totalMRP.toFixed(2)}
           </div>
         </div>
         <div className="row body-cp-md ">
           <div className="column-80-pc">Discount on MRP</div>
           <div className="column-20-pc text-right text-green">
-            &#8377;{cartDetails.discount.toFixed(2)}
+            {indianRupeeSymbol}
+            {cartDetails.discount.toFixed(2)}
           </div>
         </div>
         {userSelectedCoupon.couponPrice !== 0 && (
           <div className="row body-cp-md ">
             <div className="column-80-pc">Coupon Discount</div>
             <div className="column-20-pc text-right text-green">
-              &#8377;{userSelectedCoupon.couponPrice}
+              {indianRupeeSymbol}
+              {userSelectedCoupon.couponPrice}
             </div>
           </div>
         )}
         <div className="row body-cp-md ">
           <div className="column-80-pc">Convenience Fee</div>
-          <span className="text-strike-through">&#8377;99</span>
+          <span className="text-strike-through">{indianRupeeSymbol}99</span>
           <span className="text-green">FREE</span>
           <div className="column-20-pc text-right"></div>
         </div>
@@ -97,7 +102,8 @@ export const CartValueDetails = () => {
         <div className="row body-cp-rg text-regular-weight">
           <div className="column-80-pc">Total Amount</div>
           <div className="column-20-pc text-right">
-            &#8377;{cartTotal.toFixed(2)}
+            {indianRupeeSymbol}
+            {cartTotal.toFixed(2)}
           </div>
         </div>
         <button className="btn btn-solid-primary">Place Order</button>
@@ -163,7 +169,8 @@ export const CartValueDetails = () => {
                       <span>{coupon}</span>
                     </label>
                     <div className="body-cp-md">
-                      Save &#8377;{off} on minimum purchase of {minOrder}
+                      Save {indianRupeeSymbol}
+                      {off} on minimum purchase of {minOrder}
                     </div>
                   </li>
                 ))}

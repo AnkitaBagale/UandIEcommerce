@@ -10,7 +10,6 @@ export const Nav = () => {
     <nav ref={navRef} className="nav-bar shadow-box">
       <div className="nav-section">
         <div
-          id="my-burger-menu"
           className="burger nav-section-items"
           onClick={() => {
             navRef.current.classList.toggle("active");

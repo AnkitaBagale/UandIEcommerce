@@ -5,16 +5,19 @@ import { stateReducer } from "./state-reducer";
 const CartContext = createContext();
 
 export const CartContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(stateReducer, {
+  const initialState = {
     products: [],
     itemsInCart: [],
     itemsInWishlist: [],
     route: "home",
     sortBy: "",
-    includeOutOfStock: true,
-    filterByCategories: [],
-    filterByBrands: []
-  });
+    dataFilter: {
+      includeOutOfStock: true,
+      filterByCategories: [],
+      filterByBrands: []
+    }
+  };
+  const [state, dispatch] = useReducer(stateReducer, initialState);
   return (
     <CartContext.Provider value={{ state, dispatch }}>
       {children}

@@ -18,27 +18,33 @@ export const getSortedData = (state, data) => {
 
 export const getFilteredData = (state, data) => {
   let newData = [...data];
-  if (!state.includeOutOfStock) {
+  if (!state.dataFilter.includeOutOfStock) {
     newData = newData.filter((product) => product.inStock);
   }
-  if (state.filterByCategories.length !== 0)
+  if (state.dataFilter.filterByCategories.length !== 0)
     newData = newData.filter((product) =>
-      state.filterByCategories.includes(product.category)
+      state.dataFilter.filterByCategories.includes(product.category)
     );
-  if (state.filterByBrands.length !== 0)
+  if (state.dataFilter.filterByBrands.length !== 0)
     newData = newData.filter((product) =>
-      state.filterByBrands.includes(product.brand)
+      state.dataFilter.filterByBrands.includes(product.brand)
     );
   return newData;
 };
 
-export const filterDataOnStatus = (state) => {
-  return state.filter((item) => item.status.exists);
+export const filterDataOnStatus = (data) => {
+  return data.filter((item) => item.status.exists);
 };
 
 export const Filter = () => {
   const { state, dispatch } = useStateContext();
   const [openFilter, setFilter] = useState(false);
+
+  const sortByHandler = (e) => {
+    console.log(e.target.value);
+    dispatch({ type: "SORT", payload: e.target.value });
+  };
+
   return (
     <div
       className={
@@ -73,9 +79,8 @@ export const Filter = () => {
               className="form-checkbox-field"
               type="radio"
               name="sort"
-              onChange={() =>
-                dispatch({ type: "SORT", payload: "HIGH_TO_LOW_PRICE" })
-              }
+              value="HIGH_TO_LOW_PRICE"
+              onChange={sortByHandler}
               checked={"HIGH_TO_LOW_PRICE" === state.sortBy}
             />
             Price High to low
@@ -87,10 +92,9 @@ export const Filter = () => {
               className="form-checkbox-field"
               type="radio"
               name="sort"
+              value="LOW_TO_HIGH_PRICE"
               checked={"LOW_TO_HIGH_PRICE" === state.sortBy}
-              onChange={() =>
-                dispatch({ type: "SORT", payload: "LOW_TO_HIGH_PRICE" })
-              }
+              onChange={sortByHandler}
             />
             Price Low to High
           </label>
@@ -105,7 +109,9 @@ export const Filter = () => {
                 <input
                   className="form-checkbox-field"
                   type="checkbox"
-                  checked={state.filterByCategories.includes(category)}
+                  checked={state.dataFilter.filterByCategories.includes(
+                    category
+                  )}
                   onChange={() => {
                     dispatch({
                       type: "FILTER_BY_CATEGORIES",
@@ -129,7 +135,7 @@ export const Filter = () => {
                 <input
                   className="form-checkbox-field"
                   type="checkbox"
-                  checked={state.filterByBrands.includes(brand)}
+                  checked={state.dataFilter.filterByBrands.includes(brand)}
                   onChange={() => {
                     dispatch({
                       type: "FILTER_BY_BRANDS",
@@ -150,11 +156,11 @@ export const Filter = () => {
             <input
               className="form-checkbox-field"
               type="checkbox"
-              checked={state.includeOutOfStock}
+              checked={state.dataFilter.includeOutOfStock}
               onChange={() => {
                 dispatch({
                   type: "INCLUDE_OUT_OF_STOCK",
-                  payload: !state.includeOutOfStock
+                  payload: !state.dataFilter.includeOutOfStock
                 });
               }}
             />
