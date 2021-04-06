@@ -1,27 +1,7 @@
 import "./homepage.css";
 import { useStateContext } from "../context";
 import heroImg from "./Images/hero2.jpg";
-import brand1 from "./Images/brand-bianyo.jpg";
-import brand2 from "./Images/brand-brusto.png";
-import brand3 from "./Images/brand-camlin.png";
-import brand4 from "./Images/brand-doms.png";
-import category1 from "./Images/category1.jpg";
-import category2 from "./Images/category2.jpg";
-import category4 from "./Images/category4.jpg";
-import category5 from "./Images/category5.jpg";
-
-const featuredCategories = [
-  { name: "Drawing Boards", img: category5 },
-  { name: "Drawing Pencils", img: category2 },
-  { name: "Painting Brush", img: category1 },
-  { name: "Colours", img: category4 }
-];
-const featuredBrands = [
-  { name: "Bianyo", img: brand1 },
-  { name: "Brustro", img: brand2 },
-  { name: "Camel", img: brand3 },
-  { name: "DOMS", img: brand4 }
-];
+import { featuredCategories, featuredBrands } from "../database";
 
 export const Home = () => {
   const { dispatch } = useStateContext();
