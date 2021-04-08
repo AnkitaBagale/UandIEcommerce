@@ -8,9 +8,10 @@ import { useStateContext } from "./context";
 import { Nav } from "./Header";
 import { Home } from "./Home";
 import { Footer } from "./Footer";
+import { Routes, Route } from "react-router-dom";
 
 export default function App() {
-  const { state, dispatch } = useStateContext();
+  const { dispatch } = useStateContext();
 
   useEffect(() => {
     (async () => {
@@ -46,10 +47,12 @@ export default function App() {
     <div className="App">
       <div className="App-container">
         <Nav />
-        {state.route === "home" && <Home />}
-        {state.route === "PLP" && <ProductListing />}
-        {state.route === "wishlist" && <Wishlist />}
-        {state.route === "cart" && <Cart />}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="shop" element={<ProductListing />} />
+          <Route path="wishlist" element={<Wishlist />} />
+          <Route path="cart" element={<Cart />} />
+        </Routes>
         <div className="spacer-3rem"></div>
       </div>
       <Footer />

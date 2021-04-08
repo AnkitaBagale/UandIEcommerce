@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import React from "react";
 import ReactDOM from "react-dom";
 import setupMockServer from "./api/mock.server";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import App from "./App";
 import { CartContextProvider } from "./context";
@@ -12,7 +13,9 @@ const rootElement = document.getElementById("root");
 ReactDOM.render(
   <StrictMode>
     <CartContextProvider>
-      <App />
+      <Router>
+        <App />
+      </Router>
     </CartContextProvider>
   </StrictMode>,
   rootElement

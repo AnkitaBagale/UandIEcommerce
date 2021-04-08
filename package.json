@@ -8,9 +8,11 @@
     "@babel/runtime": "7.13.8",
     "axios": "0.21.1",
     "faker": "5.4.0",
+    "history": "5.0.0",
     "miragejs": "0.1.41",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-router-dom": "6.0.0-beta.0",
     "react-scripts": "4.0.0"
   },
   "devDependencies": {
@@ -22,5 +24,10 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

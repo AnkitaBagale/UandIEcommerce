@@ -2,6 +2,8 @@ import { useRef } from "react";
 import { useStateContext } from "../context";
 import "./nav.css";
 import { filterDataOnStatus } from "../Product-listing";
+import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const Nav = () => {
   const { state, dispatch } = useStateContext();
@@ -21,12 +23,7 @@ export const Nav = () => {
         </div>
 
         <div className="nav-logo nav-section-items">
-          <button
-            className="link-no-style text-left"
-            onClick={() => {
-              dispatch({ type: "ROUTE", payload: "home" });
-            }}
-          >
+          <Link to="/" className="link-no-style text-left">
             <span className="primary-text-color logo-title">
               U
               <span className="tertiary-text-color logo-and-symbol-style">
@@ -38,7 +35,7 @@ export const Nav = () => {
             <span className="tertiary-text-color logo-tagline">
               LET'S DESIGN TOGETHER
             </span>
-          </button>
+          </Link>
         </div>
 
         <ul className="nav-bar-links list-style-none nav-section-items">
@@ -56,20 +53,24 @@ export const Nav = () => {
           </li>
 
           <li className="list-inline-item">
-            <button
-              onClick={() => dispatch({ type: "ROUTE", payload: "home" })}
-              className="link-no-style text-left"
+            <NavLink
+              end
+              to="/"
+              activeClassName="navlinks-active"
+              className="navlinks-style text-left"
             >
               Home
-            </button>
+            </NavLink>
           </li>
           <li className="list-inline-item">
-            <button
-              onClick={() => dispatch({ type: "ROUTE", payload: "PLP" })}
-              className="link-no-style text-left"
+            <NavLink
+              end
+              activeClassName="navlinks-active"
+              to="/shop"
+              className="navlinks-style text-left"
             >
               Shop Now
-            </button>
+            </NavLink>
           </li>
         </ul>
       </div>
@@ -77,9 +78,9 @@ export const Nav = () => {
       <div className="nav-section">
         <ul className="nav-icons list-style-none nav-section-item-width50pc">
           <li className="list-inline-item">
-            <button
+            <Link
+              to="/wishlist"
               className="nav-icon-link link-no-style text-regular-weight"
-              onClick={() => dispatch({ type: "ROUTE", payload: "wishlist" })}
             >
               <span className="nav-icon badge-container">
                 <i className="fas fa-heart"></i>
@@ -88,12 +89,12 @@ export const Nav = () => {
                 </span>
               </span>
               <span className="nav-icon-text">Wishlist</span>
-            </button>
+            </Link>
           </li>
           <li className="list-inline-item">
-            <button
+            <Link
+              to="/cart"
               className="nav-icon-link link-no-style text-regular-weight"
-              onClick={() => dispatch({ type: "ROUTE", payload: "cart" })}
             >
               <span className="nav-icon  badge-container">
                 <i className="fas fa-shopping-cart"></i>
@@ -102,7 +103,7 @@ export const Nav = () => {
                 </span>
               </span>
               <span className="nav-icon-text">Cart</span>
-            </button>
+            </Link>
           </li>
         </ul>
       </div>
