@@ -1,0 +1,139 @@
+.grid-left-filter {
+  margin-left: 1rem;
+  width: 20%;
+  padding: 0 1rem 1rem;
+}
+.filter-section-title {
+  padding-bottom: 0.625rem;
+}
+.padding-around-filter {
+  padding: 1rem 0.2rem 0;
+}
+.padding-around-1rem {
+  padding: 1rem;
+  box-sizing: border-box;
+}
+.grid-right-of-filter {
+  width: 80%;
+  align-self: flex-start;
+}
+.title_of_filters {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+.card-vertical {
+  background-color: white;
+}
+.display-flex-filter {
+  display: flex;
+  width: 100%;
+}
+
+.filter-section {
+  padding: 0 1rem;
+  overflow-y: auto;
+  max-height: calc(100vh - 8rem);
+}
+.filter-section::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+.filter-section::-webkit-scrollbar-thumb {
+  background-color: rgb(216, 215, 216);
+}
+.filter-section::-webkit-scrollbar-track {
+  background: #edebef;
+}
+
+.filter-divider-line {
+  background-color: #edebef;
+  width: 100%;
+  border: none;
+  height: 1px;
+  margin: 0.5rem 0 1rem 0;
+}
+@media screen and (max-width: 1024px) {
+  .grid-left-filter {
+    margin-left: 0rem;
+  }
+  .title_of_filters {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .position-fixed {
+    position: sticky;
+    top: 4rem;
+    width: 100%;
+  }
+  .pointer-event-none-L {
+    pointer-events: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .grid-left-filter {
+    background-color: #edebef;
+    position: fixed;
+    bottom: 0;
+    z-index: var(--z-index-2);
+    width: 100%;
+    padding: 0rem;
+  }
+
+  .padding-around-filter {
+    padding: 0.1rem 1rem;
+  }
+  .title_of_filters {
+    padding: 0;
+  }
+  .filter-section {
+    padding: 0;
+    display: none;
+    max-height: calc(100vh - 6rem);
+  }
+  .grid-right-of-filter {
+    width: 100%;
+  }
+
+  .display-flex-filter {
+    display: block;
+  }
+
+  .filter-open {
+    height: 100vh;
+    width: 100vw;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    background-color: white;
+  }
+  .grid-left-filter {
+    position: static;
+  }
+  .filter-open .filter-section {
+    display: block;
+  }
+  .position-fixed {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: var(--z-index-4);
+    background-color: #edebef;
+  }
+  .filter-divider-line {
+    background-color: #bcbcbd;
+  }
+  .filter-section::-webkit-scrollbar {
+    width: 0.25rem;
+  }
+
+  .filter-section::-webkit-scrollbar-thumb {
+    background-color: rgb(185, 184, 185);
+  }
+  .filter-section::-webkit-scrollbar-track {
+    background: rgb(214, 212, 216);
+  }
+}

@@ -1,0 +1,7 @@
+.greyed-out {
+  cursor: default;
+  opacity: 0.5;
+}
+.greyed-out label {
+  cursor: default;
+}

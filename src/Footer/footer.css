@@ -1,0 +1,30 @@
+.footer {
+  background-color: rgb(63, 57, 71);
+  min-height: 7rem;
+  width: 100%;
+  padding: 2.5rem;
+  color: white;
+  font-size: 1.5rem;
+  box-sizing: border-box;
+}
+.footer-social-icons {
+  width: fit-content;
+  margin: 1rem auto;
+}
+.footer-social-icons a {
+  transition: 0.2s ease;
+}
+.footer-social-icons a:hover {
+  color: var(--primary-color);
+}
+.btn-float-action {
+  bottom: 1.75rem;
+}
+
+.footer-header {
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+.footer-copy {
+  color: rgb(167, 167, 167);
+}

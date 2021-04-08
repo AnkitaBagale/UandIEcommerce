@@ -1,0 +1,50 @@
+.hero-image {
+  padding: 1.5rem;
+}
+.banner-title {
+  font-size: 3.2rem;
+}
+.hero-image .logo-and-symbol-style {
+  color: #3e4152;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.alert-box {
+  margin: 0;
+  border-radius: 0;
+}
+.card-hover {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.card-hover:hover {
+  transform: scale(1.05);
+}
+.homepage-container {
+  padding: 0 1rem;
+}
+.spacer-3rem {
+  width: 100%;
+  height: 3rem;
+}
+.spacer-2rem {
+  width: 100%;
+  height: 2rem;
+}
+.spacer-1rem {
+  width: 100%;
+  height: 1rem;
+}
+@media screen and (max-width: 768px) {
+  .hero-image {
+    min-height: 12.5rem;
+  }
+  .banner-title {
+    font-size: 2.5rem;
+  }
+
+  .card-hover:hover {
+    transform: scaleY(1.05);
+  }
+}
