@@ -80,7 +80,11 @@ export const Login = () => {
         </button>
         <div className="body-cp-md padding-bottom-1rem">
           Forgot your password?{" "}
-          <Link to="/forgot" className="link-text link-text-primary">
+          <Link
+            to="/forgot"
+            state={{ from: state?.from ? state.from : "/" }}
+            className="link-text link-text-primary"
+          >
             Reset here
           </Link>
         </div>
