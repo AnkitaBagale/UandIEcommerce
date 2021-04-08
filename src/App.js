@@ -8,7 +8,7 @@ import { useStateContext } from "./context";
 import { Nav } from "./Header";
 import { Home } from "./Home";
 import { Footer } from "./Footer";
-import { Login } from "./Authentication";
+import { ForgotPassword, Login } from "./Authentication";
 import { Routes, Route } from "react-router-dom";
 import { PrivateRoute } from "./Authentication";
 import { Profile } from "./Authentication";
@@ -56,6 +56,7 @@ export default function App() {
           <PrivateRoute path="wishlist" element={<Wishlist />} />
           <PrivateRoute path="cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/forgot" element={<ForgotPassword />} />
           <PrivateRoute path="/profile" element={<Profile />} />
         </Routes>
         <div className="spacer-3rem"></div>

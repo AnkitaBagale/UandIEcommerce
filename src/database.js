@@ -73,3 +73,18 @@ export const featuredBrands = [
   { name: "Camel", img: brand3 },
   { name: "DOMS", img: brand4 }
 ];
+
+export const users = [
+  {
+    username: "Ankita",
+    password: "Ankita"
+  },
+  {
+    username: "Admin",
+    password: "Admin"
+  },
+  {
+    username: "Pooja",
+    password: "Pooja"
+  }
+];

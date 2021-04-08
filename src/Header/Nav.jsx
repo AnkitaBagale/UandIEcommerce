@@ -10,8 +10,7 @@ export const Nav = () => {
   const { state } = useStateContext();
   const navRef = useRef(null);
   const { isLoggedIn, userName } = useAuth();
-  console.log({ isLoggedIn });
-  console.log({ userName });
+
   return (
     <nav ref={navRef} className="nav-bar shadow-box">
       <div className="nav-section">
