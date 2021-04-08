@@ -63,6 +63,9 @@ label {
   margin: auto;
 }
 
+.margin-auto {
+  margin: auto;
+}
 @media screen and (max-width: 768px) {
   .grid-4-column-layout {
     gap: 1rem;

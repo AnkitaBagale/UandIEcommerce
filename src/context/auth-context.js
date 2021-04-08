@@ -1,39 +1,27 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { users } from "../database";
 
 const fetchAuthResponse = (username, password) => {
-  console.log("insideFetchAuth");
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (checkCredentials(username, password)) {
-        return resolve({ success: true, status: 200 });
+      let user = checkCredentials(username, password);
+      if (user?.username) {
+        return resolve({ success: true, response: user, status: 200 });
       }
-      return reject({ success: false, status: 401 });
+      return reject({ success: false, response: user, status: 401 });
     }, 2000);
   });
 };
 
-const users = [
-  {
-    username: "Ankita",
-    password: "Ankita"
-  },
-  {
-    username: "Admin",
-    password: "Admin"
-  },
-  {
-    username: "Pooja",
-    password: "Pooja"
-  }
-];
-
 const checkCredentials = (username, password) => {
-  console.log({ username });
-  console.log("insideCheckCredentials");
   const user = users.find((user) => user.username === username);
-  console.log({ user });
-  return user?.password === password ? true : false;
+
+  return user
+    ? user.password === password
+      ? user
+      : "Entered password is incorrect"
+    : "Username does not exist";
 };
 
 const AuthContext = createContext();
@@ -51,7 +39,6 @@ export const AuthContextProvider = ({ children }) => {
 
   const authHandler = async ({ username, password, from }) => {
     try {
-      console.log("insideAuth");
       const response = await fetchAuthResponse(username, password);
 
       if (response?.status === 200) {
@@ -62,9 +49,10 @@ export const AuthContextProvider = ({ children }) => {
         setLogin(true);
         setUserName(username);
         navigate(from);
+        return response;
       }
     } catch (error) {
-      console.error(error);
+      return error;
     }
   };
 

@@ -1,11 +1,10 @@
 import { useReducer, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../context";
-import "./login.css";
-import Loader from "react-loader-spinner";
 import { InputPasswordField } from "./hide-show-password";
+import Loader from "react-loader-spinner";
 
-export const Login = () => {
+export const ForgotPassword = () => {
   const { authHandler } = useAuth();
   const { state } = useLocation();
   const [error, setError] = useState("");
@@ -13,7 +12,8 @@ export const Login = () => {
 
   const initialState = {
     username: "",
-    password: ""
+    password: "",
+    confirmPassword: ""
   };
 
   const formReducer = (state, { type, payload }) => {
@@ -23,6 +23,9 @@ export const Login = () => {
 
       case "SET_PASSWORD":
         return { ...state, password: payload };
+
+      case "SET_RE_PASSWORD":
+        return { ...state, confirmPassword: payload };
 
       default:
         return state;
@@ -48,7 +51,8 @@ export const Login = () => {
 
   return (
     <div className="form-container shadow-box overlay-container">
-      <h1 className="h4 padding-bottom-1rem text-center">LOGIN</h1>
+      <h1 className="h4 padding-bottom-1rem text-center">Reset Password</h1>
+      <p>Enter your username and enter new password</p>
       <form
         className="submit-form-example display-flex-column"
         onSubmit={formSubmitHandler}
@@ -67,7 +71,7 @@ export const Login = () => {
 
         <div className="row">
           <InputPasswordField
-            placeholderText={"Enter your password here"}
+            placeholderText={"Enter new password here"}
             value={formState.password}
             onChangeHandler={(e) => {
               formDispatch({ type: "SET_PASSWORD", payload: e.target.value });
@@ -75,15 +79,33 @@ export const Login = () => {
           />
         </div>
 
-        <button className="btn btn-solid-primary" type="submit">
-          LOGIN
-        </button>
-        <div className="body-cp-md padding-bottom-1rem">
-          Forgot your password?{" "}
-          <Link to="/forgot" className="link-text link-text-primary">
-            Reset here
-          </Link>
+        <div className="row">
+          <InputPasswordField
+            placeholderText={"Re-type your password here"}
+            value={formState.confirmPassword}
+            onChangeHandler={(e) => {
+              formDispatch({
+                type: "SET_RE_PASSWORD",
+                payload: e.target.value
+              });
+            }}
+          />
         </div>
+
+        {formState.password !== "" &&
+          formState.confirmPassword !== "" &&
+          formState.password !== formState.confirmPassword && (
+            <div style={{ color: "#ff9204" }}>
+              <span className="form-field-symbol">
+                <i className="fas fa-exclamation-circle"></i>
+              </span>
+              Password does not match
+            </div>
+          )}
+
+        <button className="btn btn-solid-primary" type="submit">
+          RESET
+        </button>
       </form>
       <div
         style={{ display: error !== "" ? "block" : "none", color: "#ff9204" }}
