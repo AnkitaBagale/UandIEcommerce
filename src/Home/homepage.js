@@ -2,22 +2,22 @@ import "./homepage.css";
 import { useStateContext } from "../context";
 import heroImg from "./Images/hero2.jpg";
 import { featuredCategories, featuredBrands } from "../database";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Home = () => {
   const { dispatch } = useStateContext();
+  const navigate = useNavigate();
   return (
     <>
       <div>
         <div className="alert-box alert-secondary text-center">
           Bestsellers at 70% off. Offer till midnight{" "}
-          <button
+          <Link
+            to="/shop"
             className="link-no-style link-text link-text-secondary"
-            onClick={() => {
-              dispatch({ type: "ROUTE", payload: "PLP" });
-            }}
           >
             Shop Now.
-          </button>
+          </Link>
         </div>
 
         <div
@@ -44,14 +44,9 @@ export const Home = () => {
               </h5>
             </div>
             <div>
-              <button
-                onClick={() => {
-                  dispatch({ type: "ROUTE", payload: "PLP" });
-                }}
-                className="btn btn-solid-primary"
-              >
+              <Link to="/shop" className="btn btn-solid-primary">
                 Shop Now
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -73,7 +68,7 @@ export const Home = () => {
                       type: "FILTER_BY_CATEGORIES",
                       payload: category.name
                     });
-                    dispatch({ type: "ROUTE", payload: "PLP" });
+                    navigate("/shop");
                   }}
                 >
                   <div className="overlay-container">
@@ -109,7 +104,7 @@ export const Home = () => {
                       type: "FILTER_BY_BRANDS",
                       payload: brand.name
                     });
-                    dispatch({ type: "ROUTE", payload: "PLP" });
+                    navigate("/shop");
                   }}
                 >
                   <div className="image-container">

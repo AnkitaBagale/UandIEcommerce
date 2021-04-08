@@ -67,12 +67,6 @@ export const stateReducer = (state, action) => {
         itemsInCart: removeItemFromCart(state.itemsInCart, action.payload.id)
       };
 
-    case "ROUTE":
-      return {
-        ...state,
-        route: action.payload
-      };
-
     case "SORT": {
       if (action.payload === "HIGH_TO_LOW_PRICE") {
         return { ...state, sortBy: "HIGH_TO_LOW_PRICE" };

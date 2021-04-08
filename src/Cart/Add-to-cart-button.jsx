@@ -2,6 +2,7 @@ import { useStateContext } from "../context";
 import { isAlreadyAdded, checkStatus } from "../array-update-functions";
 import { serverRequest } from "../server-request";
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const AddToCartButton = ({
   product,
@@ -9,6 +10,7 @@ export const AddToCartButton = ({
   setDisableButton,
   disableButtonWhileProcessing
 }) => {
+  const navigate = useNavigate();
   const { state, dispatch } = useStateContext();
 
   let isRendered = useRef(false);
@@ -24,7 +26,7 @@ export const AddToCartButton = ({
 
     try {
       if (checkStatus(state.itemsInCart, product.id)) {
-        dispatch({ type: "ROUTE", payload: "cart" });
+        navigate("/cart");
       } else {
         setDisableButton(true);
         if (isAlreadyAdded(state.itemsInCart, product.id)) {

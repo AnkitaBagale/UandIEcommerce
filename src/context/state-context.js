@@ -9,7 +9,6 @@ export const CartContextProvider = ({ children }) => {
     products: [],
     itemsInCart: [],
     itemsInWishlist: [],
-    route: "home",
     sortBy: "",
     dataFilter: {
       includeOutOfStock: true,
