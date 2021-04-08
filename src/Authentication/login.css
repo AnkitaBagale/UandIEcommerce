@@ -1,0 +1,12 @@
+.form-container {
+  padding: 1rem;
+  width: calc(100% - 2rem);
+  max-width: 400px;
+  margin: 2rem auto;
+}
+.row .form-label {
+  padding-bottom: 0;
+}
+.padding-bottom-1rem {
+  padding-bottom: 1rem;
+}

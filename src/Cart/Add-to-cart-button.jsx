@@ -1,4 +1,4 @@
-import { useStateContext } from "../context";
+import { useAuth, useStateContext } from "../context";
 import { isAlreadyAdded, checkStatus } from "../array-update-functions";
 import { serverRequest } from "../server-request";
 import { useEffect, useRef } from "react";
@@ -12,6 +12,7 @@ export const AddToCartButton = ({
 }) => {
   const navigate = useNavigate();
   const { state, dispatch } = useStateContext();
+  const { isLoggedIn } = useAuth();
 
   let isRendered = useRef(false);
   useEffect(() => {
@@ -73,7 +74,9 @@ export const AddToCartButton = ({
             ? "btn btn-outline-primary btn-disabled btn-sm-size"
             : "btn btn-outline-primary btn-sm-size"
         }
-        onClick={addToCartHandler}
+        onClick={() => {
+          isLoggedIn ? addToCartHandler() : navigate("/login");
+        }}
       >
         {checkStatus(state.itemsInCart, product.id)
           ? "Go to Cart"

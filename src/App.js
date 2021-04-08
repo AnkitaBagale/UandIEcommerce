@@ -8,7 +8,10 @@ import { useStateContext } from "./context";
 import { Nav } from "./Header";
 import { Home } from "./Home";
 import { Footer } from "./Footer";
+import { Login } from "./Authentication";
 import { Routes, Route } from "react-router-dom";
+import { PrivateRoute } from "./Authentication";
+import { Profile } from "./Authentication";
 
 export default function App() {
   const { dispatch } = useStateContext();
@@ -50,8 +53,10 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="shop" element={<ProductListing />} />
-          <Route path="wishlist" element={<Wishlist />} />
-          <Route path="cart" element={<Cart />} />
+          <PrivateRoute path="wishlist" element={<Wishlist />} />
+          <PrivateRoute path="cart" element={<Cart />} />
+          <Route path="/login" element={<Login />} />
+          <PrivateRoute path="/profile" element={<Profile />} />
         </Routes>
         <div className="spacer-3rem"></div>
       </div>
