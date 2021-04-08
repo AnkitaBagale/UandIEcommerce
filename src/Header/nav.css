@@ -6,6 +6,9 @@
   padding-right: 3rem;
   box-sizing: border-box;
 }
+.avatar-in-nav-links i {
+  color: white;
+}
 .nav-logo {
   width: 100%;
   /* padding: 0 3rem 0 2rem; */
@@ -47,6 +50,10 @@
   color: var(--primary-color);
 }
 
+.nav-icons {
+  box-sizing: border-box;
+  padding: 0 1rem;
+}
 @media screen and (max-width: 1024px) {
   .nav-bar {
     padding: 0.8rem 0.8rem 0.8rem 0rem;

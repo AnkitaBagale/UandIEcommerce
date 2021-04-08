@@ -1,7 +1,8 @@
 import { checkStatus, isAlreadyAdded } from "../array-update-functions";
-import { useStateContext } from "../context";
+import { useAuth, useStateContext } from "../context";
 import { serverRequest } from "../server-request";
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const LikeButton = ({
   product,
@@ -10,8 +11,9 @@ export const LikeButton = ({
   setDisableButton
 }) => {
   const { state, dispatch } = useStateContext();
-
+  const navigate = useNavigate();
   let isRendered = useRef(false);
+  const { isLoggedIn } = useAuth();
 
   useEffect(() => {
     isRendered.current = true;
@@ -82,7 +84,9 @@ export const LikeButton = ({
           ? "var(--primary-color)"
           : ""
       }}
-      onClick={() => likeHandler()}
+      onClick={() => {
+        isLoggedIn ? likeHandler() : navigate("/login");
+      }}
     >
       <span>
         <i className="fas fa-heart"></i>
