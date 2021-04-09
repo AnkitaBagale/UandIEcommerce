@@ -78,6 +78,15 @@ export const Login = () => {
         <button className="btn btn-solid-primary" type="submit">
           LOGIN
         </button>
+        <div
+          className="padding-bottom-1rem"
+          style={{ display: error !== "" ? "block" : "none", color: "#ff9204" }}
+        >
+          <span className="form-field-symbol">
+            <i className="fas fa-exclamation-circle"></i>
+          </span>
+          {error}
+        </div>
         <div className="body-cp-md padding-bottom-1rem">
           Forgot your password?{" "}
           <Link
@@ -88,15 +97,18 @@ export const Login = () => {
             Reset here
           </Link>
         </div>
+        <div className="body-cp-md padding-bottom-1rem">
+          Not a user yet?{" "}
+          <Link
+            to="/signup"
+            state={{ from: state?.from ? state.from : "/" }}
+            className="link-text link-text-primary"
+          >
+            Create your account
+          </Link>
+        </div>
       </form>
-      <div
-        style={{ display: error !== "" ? "block" : "none", color: "#ff9204" }}
-      >
-        <span className="form-field-symbol">
-          <i className="fas fa-exclamation-circle"></i>
-        </span>
-        {error}
-      </div>
+
       {isLoading && (
         <div className="overlay-text">
           <Loader type="TailSpin" color="#ff3f6c" height={80} width={80} />

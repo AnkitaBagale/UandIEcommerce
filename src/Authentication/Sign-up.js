@@ -5,7 +5,7 @@ import { InputPasswordField } from "./hide-show-password";
 import Loader from "react-loader-spinner";
 import { useAuth } from "../context/auth-context";
 
-export const ForgotPassword = () => {
+export const SignUp = () => {
   // const { state } = useLocation();
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
@@ -55,8 +55,8 @@ export const ForgotPassword = () => {
     <div className="form-container shadow-box overlay-container">
       {!showSuccess ? (
         <>
-          <h1 className="h4 padding-bottom-1rem text-center">Reset Password</h1>
-          <p>Enter your username and enter new password</p>
+          <h1 className="h4 padding-bottom-1rem text-center">SIGN UP</h1>
+          <p>Enter your username and enter password</p>
           <form
             className="submit-form-example display-flex-column"
             onSubmit={formSubmitHandler}
@@ -136,7 +136,7 @@ export const ForgotPassword = () => {
         </>
       ) : (
         <div className="text-center">
-          <h5>Your password is set successfully!</h5>
+          <h5>Thank you for signing up!</h5>
           <p className="body-cp-lg">Continue shopping with us.</p>
           <Link to={"/shop"} className="btn btn-solid-primary">
             Shop Now

@@ -55,16 +55,29 @@ export const AuthContextProvider = ({ children }) => {
       return error;
     }
   };
+  const newUserHandler = (username) => {
+    localStorage?.setItem(
+      "session",
+      JSON.stringify({ login: true, userName: username })
+    );
+    setLogin(true);
+    setUserName(username);
+  };
 
   const logOutHandler = () => {
     localStorage?.removeItem("session");
     setLogin(false);
     setUserName("");
-    navigate("/");
   };
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, authHandler, userName, logOutHandler }}
+      value={{
+        isLoggedIn,
+        authHandler,
+        userName,
+        logOutHandler,
+        newUserHandler
+      }}
     >
       {children}
     </AuthContext.Provider>
