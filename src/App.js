@@ -12,6 +12,7 @@ import { ForgotPassword, Login } from "./Authentication";
 import { Routes, Route } from "react-router-dom";
 import { PrivateRoute } from "./Authentication";
 import { Profile } from "./Authentication";
+import { SignUp } from "./Authentication/Sign-up";
 
 export default function App() {
   const { dispatch } = useStateContext();
@@ -57,6 +58,7 @@ export default function App() {
           <PrivateRoute path="cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot" element={<ForgotPassword />} />
+          <Route path="/signup" element={<SignUp />} />
           <PrivateRoute path="/profile" element={<Profile />} />
         </Routes>
         <div className="spacer-3rem"></div>
