@@ -10,11 +10,11 @@
 .padding-bottom-1rem {
   padding-bottom: 1rem;
 }
-.overlay-container {
+.form-container.overlay-container {
   opacity: 1;
   position: relative;
 }
-.overlay-text {
+.form-container .overlay-text {
   background-color: transparent;
 }
 .input-with-eye-container {
