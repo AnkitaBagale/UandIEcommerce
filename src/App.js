@@ -3,11 +3,11 @@ import { useEffect } from "react";
 import { ProductListing } from "./Product-listing";
 import { Cart } from "./Cart";
 import { Wishlist } from "./Wishlist";
-import { serverRequest } from "./utils";
 import { useStateContext, useAuthentication } from "./context";
 import { Nav } from "./Header";
 import { Home } from "./Home";
 import { Footer } from "./Footer";
+import { getProductsFromServer } from "./utils";
 
 import {
   ForgotPasswordPage,
@@ -19,7 +19,7 @@ import {
 import { Routes, Route } from "react-router-dom";
 
 export default function App() {
-  const { state, dispatch } = useStateContext();
+  const { dispatch } = useStateContext();
   const { isUserLoggedIn, userId } = useAuthentication();
 
   useEffect(() => {
@@ -27,12 +27,11 @@ export default function App() {
       try {
         const {
           data: { response }
-        } = await serverRequest({
-          url: "http://localhost:3000/products",
-          requestType: "GET"
-        });
+        } = await getProductsFromServer("http://localhost:3000/products");
         dispatch({ type: "SET_PRODUCTS", payload: response });
-      } catch {}
+      } catch (error) {
+        console.log(error);
+      }
     })();
   }, []);
 
@@ -42,28 +41,30 @@ export default function App() {
         try {
           const {
             data: { response }
-          } = await serverRequest({
-            url: `http://localhost:3000/carts/${userId}/cart`,
-            requestType: "GET"
-          });
+          } = await getProductsFromServer(
+            `http://localhost:3000/carts/${userId}/cart`
+          );
 
           dispatch({ type: "SET_CART", payload: response.products });
-        } catch {}
+        } catch (error) {
+          console.log(error);
+        }
 
         try {
           const {
             data: { response }
-          } = await serverRequest({
-            url: `http://localhost:3000/wishlists/${userId}/wishlist`,
-            requestType: "GET"
-          });
+          } = await getProductsFromServer(
+            `http://localhost:3000/wishlists/${userId}/wishlist`
+          );
 
           dispatch({ type: "SET_WISHLIST", payload: response.products });
-        } catch {}
+        } catch (error) {
+          console.log(error);
+        }
       })();
     }
   }, [isUserLoggedIn]);
-  console.log("cart items", state.itemsInCart);
+
   return (
     <div className="App">
       <div className="App-container">
