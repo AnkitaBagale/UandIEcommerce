@@ -1,4 +1,5 @@
 export { Login } from "./Login";
-export { PrivateRoute } from "./Private-route";
+export { PrivateRoute } from "./PrivateRoute";
 export { Profile } from "./Profile";
-export { ForgotPassword } from "./Forgot-password";
+export { ForgotPasswordPage } from "./ForgotPasswordPage";
+export { SignUp } from "./SignUp";

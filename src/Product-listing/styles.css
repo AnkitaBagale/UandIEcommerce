@@ -1,3 +1,10 @@
+.text-container .product-title {
+  font-size: 1rem;
+}
+.vertical-card {
+  width: 100%;
+}
+
 .grid-left-filter {
   margin-left: 1rem;
   width: 20%;
@@ -62,18 +69,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
-  .position-fixed {
-    position: sticky;
-    top: 4rem;
-    width: 100%;
-  }
-  .pointer-event-none-L {
-    pointer-events: none;
-  }
-}
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .grid-left-filter {
     background-color: #edebef;
     position: fixed;
@@ -135,5 +131,22 @@
   }
   .filter-section::-webkit-scrollbar-track {
     background: rgb(214, 212, 216);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .position-fixed {
+    position: sticky;
+    top: 4rem;
+    width: 100%;
+  }
+  .pointer-event-none-L {
+    pointer-events: none;
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 767px) {
+  .grid-left-filter {
+    width: fit-content;
   }
 }

@@ -1,9 +1,9 @@
-import "./profile.css";
+import "./styles.css";
 import avatarImg from "./Images/user.svg";
-import { useAuth } from "../context";
+import { useAuthentication } from "../context";
 
 export const Profile = () => {
-  const { userName, logOutHandler } = useAuth();
+  const { userName, logOutUser } = useAuthentication();
 
   return (
     <div className="user-rofile-container padding-around-1rem">
@@ -19,7 +19,7 @@ export const Profile = () => {
           </div>
 
           <div className="CTA-Container">
-            <button className="btn btn-solid-primary" onClick={logOutHandler}>
+            <button className="btn btn-solid-primary" onClick={logOutUser}>
               Log out
             </button>
           </div>

@@ -1,8 +1,8 @@
 import { AddToCartButton } from "../Cart";
-import { LikeButton } from "./Like-button";
+import { LikeButton } from "./LikeButton";
 import { useState } from "react";
 import { Toast } from "../Toast";
-import "./Product-card.css";
+import "./styles.css";
 
 export const ProductCard = ({ product }) => {
   const [message, setMessage] = useState({ msg: "", msgType: "" });
@@ -34,7 +34,7 @@ export const ProductCard = ({ product }) => {
           <h6 className="product-title">
             {product.name}
             <LikeButton
-              key={product.id}
+              key={product._id}
               product={product}
               setMessage={setMessage}
               disableButtonWhileProcessing={disableButtonWhileProcessing}
@@ -68,7 +68,7 @@ export const ProductCard = ({ product }) => {
         </div>
         <div className="CTA-Container">
           <AddToCartButton
-            key={product.id}
+            key={product._id}
             product={product}
             setMessage={setMessage}
             disableButtonWhileProcessing={disableButtonWhileProcessing}

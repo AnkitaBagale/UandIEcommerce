@@ -1,14 +1,14 @@
-import { useStateContext } from "../context";
+import { useAuthentication, useStateContext } from "../context";
 import { AddToCartButton } from "../Cart";
 import { useEffect, useRef, useState } from "react";
-import { serverRequest } from "../server-request";
+import { addProductToWishlist } from "../utils";
 import { Toast } from "../Toast";
 
 export const WishlistItemCard = ({ product }) => {
-  const { dispatch } = useStateContext();
+  const { state, dispatch } = useStateContext();
   const [message, setMessage] = useState({ msg: "", msgType: "" });
   const [disableButtonWhileProcessing, setDisableButton] = useState(false);
-
+  const { userId } = useAuthentication();
   let isRendered = useRef(null);
 
   useEffect(() => {
@@ -18,33 +18,6 @@ export const WishlistItemCard = ({ product }) => {
       isRendered.current = false;
     };
   });
-
-  const removeFromWishlist = async () => {
-    setDisableButton(true);
-    setMessage({ msg: "removing from wishlist..", msgType: "toast-inform" });
-
-    try {
-      await serverRequest({
-        requestType: "PUT",
-        url: "api/wishlists",
-        dataToOperateId: product.id,
-        dataToOperate: { wishlist: { ...product, status: { exists: false } } }
-      });
-
-      dispatch({
-        type: "ADD_OR_REMOVE_TO_WISHLIST",
-        payload: product
-      });
-    } catch {
-      if (isRendered.current)
-        setMessage({
-          msg: "failed!",
-          msgType: "toast-error"
-        });
-    } finally {
-      if (isRendered.current) setDisableButton(false);
-    }
-  };
 
   return (
     <div className="card-vertical border-width-1px">
@@ -58,7 +31,17 @@ export const WishlistItemCard = ({ product }) => {
         className={
           disableButtonWhileProcessing ? "btn-close btn-disabled" : "btn-close"
         }
-        onClick={removeFromWishlist}
+        onClick={() => {
+          addProductToWishlist({
+            state,
+            dispatch,
+            setMessage,
+            setDisableButton,
+            product,
+            isRendered,
+            userId
+          });
+        }}
       ></button>
       <div className="image-container badge-container">
         <img
@@ -68,7 +51,7 @@ export const WishlistItemCard = ({ product }) => {
         />
         <span
           style={{ display: product.inStock ? "none" : "block" }}
-          class="badge bg-secondary"
+          className="badge bg-secondary"
         >
           sold out
         </span>
@@ -91,7 +74,7 @@ export const WishlistItemCard = ({ product }) => {
         </div>
         <div className="CTA-Container">
           <AddToCartButton
-            key={product.id}
+            key={product._id}
             product={product}
             setMessage={setMessage}
             disableButtonWhileProcessing={disableButtonWhileProcessing}

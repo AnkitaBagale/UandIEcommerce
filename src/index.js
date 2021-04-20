@@ -5,20 +5,20 @@ import setupMockServer from "./api/mock.server";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import App from "./App";
-import { AuthContextProvider, CartContextProvider } from "./context";
+import { AuthenticationProvider, StateProvider } from "./context";
 
-setupMockServer();
+// setupMockServer();
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <StrictMode>
-    <CartContextProvider>
+    <StateProvider>
       <Router>
-        <AuthContextProvider>
+        <AuthenticationProvider>
           <App />
-        </AuthContextProvider>
+        </AuthenticationProvider>
       </Router>
-    </CartContextProvider>
+    </StateProvider>
   </StrictMode>,
   rootElement
 );

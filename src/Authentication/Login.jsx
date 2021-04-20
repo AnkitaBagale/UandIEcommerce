@@ -1,12 +1,12 @@
 import { useReducer, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useAuth } from "../context";
-import "./login.css";
+import { useAuthentication } from "../context";
+import "./styles.css";
 import Loader from "react-loader-spinner";
-import { InputPasswordField } from "./hide-show-password";
+import { InputPasswordField } from "./InputPasswordField";
 
 export const Login = () => {
-  const { authHandler } = useAuth();
+  const { loginUser } = useAuthentication();
   const { state } = useLocation();
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
@@ -35,13 +35,14 @@ export const Login = () => {
     setLoading(true);
     setError("");
     e.preventDefault();
-    const res = await authHandler({
+    const res = await loginUser({
       username: formState.username,
       password: formState.password,
       from: state?.from ? state.from : "/"
     });
-    if (res.status === 401) {
-      setError(res.response);
+
+    if (res?.status === 401 || res?.status === 500) {
+      setError(res?.data?.message || "Something went wrong, please try again!");
       setLoading(false);
     }
   };

@@ -4,7 +4,7 @@ import {
   addNewItem,
   toggleStatus,
   removeItemFromCart
-} from "../array-update-functions";
+} from "../../utils";
 
 export const stateReducer = (state, action) => {
   switch (action.type) {
@@ -18,54 +18,47 @@ export const stateReducer = (state, action) => {
       return { ...state, itemsInCart: action.payload };
 
     case "ADD_OR_REMOVE_TO_WISHLIST": {
-      return isAlreadyAdded(state.itemsInWishlist, action.payload.id)
+      return state.itemsInWishlist.some(
+        (item) => item.productId._id !== action.payload.productId._id
+      )
         ? {
             ...state,
-            itemsInWishlist: toggleStatus(
-              state.itemsInWishlist,
-              action.payload.id
+            itemsInWishlist: state.itemsInWishlist.map((item) =>
+              item._id !== action.payload._id ? item : action.payload
             )
           }
         : {
             ...state,
-            itemsInWishlist: addNewItem(state.itemsInWishlist, {
-              ...action.payload,
-              status: { exists: true }
-            })
+            itemsInWishlist: addNewItem(state.itemsInWishlist, action.payload)
           };
     }
     case "ADD_TO_CART": {
       return isAlreadyAdded(state.itemsInCart, action.payload.id)
         ? {
             ...state,
-            itemsInCart: toggleStatus(state.itemsInCart, action.payload.id)
+            itemsInCart: state.itemsInCart.map((item) =>
+              item.productId._id !== action.payload.productId._id
+                ? item
+                : action.payload
+            )
           }
         : {
             ...state,
-            itemsInCart: addNewItem(state.itemsInCart, {
-              ...action.payload,
-              status: { exists: true }
-            })
+            itemsInCart: addNewItem(state.itemsInCart, action.payload)
           };
     }
 
-    case "INCREMENT_CART_QTY":
+    case "UPDATE_CART_QTY": {
+      console.log(action.payload);
       return {
         ...state,
-        itemsInCart: updateQty(state.itemsInCart, action.payload.id, true)
+        itemsInCart: state.itemsInCart.map((item) =>
+          item.productId._id !== action.payload.productId._id
+            ? item
+            : action.payload
+        )
       };
-
-    case "DECREMENT_CART_QTY":
-      return {
-        ...state,
-        itemsInCart: updateQty(state.itemsInCart, action.payload.id, false)
-      };
-
-    case "REMOVE_FROM_CART":
-      return {
-        ...state,
-        itemsInCart: removeItemFromCart(state.itemsInCart, action.payload.id)
-      };
+    }
 
     case "SORT": {
       if (action.payload === "HIGH_TO_LOW_PRICE") {

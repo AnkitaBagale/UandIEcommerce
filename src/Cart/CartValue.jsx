@@ -19,12 +19,12 @@ export const CartValueDetails = () => {
 
   const cartDetailsCalculator = (data) =>
     data.reduce(
-      (sum, { price, cartQty, offer }) => {
+      (sum, { productId: { price, offer }, quantity }) => {
         return {
-          totalMRP: sum.totalMRP + Number(price) * Number(cartQty),
+          totalMRP: sum.totalMRP + Number(price) * Number(quantity),
           discount:
             sum.discount +
-            (Number(price) * Number(cartQty) * Number(offer)) / 100
+            (Number(price) * Number(quantity) * Number(offer)) / 100
         };
       },
       { totalMRP: 0, discount: 0 }

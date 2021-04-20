@@ -33,14 +33,14 @@ export const getFilteredData = (state, data) => {
 };
 
 export const filterDataOnStatus = (data) => {
-  return data.filter((item) => item.status.exists);
+  return data.filter((item) => item.active);
 };
 
 export const Filter = () => {
   const { state, dispatch } = useStateContext();
   const [openFilter, setFilter] = useState(false);
 
-  const sortByHandler = (e) => {
+  const sortByPrice = (e) => {
     console.log(e.target.value);
     dispatch({ type: "SORT", payload: e.target.value });
   };
@@ -80,7 +80,7 @@ export const Filter = () => {
               type="radio"
               name="sort"
               value="HIGH_TO_LOW_PRICE"
-              onChange={sortByHandler}
+              onChange={sortByPrice}
               checked={"HIGH_TO_LOW_PRICE" === state.sortBy}
             />
             Price High to low
@@ -94,7 +94,7 @@ export const Filter = () => {
               name="sort"
               value="LOW_TO_HIGH_PRICE"
               checked={"LOW_TO_HIGH_PRICE" === state.sortBy}
-              onChange={sortByHandler}
+              onChange={sortByPrice}
             />
             Price Low to High
           </label>

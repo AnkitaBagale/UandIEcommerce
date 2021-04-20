@@ -3,18 +3,20 @@ import { useState } from "react";
 export const InputPasswordField = ({
   value,
   onChangeHandler,
+  onFocusHandler,
   placeholderText
 }) => {
   const [isHidden, setHidePassword] = useState(true);
 
   return (
-    <label className="input-with-eye-container">
+    <span className="input-with-eye-container">
       <input
         className="form-field"
         value={value}
         placeholder={placeholderText}
         type={isHidden ? "password" : "text"}
         onChange={onChangeHandler}
+        onFocus={onFocusHandler}
       />
       <button
         type="button"
@@ -29,6 +31,6 @@ export const InputPasswordField = ({
           }
         ></i>
       </button>
-    </label>
+    </span>
   );
 };

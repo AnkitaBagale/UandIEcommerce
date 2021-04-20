@@ -1,5 +1,5 @@
-import { CartActionButtons } from "./Cart-action-button";
-import { WishlistButton } from "../Wishlist";
+import { CartActionButtons } from "./CartActionButtons";
+import { MoveToWishlistButton } from "./WishlistButton";
 import { useState } from "react";
 import { Toast } from "../Toast";
 
@@ -28,10 +28,12 @@ export const CartItemCard = ({ product }) => {
         <div className="text-container-desc">
           <p className="text-regular-weight body-cp-md">
             Rs.
-            {(product.price * product.cartQty * (100 - Number(product.offer))) /
+            {(product.price *
+              product.quantity *
+              (100 - Number(product.offer))) /
               100}{" "}
             <span className="text-light-weight body-cp-sm text-strike-through">
-              Rs.{product.price * product.cartQty}
+              Rs.{product.price * product.quantity}
             </span>{" "}
             <span className="text-light-weight body-cp-sm primary-text-color">
               ({product.offer}%OFF)
@@ -40,15 +42,13 @@ export const CartItemCard = ({ product }) => {
         </div>
         <div className="CTA-Container">
           <CartActionButtons
-            key={product.id}
             product={product}
             setMessage={setMessage}
             disableButtonWhileProcessing={disableButtonWhileProcessing}
             setDisableButton={setDisableButton}
           />
 
-          <WishlistButton
-            key={product.id}
+          <MoveToWishlistButton
             product={product}
             setMessage={setMessage}
             disableButtonWhileProcessing={disableButtonWhileProcessing}

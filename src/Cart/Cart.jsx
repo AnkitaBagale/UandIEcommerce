@@ -1,7 +1,7 @@
 import { useStateContext } from "../context";
-import { CartItemCard } from "./CartItem-card";
+import { CartItemCard } from "./CartItemCard";
 import { filterDataOnStatus } from "../Product-listing";
-import { CartValueDetails } from "./Cart-value";
+import { CartValueDetails } from "./CartValue";
 
 export const Cart = () => {
   const { state } = useStateContext();
@@ -16,10 +16,13 @@ export const Cart = () => {
         <>
           <div className="display-flex width-800px">
             <ul className="column-60-pc list-style-none styled-list padding-1rem-borderbox">
-              {dataToMap.map((product) => {
+              {dataToMap.map(({ productId: product, quantity }) => {
                 return (
-                  <li key={product.id}>
-                    <CartItemCard key={product.id} product={product} />
+                  <li key={product._id}>
+                    <CartItemCard
+                      key={product._id}
+                      product={{ ...product, quantity }}
+                    />
                   </li>
                 );
               })}
