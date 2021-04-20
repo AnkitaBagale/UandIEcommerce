@@ -1,15 +1,14 @@
 import { useRef } from "react";
-import { useStateContext } from "../context";
+import { useAuthentication, useStateContext } from "../context";
 import "./nav.css";
 import { filterDataOnStatus } from "../Product-listing";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../context";
 
 export const Nav = () => {
   const { state } = useStateContext();
   const navRef = useRef(null);
-  const { isLoggedIn, userName } = useAuth();
+  const { isUserLoggedIn, username } = useAuthentication();
 
   return (
     <nav ref={navRef} className="nav-bar shadow-box">
@@ -96,7 +95,7 @@ export const Nav = () => {
                 <i className="fas fa-user"></i>
               </span>
               <span className="nav-icon-text">
-                {userName ? `Hi, ${userName}` : "Login"}
+                {username ? `Hi, ${username}` : "Login"}
               </span>
             </Link>
           </li>
@@ -110,7 +109,7 @@ export const Nav = () => {
                 <i className="fas fa-heart"></i>
                 <span
                   className="status-badge status-badge-number"
-                  style={{ display: isLoggedIn ? "flex" : "none" }}
+                  style={{ display: isUserLoggedIn ? "flex" : "none" }}
                 >
                   {filterDataOnStatus(state.itemsInWishlist).length}
                 </span>
@@ -128,7 +127,7 @@ export const Nav = () => {
                 <i className="fas fa-shopping-cart"></i>
                 <span
                   className="status-badge status-badge-number"
-                  style={{ display: isLoggedIn ? "flex" : "none" }}
+                  style={{ display: isUserLoggedIn ? "flex" : "none" }}
                 >
                   {filterDataOnStatus(state.itemsInCart).length}
                 </span>
