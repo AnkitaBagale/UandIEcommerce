@@ -4,7 +4,7 @@ import { filterDataOnStatus } from "../Product-listing";
 export const Wishlist = () => {
   const { state } = useStateContext();
   const dataToMap = filterDataOnStatus(state.itemsInWishlist);
-  console.log("wishlist", state.itemsInWishlist);
+
   return (
     <>
       <h1 className="text-center h6 page-title">

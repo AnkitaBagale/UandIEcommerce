@@ -149,7 +149,6 @@ export const CartValueDetails = () => {
                         value={off}
                         checked={coupon === userSelectedCoupon.couponName}
                         onChange={(e) => {
-                          console.log(e.target.checked);
                           if (!e.target.checked) {
                             setCoupon({
                               couponName: "",

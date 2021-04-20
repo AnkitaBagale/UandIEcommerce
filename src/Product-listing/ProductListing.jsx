@@ -7,7 +7,7 @@ export const ProductListing = () => {
   const { state } = useStateContext();
   const sortedData = getSortedData(state, state.products);
   const filterdData = getFilteredData(state, sortedData);
-  console.log(state.products);
+
   return (
     <>
       <h1 className="text-center h6 page-title">

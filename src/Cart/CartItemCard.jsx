@@ -1,5 +1,5 @@
 import { CartActionButtons } from "./CartActionButtons";
-import { MoveToWishlistButton } from "./WishlistButton";
+import { MoveToWishlistButton } from "./MoveToWishlistButton";
 import { useState } from "react";
 import { Toast } from "../Toast";
 

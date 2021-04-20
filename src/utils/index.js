@@ -10,7 +10,7 @@ export {
 } from "./array-update-functions";
 
 export {
-  serverRequest,
+  getProductsFromServer,
   addProductToCart,
   increaseQtyOfProductInCart,
   decreaseQtyOfProductInCart,

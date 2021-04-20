@@ -1,32 +1,12 @@
 import axios from "axios";
 import { checkStatus } from "../utils";
 
-class ApiError extends Error {}
-
-export const serverRequest = async ({
-  url,
-  requestType,
-  dataToOperate,
-  dataToOperateId
-}) => {
-  switch (requestType) {
-    case "GET": {
-      const res = await axios.get(url);
-
-      if (res.status === 200 || res.status === 201) {
-        return res;
-      } else {
-        throw new ApiError("Failed to get products");
-      }
-    }
-    case "POST": {
-      const res = await axios.post(url, dataToOperate);
-      console.log("above if", res.status);
-      return res;
-    }
-
-    default:
-      return null;
+export const getProductsFromServer = async (url) => {
+  const res = await axios({ method: "GET", url: url });
+  if (res.status === 200 || res.status === 201) {
+    return res;
+  } else {
+    throw new Error("Failed to get products");
   }
 };
 

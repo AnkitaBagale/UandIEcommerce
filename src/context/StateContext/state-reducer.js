@@ -1,10 +1,4 @@
-import {
-  isAlreadyAdded,
-  updateQty,
-  addNewItem,
-  toggleStatus,
-  removeItemFromCart
-} from "../../utils";
+import { isAlreadyAdded, addNewItem } from "../../utils";
 
 export const stateReducer = (state, action) => {
   switch (action.type) {
@@ -49,7 +43,6 @@ export const stateReducer = (state, action) => {
     }
 
     case "UPDATE_CART_QTY": {
-      console.log(action.payload);
       return {
         ...state,
         itemsInCart: state.itemsInCart.map((item) =>

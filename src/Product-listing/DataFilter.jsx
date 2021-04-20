@@ -41,7 +41,6 @@ export const Filter = () => {
   const [openFilter, setFilter] = useState(false);
 
   const sortByPrice = (e) => {
-    console.log(e.target.value);
     dispatch({ type: "SORT", payload: e.target.value });
   };
 
