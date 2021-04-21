@@ -33,7 +33,7 @@ export const addProductToWishlist = async ({
       status
     } = await axios({
       method: "POST",
-      url: `http://localhost:3000/wishlists/${userId}/wishlist`,
+      url: `https://uandistoreapi.herokuapp.com/wishlists/${userId}/wishlist`,
       data: {
         _id: product._id
       }
@@ -81,7 +81,7 @@ export const addProductToCart = async ({
         status
       } = await axios({
         method: "POST",
-        url: `http://localhost:3000/carts/${userId}/cart`,
+        url: `https://uandistoreapi.herokuapp.com/carts/${userId}/cart`,
         data: {
           _id: product._id,
           quantity: 1,
@@ -127,7 +127,7 @@ export const increaseQtyOfProductInCart = async ({
       status
     } = await axios({
       method: "POST",
-      url: `http://localhost:3000/carts/${userId}/cart`,
+      url: `https://uandistoreapi.herokuapp.com/carts/${userId}/cart`,
       data: {
         _id: product._id,
         quantity: product.quantity + 1,
@@ -172,7 +172,7 @@ export const decreaseQtyOfProductInCart = async ({
       status
     } = await axios({
       method: "POST",
-      url: `http://localhost:3000/carts/${userId}/cart`,
+      url: `https://uandistoreapi.herokuapp.com/carts/${userId}/cart`,
       data: {
         _id: product._id,
         quantity: product.quantity - 1,
@@ -217,7 +217,7 @@ export const removeProductFromCart = async ({
       status
     } = await axios({
       method: "POST",
-      url: `http://localhost:3000/carts/${userId}/cart`,
+      url: `https://uandistoreapi.herokuapp.com/carts/${userId}/cart`,
       data: {
         _id: product._id,
         quantity: 0,

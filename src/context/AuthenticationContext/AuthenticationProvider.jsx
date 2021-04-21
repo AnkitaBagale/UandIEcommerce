@@ -26,7 +26,7 @@ export const AuthenticationProvider = ({ children }) => {
         status
       } = await axios({
         method: "POST",
-        url: "http://localhost:3000/users/authenticate",
+        url: "https://uandistoreapi.herokuapp.com/users/authenticate",
         headers: { username: username, password: password }
       });
 
@@ -49,7 +49,7 @@ export const AuthenticationProvider = ({ children }) => {
     try {
       const { data, status } = await axios({
         method: "POST",
-        url: "http://localhost:3000/users",
+        url: "https://uandistoreapi.herokuapp.com/users",
         data: {
           firstname: firstname,
           lastname: lastname,
@@ -82,7 +82,7 @@ export const AuthenticationProvider = ({ children }) => {
     try {
       const { data, status } = await axios({
         method: "POST",
-        url: `http://localhost:3000/users/${username}`,
+        url: `https://uandistoreapi.herokuapp.com/users/${username}`,
         data: {
           ...body
         }

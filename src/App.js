@@ -27,7 +27,7 @@ export default function App() {
       try {
         const {
           data: { response }
-        } = await getProductsFromServer("http://localhost:3000/products");
+        } = await getProductsFromServer("https://uandistoreapi.herokuapp.com/products");
         dispatch({ type: "SET_PRODUCTS", payload: response });
       } catch (error) {
         console.log(error);
@@ -42,7 +42,7 @@ export default function App() {
           const {
             data: { response }
           } = await getProductsFromServer(
-            `http://localhost:3000/carts/${userId}/cart`
+            `https://uandistoreapi.herokuapp.com/carts/${userId}/cart`
           );
 
           dispatch({ type: "SET_CART", payload: response.products });
@@ -54,7 +54,7 @@ export default function App() {
           const {
             data: { response }
           } = await getProductsFromServer(
-            `http://localhost:3000/wishlists/${userId}/wishlist`
+            `https://uandistoreapi.herokuapp.com/wishlists/${userId}/wishlist`
           );
 
           dispatch({ type: "SET_WISHLIST", payload: response.products });
