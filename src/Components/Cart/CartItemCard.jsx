@@ -1,6 +1,7 @@
+import { useState } from "react";
+
 import { CartActionButtons } from "./CartActionButtons";
 import { MoveToWishlistButton } from "./MoveToWishlistButton";
-import { useState } from "react";
 import { Toast } from "../Toast";
 
 export const CartItemCard = ({ product }) => {
@@ -32,12 +33,16 @@ export const CartItemCard = ({ product }) => {
               product.quantity *
               (100 - Number(product.offer))) /
               100}{" "}
-            <span className="text-light-weight body-cp-sm text-strike-through">
-              Rs.{product.price * product.quantity}
-            </span>{" "}
-            <span className="text-light-weight body-cp-sm primary-text-color">
-              ({product.offer}%OFF)
-            </span>
+            {Number(product.offer) > 0 && (
+              <>
+                <span className="text-light-weight body-cp-sm text-strike-through">
+                  Rs.{product.price * product.quantity}
+                </span>{" "}
+                <span className="text-light-weight body-cp-sm primary-text-color">
+                  ({product.offer}%OFF)
+                </span>
+              </>
+            )}
           </p>
         </div>
         <div className="CTA-Container">

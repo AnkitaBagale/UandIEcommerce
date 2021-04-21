@@ -1,7 +1,7 @@
-import { useStateContext } from "../context";
+import { useStateContext } from "../../context";
 import { getSortedData, getFilteredData, Filter } from "./DataFilter";
-import "./styles.css";
 import { ProductCard } from "./ProductCard";
+import "./styles.css";
 
 export const ProductListing = () => {
   const { state } = useStateContext();

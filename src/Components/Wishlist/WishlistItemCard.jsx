@@ -1,7 +1,8 @@
-import { useAuthentication, useStateContext } from "../context";
-import { AddToCartButton } from "../Cart";
 import { useEffect, useRef, useState } from "react";
-import { addProductToWishlist } from "../utils";
+
+import { useAuthentication, useStateContext } from "../../context";
+import { AddToCartButton } from "../Cart";
+import { addProductToWishlist } from "../../utils";
 import { Toast } from "../Toast";
 
 export const WishlistItemCard = ({ product }) => {

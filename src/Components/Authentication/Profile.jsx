@@ -1,6 +1,6 @@
-import "./styles.css";
+import { useAuthentication } from "../../context";
 import avatarImg from "./Images/user.svg";
-import { useAuthentication } from "../context";
+import "./styles.css";
 
 export const Profile = () => {
   const { userName, logOutUser } = useAuthentication();

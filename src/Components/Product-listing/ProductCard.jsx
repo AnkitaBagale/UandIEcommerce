@@ -1,6 +1,7 @@
+import { useState } from "react";
+
 import { AddToCartButton } from "../Cart";
 import { LikeButton } from "./LikeButton";
-import { useState } from "react";
 import { Toast } from "../Toast";
 import "./styles.css";
 

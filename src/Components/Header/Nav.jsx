@@ -1,9 +1,9 @@
 import { useRef } from "react";
-import { useAuthentication, useStateContext } from "../context";
-import "./nav.css";
+import { Link, NavLink } from "react-router-dom";
+
+import { useAuthentication, useStateContext } from "../../context";
 import { filterDataOnStatus } from "../Product-listing";
-import { Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import "./nav.css";
 
 export const Nav = () => {
   const { state } = useStateContext();

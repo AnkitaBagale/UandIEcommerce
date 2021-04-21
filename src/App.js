@@ -1,22 +1,22 @@
 import "./styles.css";
 import { useEffect } from "react";
-import { ProductListing } from "./Product-listing";
-import { Cart } from "./Cart";
-import { Wishlist } from "./Wishlist";
 import { useStateContext, useAuthentication } from "./context";
-import { Nav } from "./Header";
-import { Home } from "./Home";
-import { Footer } from "./Footer";
 import { getProductsFromServer } from "./utils";
+import { Routes, Route } from "react-router-dom";
 
 import {
+  ProductListing,
+  Cart,
+  Wishlist,
+  Nav,
+  Home,
+  Footer,
   ForgotPasswordPage,
   Login,
   PrivateRoute,
   Profile,
   SignUp
-} from "./Authentication";
-import { Routes, Route } from "react-router-dom";
+} from "./Components";
 
 export default function App() {
   const { dispatch } = useStateContext();

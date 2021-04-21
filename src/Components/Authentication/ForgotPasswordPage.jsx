@@ -1,9 +1,9 @@
 import { useReducer, useState } from "react";
+import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
 
 import { InputPasswordField } from "./InputPasswordField";
-import Loader from "react-loader-spinner";
-import { useAuthentication } from "../context";
+import { useAuthentication } from "../../context";
 
 export const ForgotPasswordPage = () => {
   const [error, setError] = useState("");

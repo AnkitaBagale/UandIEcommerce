@@ -1,8 +1,8 @@
-import "./homepage.css";
-import { useStateContext } from "../context";
-import heroImg from "./Images/hero2.jpg";
-import { featuredCategories, featuredBrands } from "../database";
 import { Link, useNavigate } from "react-router-dom";
+import { useStateContext } from "../../context";
+import { featuredCategories, featuredBrands } from "../../database";
+import heroImg from "./Images/hero2.jpg";
+import "./homepage.css";
 
 export const Home = () => {
   const { dispatch } = useStateContext();

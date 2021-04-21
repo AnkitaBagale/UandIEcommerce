@@ -1,4 +1,4 @@
-import { useStateContext } from "../context";
+import { useStateContext } from "../../context";
 import { WishlistItemCard } from "./WishlistItemCard";
 import { filterDataOnStatus } from "../Product-listing";
 export const Wishlist = () => {

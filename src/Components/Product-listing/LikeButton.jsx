@@ -1,8 +1,8 @@
-import { checkStatus } from "../utils";
-import { useAuthentication, useStateContext } from "../context";
-import { addProductToWishlist } from "../utils";
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { checkStatus, addProductToWishlist } from "../../utils";
+import { useAuthentication, useStateContext } from "../../context";
 
 export const LikeButton = ({
   product,

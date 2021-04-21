@@ -1,10 +1,11 @@
-import { useAuthentication, useStateContext } from "../context";
+import { useEffect, useRef } from "react";
+
+import { useAuthentication, useStateContext } from "../../context";
 import {
   increaseQtyOfProductInCart,
-  decreaseQtyOfProductInCart
-} from "../utils";
-import { useEffect, useRef } from "react";
-import { removeProductFromCart } from "../utils/server-request";
+  decreaseQtyOfProductInCart,
+  removeProductFromCart
+} from "../../utils";
 
 export const CartActionButtons = ({
   product,

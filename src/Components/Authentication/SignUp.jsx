@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { InputPasswordField } from "./InputPasswordField";
 import Loader from "react-loader-spinner";
-import { useAuthentication } from "../context";
+import { useAuthentication } from "../../context";
 
 export const SignUp = () => {
   const [error, setError] = useState("");

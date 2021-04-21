@@ -1,4 +1,4 @@
-import { useStateContext } from "../context";
+import { useStateContext } from "../../context";
 import { CartItemCard } from "./CartItemCard";
 import { filterDataOnStatus } from "../Product-listing";
 import { CartValueDetails } from "./CartValue";

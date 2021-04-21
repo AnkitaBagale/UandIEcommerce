@@ -1,9 +1,10 @@
 import { useReducer, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useAuthentication } from "../context";
-import "./styles.css";
 import Loader from "react-loader-spinner";
+
+import { useAuthentication } from "../../context";
 import { InputPasswordField } from "./InputPasswordField";
+import "./styles.css";
 
 export const Login = () => {
   const { loginUser } = useAuthentication();

@@ -1,6 +1,6 @@
-import { useStateContext } from "../context";
 import { useState } from "react";
-import { categories, brands } from "../database";
+import { useStateContext } from "../../context";
+import { categories, brands } from "../../database";
 
 export const getSortedData = (state, data) => {
   if (state.sortBy === "HIGH_TO_LOW_PRICE") {

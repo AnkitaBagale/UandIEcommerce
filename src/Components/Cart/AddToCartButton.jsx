@@ -1,8 +1,8 @@
-import { useAuthentication, useStateContext } from "../context";
-import { checkStatus } from "../utils";
-import { addProductToCart } from "../utils";
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { useAuthentication, useStateContext } from "../../context";
+import { checkStatus, addProductToCart } from "../../utils";
 
 export const AddToCartButton = ({
   product,

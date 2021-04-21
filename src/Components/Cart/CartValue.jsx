@@ -1,7 +1,8 @@
-import { filterDataOnStatus } from "../Product-listing";
 import { useEffect, useState } from "react";
-import { coupons } from "../database";
-import { useStateContext } from "../context";
+
+import { filterDataOnStatus } from "../Product-listing";
+import { coupons } from "../../database";
+import { useStateContext } from "../../context";
 import "./cart.css";
 
 const indianRupeeSymbol = `\u20B9`;
