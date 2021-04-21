@@ -32,10 +32,6 @@ export const getFilteredData = (state, data) => {
   return newData;
 };
 
-export const filterDataOnStatus = (data) => {
-  return data.filter((item) => item.active);
-};
-
 export const Filter = () => {
   const { state, dispatch } = useStateContext();
   const [openFilter, setFilter] = useState(false);

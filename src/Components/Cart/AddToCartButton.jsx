@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useAuthentication, useStateContext } from "../../context";
-import { checkStatus, addProductToCart } from "../../utils";
+import { isAlreadyAdded, addProductToCart } from "../../utils";
 
 export const AddToCartButton = ({
   product,
@@ -34,19 +34,21 @@ export const AddToCartButton = ({
         }
         onClick={() => {
           isUserLoggedIn
-            ? addProductToCart({
-                setMessage,
-                setDisableButton,
-                dispatch,
-                state,
-                product,
-                isRendered,
-                userId
-              })
+            ? isAlreadyAdded(state.itemsInCart, product._id)
+              ? navigate("/cart")
+              : addProductToCart({
+                  setMessage,
+                  setDisableButton,
+                  dispatch,
+                  state,
+                  product,
+                  isRendered,
+                  userId
+                })
             : navigate("/login");
         }}
       >
-        {checkStatus(state.itemsInCart, product._id)
+        {isAlreadyAdded(state.itemsInCart, product._id)
           ? "Go to Cart"
           : "Add to Cart"}
       </button>

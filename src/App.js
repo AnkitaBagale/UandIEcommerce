@@ -27,7 +27,9 @@ export default function App() {
       try {
         const {
           data: { response }
-        } = await getProductsFromServer("https://uandistoreapi.herokuapp.com/products");
+        } = await getProductsFromServer(
+          "https://uandistoreapi.herokuapp.com/products"
+        );
         dispatch({ type: "SET_PRODUCTS", payload: response });
       } catch (error) {
         console.log(error);
@@ -45,7 +47,7 @@ export default function App() {
             `https://uandistoreapi.herokuapp.com/carts/${userId}/cart`
           );
 
-          dispatch({ type: "SET_CART", payload: response.products });
+          dispatch({ type: "SET_CART", payload: response });
         } catch (error) {
           console.log(error);
         }
@@ -57,7 +59,7 @@ export default function App() {
             `https://uandistoreapi.herokuapp.com/wishlists/${userId}/wishlist`
           );
 
-          dispatch({ type: "SET_WISHLIST", payload: response.products });
+          dispatch({ type: "SET_WISHLIST", payload: response });
         } catch (error) {
           console.log(error);
         }

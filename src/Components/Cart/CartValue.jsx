@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-import { filterDataOnStatus } from "../Product-listing";
 import { coupons } from "../../database";
 import { useStateContext } from "../../context";
 import "./cart.css";
@@ -16,8 +15,6 @@ export const CartValueDetails = () => {
   });
   const [showOfferModal, setOfferModal] = useState(false);
 
-  const dataToMap = filterDataOnStatus(state.itemsInCart);
-
   const cartDetailsCalculator = (data) =>
     data.reduce(
       (sum, { productId: { price, offer }, quantity }) => {
@@ -30,7 +27,7 @@ export const CartValueDetails = () => {
       },
       { totalMRP: 0, discount: 0 }
     );
-  const cartDetails = cartDetailsCalculator(dataToMap);
+  const cartDetails = cartDetailsCalculator(state.itemsInCart);
   const cartTotalWithoutOffer = cartDetails.totalMRP - cartDetails.discount;
   const cartTotal =
     cartDetails.totalMRP -
@@ -67,7 +64,7 @@ export const CartValueDetails = () => {
         </button>
 
         <div className="p text-regular-weight body-cp-md">
-          PRICE DETAILS: ({dataToMap.length} items)
+          PRICE DETAILS: ({state.itemsInCart.length} items)
         </div>
 
         <div className="row body-cp-md ">

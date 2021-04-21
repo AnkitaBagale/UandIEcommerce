@@ -1,8 +1,4 @@
-export {
-  isAlreadyAdded,
-  checkStatus,
-  addNewItem
-} from "./array-update-functions";
+export { isAlreadyAdded, addNewItem } from "./array-update-functions";
 
 export {
   getProductsFromServer,

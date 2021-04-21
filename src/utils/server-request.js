@@ -1,8 +1,9 @@
 import axios from "axios";
-import { checkStatus } from "../utils";
+import { isAlreadyAdded } from "./array-update-functions";
 
 export const getProductsFromServer = async (url) => {
   const res = await axios({ method: "GET", url: url });
+
   if (res.status === 200 || res.status === 201) {
     return res;
   } else {
@@ -19,7 +20,7 @@ export const addProductToWishlist = async ({
   isRendered,
   userId
 }) => {
-  !checkStatus(state.itemsInWishlist, product._id)
+  !isAlreadyAdded(state.itemsInWishlist, product._id)
     ? setMessage({ msg: "adding to wishlist..", msgType: "toast-inform" })
     : setMessage({
         msg: "removing from wishlist..",
@@ -72,30 +73,26 @@ export const addProductToCart = async ({
   setMessage({ msg: "adding to cart..", msgType: "toast-inform" });
 
   try {
-    if (checkStatus(state.itemsInCart, product._id)) {
-      navigate("/cart");
-    } else {
-      setDisableButton(true);
-      const {
-        data: { response },
-        status
-      } = await axios({
-        method: "POST",
-        url: `https://uandistoreapi.herokuapp.com/carts/${userId}/cart`,
-        data: {
-          _id: product._id,
-          quantity: 1,
-          active: true
-        }
+    setDisableButton(true);
+    const {
+      data: { response },
+      status
+    } = await axios({
+      method: "POST",
+      url: `https://uandistoreapi.herokuapp.com/carts/${userId}/cart`,
+      data: {
+        _id: product._id,
+        quantity: 1,
+        active: true
+      }
+    });
+    if (status === 200 || status === 201) {
+      dispatch({
+        type: "SET_CART",
+        payload: response
       });
-      if (status === 200 || status === 201) {
-        dispatch({
-          type: "SET_CART",
-          payload: response
-        });
-        if (isRendered.current) {
-          setMessage({ msg: "added!", msgType: "toast-success" });
-        }
+      if (isRendered.current) {
+        setMessage({ msg: "added!", msgType: "toast-success" });
       }
     }
   } catch (error) {

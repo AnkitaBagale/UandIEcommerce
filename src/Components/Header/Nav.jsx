@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import { useAuthentication, useStateContext } from "../../context";
-import { filterDataOnStatus } from "../Product-listing";
+
 import "./nav.css";
 
 export const Nav = () => {
@@ -111,7 +111,7 @@ export const Nav = () => {
                   className="status-badge status-badge-number"
                   style={{ display: isUserLoggedIn ? "flex" : "none" }}
                 >
-                  {filterDataOnStatus(state.itemsInWishlist).length}
+                  {state?.itemsInWishlist?.length}
                 </span>
               </span>
               <span className="nav-icon-text">Wishlist</span>
@@ -129,7 +129,7 @@ export const Nav = () => {
                   className="status-badge status-badge-number"
                   style={{ display: isUserLoggedIn ? "flex" : "none" }}
                 >
-                  {filterDataOnStatus(state.itemsInCart).length}
+                  {state?.itemsInCart?.length}
                 </span>
               </span>
               <span className="nav-icon-text">Cart</span>

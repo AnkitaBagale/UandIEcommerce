@@ -35,9 +35,10 @@ export const AuthenticationProvider = ({ children }) => {
           "session",
           JSON.stringify({ login: true, username: firstname, userId: userId })
         );
-        setLogin(true);
+
         setUsername(firstname);
         setUserId(userId);
+        setLogin(true);
         navigate(from);
       }
     } catch (error) {
@@ -67,10 +68,10 @@ export const AuthenticationProvider = ({ children }) => {
             userId: data.response.userId
           })
         );
-        setLogin(true);
+
         setUsername(data.response.firstname);
         setUserId(userId);
-
+        setLogin(true);
         return { status };
       }
     } catch (error) {
@@ -97,9 +98,10 @@ export const AuthenticationProvider = ({ children }) => {
             userId: data.response.userId
           })
         );
-        setLogin(true);
+
         setUsername(data.response.firstname);
         setUserId(userId);
+        setLogin(true);
         return { status };
       }
     } catch (error) {
@@ -109,8 +111,9 @@ export const AuthenticationProvider = ({ children }) => {
 
   const logOutUser = () => {
     localStorage?.removeItem("session");
-    setLogin(false);
     setUsername("");
+    setUserId("");
+    setLogin(false);
   };
   return (
     <AuthenticationContext.Provider

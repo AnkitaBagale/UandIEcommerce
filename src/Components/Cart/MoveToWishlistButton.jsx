@@ -1,7 +1,11 @@
 import { useEffect, useRef } from "react";
 
 import { useAuthentication, useStateContext } from "../../context";
-import { addProductToWishlist, removeProductFromCart } from "../../utils";
+import {
+  addProductToWishlist,
+  isAlreadyAdded,
+  removeProductFromCart
+} from "../../utils";
 
 export const MoveToWishlistButton = ({
   product,
@@ -30,15 +34,18 @@ export const MoveToWishlistButton = ({
           : "btn btn-outline-secondary"
       }
       onClick={() => {
-        addProductToWishlist({
-          state,
-          dispatch,
-          setMessage,
-          setDisableButton,
-          product,
-          isRendered,
-          userId
-        });
+        if (!isAlreadyAdded(state.itemsInWishlist, product._id)) {
+          addProductToWishlist({
+            state,
+            dispatch,
+            setMessage,
+            setDisableButton,
+            product,
+            isRendered,
+            userId
+          });
+        }
+
         removeProductFromCart({
           state,
           dispatch,

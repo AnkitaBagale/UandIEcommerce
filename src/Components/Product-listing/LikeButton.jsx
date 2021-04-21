@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { checkStatus, addProductToWishlist } from "../../utils";
+import { addProductToWishlist, isAlreadyAdded } from "../../utils";
 import { useAuthentication, useStateContext } from "../../context";
 
 export const LikeButton = ({
@@ -31,7 +31,7 @@ export const LikeButton = ({
       }
       disabled={disableButtonWhileProcessing}
       style={{
-        color: checkStatus(state.itemsInWishlist, product._id)
+        color: isAlreadyAdded(state.itemsInWishlist, product._id)
           ? "var(--primary-color)"
           : ""
       }}
