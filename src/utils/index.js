@@ -1,12 +1,7 @@
 export {
   isAlreadyAdded,
   checkStatus,
-  toggleStatus,
-  removeItemFromCart,
-  addItemChangeStatus,
-  updateQty,
-  addNewItem,
-  removeItem
+  addNewItem
 } from "./array-update-functions";
 
 export {
