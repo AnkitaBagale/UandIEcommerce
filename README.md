@@ -2,6 +2,20 @@
 
 Language - React JS
 
-Functionalities- Cart, Wishlist, Apply Coupon, Filter and Sort
+Functionalities- 
+* Cart
+* Wishlist
+* Apply Coupon
+* Filter and Sort
 
-React JS - Reducer+Context, Miraje Server, React Router, Authentication on front end
+React JS - 
+* Reducer+Context 
+* React Router
+* Removed miraje and added mongodb backend for both authentication and cart/wishlist functionalities
+
+Upcoming features-
+* Product detail page
+* Search bar
+* Address management
+* Auth using JWT
+
