@@ -41,7 +41,7 @@ export const addProductToWishlist = async ({
 
     if (status === 200 || status === 201) {
       dispatch({
-        type: "ADD_OR_REMOVE_TO_WISHLIST",
+        type: "SET_WISHLIST",
         payload: response
       });
     }
@@ -90,7 +90,7 @@ export const addProductToCart = async ({
       });
       if (status === 200 || status === 201) {
         dispatch({
-          type: "ADD_TO_CART",
+          type: "SET_CART",
           payload: response
         });
         if (isRendered.current) {
@@ -136,7 +136,7 @@ export const increaseQtyOfProductInCart = async ({
     });
     if (status === 200 || status === 201) {
       dispatch({
-        type: "UPDATE_CART_QTY",
+        type: "SET_CART",
         payload: response
       });
       if (isRendered.current) {
@@ -181,7 +181,7 @@ export const decreaseQtyOfProductInCart = async ({
     });
     if (status === 200 || status === 201) {
       dispatch({
-        type: "UPDATE_CART_QTY",
+        type: "SET_CART",
         payload: response
       });
       if (isRendered.current) {
@@ -226,7 +226,7 @@ export const removeProductFromCart = async ({
     });
     if (status === 200 || status === 201) {
       dispatch({
-        type: "UPDATE_CART_QTY",
+        type: "SET_CART",
         payload: response
       });
       if (isRendered.current) {
