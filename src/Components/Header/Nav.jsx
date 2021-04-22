@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useAuthentication, useStateContext } from "../../context";
 
 import "./nav.css";
+import { SearchBar } from "./SearchBar";
 
 export const Nav = () => {
   const { state } = useStateContext();
@@ -88,7 +89,8 @@ export const Nav = () => {
       </div>
 
       <div className="nav-section">
-        <ul className="nav-icons list-style-none">
+        <SearchBar />
+        <ul className="nav-icons list-style-none nav-section-item-width50pc">
           <li className="list-inline-item hide-profile-mobile">
             <Link to="/profile" className="nav-icon-link link-no-style">
               <span className="nav-icon">
@@ -100,7 +102,7 @@ export const Nav = () => {
             </Link>
           </li>
 
-          <li className="list-inline-item">
+          <li className="list-inline-item display-flex vertical-middle">
             <Link
               to="/wishlist"
               className="nav-icon-link link-no-style text-regular-weight"
@@ -118,10 +120,10 @@ export const Nav = () => {
             </Link>
           </li>
 
-          <li className="list-inline-item">
+          <li className="list-inline-item display-flex vertical-middle">
             <Link
               to="/cart"
-              className="nav-icon-link link-no-style text-regular-weight"
+              className="nav-icon-link link-no-style text-regular-weight "
             >
               <span className="nav-icon  badge-container">
                 <i className="fas fa-shopping-cart"></i>
