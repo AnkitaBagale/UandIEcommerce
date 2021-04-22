@@ -8,7 +8,9 @@ export const AddToCartButton = ({
   product,
   setMessage,
   setDisableButton,
-  disableButtonWhileProcessing
+  disableButtonWhileProcessing,
+  btnSize = "btn-sm-size",
+  btnIcon = false
 }) => {
   const navigate = useNavigate();
   const { state, dispatch } = useStateContext();
@@ -25,12 +27,15 @@ export const AddToCartButton = ({
   return (
     <>
       <button
-        style={{ display: !product.inStock ? "none" : "block" }}
-        disabled={disableButtonWhileProcessing}
+        disabled={disableButtonWhileProcessing || !product.inStock}
         className={
-          disableButtonWhileProcessing
-            ? "btn btn-outline-primary btn-disabled btn-sm-size"
-            : "btn btn-outline-primary btn-sm-size"
+          disableButtonWhileProcessing || !product.inStock
+            ? `btn ${
+                btnIcon ? "btn-text-icon-primary" : "btn-outline-primary"
+              } btn-disabled ${btnSize}`
+            : `btn ${
+                btnIcon ? "btn-text-icon-primary" : "btn-outline-primary"
+              } ${btnSize}`
         }
         onClick={() => {
           isUserLoggedIn
@@ -48,7 +53,15 @@ export const AddToCartButton = ({
             : navigate("/login");
         }}
       >
-        {isAlreadyAdded(state.itemsInCart, product._id)
+        <span
+          class="btn-icon"
+          style={{ display: btnIcon ? "inline-block" : "none" }}
+        >
+          <i class="fas fa-shopping-cart"></i>
+        </span>
+        {!product.inStock
+          ? "Out of Stock"
+          : isAlreadyAdded(state.itemsInCart, product._id)
           ? "Go to Cart"
           : "Add to Cart"}
       </button>

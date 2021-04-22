@@ -76,7 +76,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="shop" element={<ProductListing />} />
-          <Route path="/product/:id" element={<ProductDetailPage />} />
+          <Route path="/shop/:id" element={<ProductDetailPage />} />
+
           <PrivateRoute path="wishlist" element={<Wishlist />} />
           <PrivateRoute path="cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
@@ -84,6 +85,7 @@ export default function App() {
           <Route path="/signup" element={<SignUp />} />
           <PrivateRoute path="/profile" element={<Profile />} />
           <Route path="*" element={<ErrorPage />} />
+          <Route path="/error" element={<ErrorPage />} />
         </Routes>
         <div className="spacer-3rem"></div>
       </div>
