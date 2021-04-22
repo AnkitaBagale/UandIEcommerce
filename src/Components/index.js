@@ -11,3 +11,5 @@ export {
   Profile,
   SignUp
 } from "./Authentication";
+export { ProductDetailPage } from "./Product-detail";
+export { ErrorPage } from "./ErrorPage";

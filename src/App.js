@@ -15,7 +15,9 @@ import {
   Login,
   PrivateRoute,
   Profile,
-  SignUp
+  SignUp,
+  ProductDetailPage,
+  ErrorPage
 } from "./Components";
 
 export default function App() {
@@ -74,12 +76,14 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="shop" element={<ProductListing />} />
+          <Route path="/product/:id" element={<ProductDetailPage />} />
           <PrivateRoute path="wishlist" element={<Wishlist />} />
           <PrivateRoute path="cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot" element={<ForgotPasswordPage />} />
           <Route path="/signup" element={<SignUp />} />
           <PrivateRoute path="/profile" element={<Profile />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
         <div className="spacer-3rem"></div>
       </div>
