@@ -71,6 +71,7 @@ export const ProductDetailPage = ({ product }) => {
                 <div className="rating-star-container padding-bottom-1rem">
                   {ratingArray.map((item) => (
                     <i
+                      key={item}
                       style={{
                         color:
                           item <= Number(productDetails?.rating?.starRating)
@@ -123,7 +124,7 @@ export const ProductDetailPage = ({ product }) => {
 
                   <li className="tertiary-text-color body-cp-md">
                     <i
-                      class={
+                      className={
                         productDetails?.inStock
                           ? "far fa-calendar-check feature-icon"
                           : "far fa-calendar-times feature-icon"

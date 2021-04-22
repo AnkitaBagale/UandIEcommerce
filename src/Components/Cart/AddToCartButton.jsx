@@ -54,10 +54,10 @@ export const AddToCartButton = ({
         }}
       >
         <span
-          class="btn-icon"
+          className="btn-icon"
           style={{ display: btnIcon ? "inline-block" : "none" }}
         >
-          <i class="fas fa-shopping-cart"></i>
+          <i className="fas fa-shopping-cart"></i>
         </span>
         {!product.inStock
           ? "Out of Stock"
