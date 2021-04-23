@@ -12,7 +12,7 @@ export const SignUp = () => {
   const { signUpNewUser } = useAuthentication();
 
   const errorsInitialState = {
-    usernameError: "",
+    emailError: "",
     passwordError: "",
     confirmPasswordError: "",
     firstnameError: "",
@@ -27,8 +27,8 @@ export const SignUp = () => {
       case "SET_LASTNAME_ERROR":
         return { ...state, lastnameError: payload };
 
-      case "SET_USERNAME_ERROR":
-        return { ...state, usernameError: payload };
+      case "SET_EMAIL_ERROR":
+        return { ...state, emailError: payload };
 
       case "SET_PASSWORD_ERROR":
         return { ...state, passwordError: payload };
@@ -53,7 +53,7 @@ export const SignUp = () => {
     errorsDispatch({ type, payload: "" });
   };
   const initialState = {
-    username: "",
+    email: "",
     password: "",
     confirmPassword: "",
     firstname: "",
@@ -68,8 +68,8 @@ export const SignUp = () => {
       case "SET_LASTNAME":
         return { ...state, lastname: payload };
 
-      case "SET_USERNAME":
-        return { ...state, username: payload };
+      case "SET_EMAIL":
+        return { ...state, email: payload };
 
       case "SET_PASSWORD":
         return { ...state, password: payload };
@@ -106,9 +106,9 @@ export const SignUp = () => {
       });
       errorFlag = false;
     }
-    if (formState.username === "" || !/^.+@.+\.com$/.test(formState.username)) {
+    if (formState.email === "" || !/^.+@.+\.com$/.test(formState.email)) {
       errorsDispatch({
-        type: "SET_USERNAME_ERROR",
+        type: "SET_EMAIL_ERROR",
         payload: "Please enter valid email id"
       });
       errorFlag = false;
@@ -140,13 +140,7 @@ export const SignUp = () => {
     return errorFlag;
   };
 
-  const formSubmitHandler = async (
-    e,
-    firstname,
-    lastname,
-    username,
-    password
-  ) => {
+  const submitSignUpForm = async (e, firstname, lastname, email, password) => {
     e.preventDefault();
     setError("");
     if (checkFormValidity()) {
@@ -154,7 +148,7 @@ export const SignUp = () => {
       const response = await signUpNewUser({
         firstname,
         lastname,
-        username,
+        email,
         password
       });
       if (response.status === 201) {
@@ -253,35 +247,35 @@ export const SignUp = () => {
             <div className="row">
               <div className="column-30-pc column1">
                 <label className="form-label text-regular-weight body-cp-md form-label-required-field">
-                  Email/Username
+                  Email
                 </label>
               </div>
 
               <div className="column-70-pc">
                 <input
                   className="form-field"
-                  placeholder="Enter your email"
-                  value={formState.username}
+                  placeholder="example@example.com"
+                  value={formState.email}
                   onChange={(e) => {
                     formDispatch({
-                      type: "SET_USERNAME",
+                      type: "SET_EMAIL",
                       payload: e.target.value
                     });
                   }}
                   onFocus={() => {
-                    onFocusClearError("SET_USERNAME_ERROR");
+                    onFocusClearError("SET_EMAIL_ERROR");
                   }}
                 />
                 <div
                   style={{
-                    display: fieldErrors.usernameError ? "block" : "none"
+                    display: fieldErrors.emailError ? "block" : "none"
                   }}
                   className="form-validation-msg form-field-error"
                 >
                   <span className="form-field-symbol">
                     <i className="fas fa-exclamation-circle"></i>
                   </span>
-                  {fieldErrors.usernameError}
+                  {fieldErrors.emailError}
                 </div>
               </div>
             </div>
@@ -367,11 +361,11 @@ export const SignUp = () => {
               className="btn btn-solid-primary"
               type="submit"
               onClick={(e) =>
-                formSubmitHandler(
+                submitSignUpForm(
                   e,
                   formState.firstname,
                   formState.lastname,
-                  formState.username,
+                  formState.email,
                   formState.password
                 )
               }

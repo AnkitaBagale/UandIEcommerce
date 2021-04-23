@@ -75,11 +75,11 @@ export default function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="shop" element={<ProductListing />} />
+          <Route path="/shop" element={<ProductListing />} />
           <Route path="/shop/:id" element={<ProductDetailPage />} />
 
-          <PrivateRoute path="wishlist" element={<Wishlist />} />
-          <PrivateRoute path="cart" element={<Cart />} />
+          <PrivateRoute path="/wishlist" element={<Wishlist />} />
+          <PrivateRoute path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot" element={<ForgotPasswordPage />} />
           <Route path="/signup" element={<SignUp />} />

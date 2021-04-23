@@ -17,7 +17,7 @@ export const AuthenticationProvider = ({ children }) => {
     loginDetails?.userId && setUserId(loginDetails.userId);
   }, []);
 
-  const loginUser = async ({ username, password, from }) => {
+  const loginUser = async ({ email, password, from }) => {
     try {
       const {
         data: {
@@ -27,7 +27,7 @@ export const AuthenticationProvider = ({ children }) => {
       } = await axios({
         method: "POST",
         url: "https://uandistoreapi.herokuapp.com/users/authenticate",
-        headers: { username: username, password: password }
+        headers: { email: email, password: password }
       });
 
       if (status === 200) {
@@ -46,7 +46,7 @@ export const AuthenticationProvider = ({ children }) => {
     }
   };
 
-  const signUpNewUser = async ({ username, password, firstname, lastname }) => {
+  const signUpNewUser = async ({ email, password, firstname, lastname }) => {
     try {
       const { data, status } = await axios({
         method: "POST",
@@ -54,7 +54,7 @@ export const AuthenticationProvider = ({ children }) => {
         data: {
           firstname: firstname,
           lastname: lastname,
-          username: username,
+          email: email,
           password: password
         }
       });
@@ -79,11 +79,11 @@ export const AuthenticationProvider = ({ children }) => {
     }
   };
 
-  const updateUserDetails = async ({ username, ...body }) => {
+  const updateUserDetails = async ({ email, ...body }) => {
     try {
       const { data, status } = await axios({
         method: "POST",
-        url: `https://uandistoreapi.herokuapp.com/users/${username}`,
+        url: `https://uandistoreapi.herokuapp.com/users/${email}`,
         data: {
           ...body
         }

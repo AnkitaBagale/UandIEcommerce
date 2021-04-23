@@ -13,14 +13,14 @@ export const Login = () => {
   const [isLoading, setLoading] = useState(false);
 
   const initialState = {
-    username: "",
+    email: "",
     password: ""
   };
 
   const formReducer = (state, { type, payload }) => {
     switch (type) {
-      case "SET_USERNAME":
-        return { ...state, username: payload };
+      case "SET_EMAIL":
+        return { ...state, email: payload };
 
       case "SET_PASSWORD":
         return { ...state, password: payload };
@@ -37,7 +37,7 @@ export const Login = () => {
     setError("");
     e.preventDefault();
     const res = await loginUser({
-      username: formState.username,
+      email: formState.email,
       password: formState.password,
       from: state?.from ? state.from : "/"
     });
@@ -58,11 +58,11 @@ export const Login = () => {
         <div className="row">
           <input
             className="form-field"
-            placeholder="Enter your username here"
+            placeholder="Enter your email here"
             required
-            value={formState.username}
+            value={formState.email}
             onChange={(e) => {
-              formDispatch({ type: "SET_USERNAME", payload: e.target.value });
+              formDispatch({ type: "SET_EMAIL", payload: e.target.value });
             }}
           />
         </div>

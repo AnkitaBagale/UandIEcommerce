@@ -12,7 +12,7 @@ export const ForgotPasswordPage = () => {
   const { updateUserDetails } = useAuthentication();
 
   const initialState = {
-    username: "",
+    email: "",
     password: "",
     confirmPassword: ""
   };
@@ -20,7 +20,7 @@ export const ForgotPasswordPage = () => {
   const formReducer = (state, { type, payload }) => {
     switch (type) {
       case "SET_USERNAME":
-        return { ...state, username: payload };
+        return { ...state, email: payload };
 
       case "SET_PASSWORD":
         return { ...state, password: payload };
@@ -72,7 +72,7 @@ export const ForgotPasswordPage = () => {
   const checkFormValidity = () => {
     let errorFlag = true;
 
-    if (formState.username === "" || !/^.+@.+\.com$/.test(formState.username)) {
+    if (formState.email === "" || !/^.+@.+\.com$/.test(formState.email)) {
       errorsDispatch({
         type: "SET_USERNAME_ERROR",
         payload: "Please enter valid email id"
@@ -114,7 +114,7 @@ export const ForgotPasswordPage = () => {
       setLoading(true);
 
       const response = await updateUserDetails({
-        username: formState.username,
+        email: formState.email,
         password: formState.password
       });
       if (response.status === 200) {
@@ -134,14 +134,14 @@ export const ForgotPasswordPage = () => {
       {!showSuccess ? (
         <>
           <h1 className="h4 padding-bottom-1rem text-center">Reset Password</h1>
-          <p>Enter your username and enter new password</p>
+          <p>Enter your email and enter new password</p>
           <form className="submit-form-example display-flex-column">
             <div className="row">
               <input
                 className="form-field"
-                placeholder="Enter your username here"
+                placeholder="Enter your email here"
                 required
-                value={formState.username}
+                value={formState.email}
                 onChange={(e) => {
                   formDispatch({
                     type: "SET_USERNAME",
