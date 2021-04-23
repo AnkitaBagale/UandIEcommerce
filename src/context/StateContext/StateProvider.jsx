@@ -14,7 +14,8 @@ export const StateProvider = ({ children }) => {
       includeOutOfStock: true,
       filterByCategories: [],
       filterByBrands: []
-    }
+    },
+    applySearch: ""
   };
   const [state, dispatch] = useReducer(stateReducer, initialState);
   return (

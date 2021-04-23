@@ -46,6 +46,9 @@
   margin: 0;
   padding: 0;
 }
+.margin-auto {
+  margin: auto;
+}
 
 @media screen and (max-width: 768px) {
   .form-container {

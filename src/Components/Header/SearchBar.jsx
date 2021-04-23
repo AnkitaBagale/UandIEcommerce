@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const searchKeywords = [
   "Brustro",
@@ -28,6 +29,7 @@ export const SearchBar = () => {
       setSearchIconActive(false);
     }
   };
+  const navigate = useNavigate();
   useEffect(() => {
     document.addEventListener("click", closeSearchBar);
 
@@ -44,8 +46,9 @@ export const SearchBar = () => {
             className="suggestion-item text-light-weight"
             key={item}
             onClick={(e) => {
-              console.log("i was here");
-              setSearchTerm(item);
+              navigate(`/search?searchTerm=${item}`);
+              setSearchTerm("");
+              setSearchIconActive(false);
             }}
           >
             {item}
@@ -56,35 +59,54 @@ export const SearchBar = () => {
     .filter((item) => item !== undefined);
 
   return (
-    <label className="search-bar" ref={searchBarRef}>
-      <span
-        className={`search-bar-btn ${
-          activeSearchIcon ? "activeSearchIcon shadow-box" : ""
-        }`}
-        type="submit"
+    <>
+      <div
+        className={`search-bar ${activeSearchIcon ? "activeSearchBar" : ""}`}
+        ref={searchBarRef}
       >
-        <i className="fa fa-search"></i>
-      </span>
-      <input
-        className="search-bar-input"
-        type="text"
-        placeholder="Type to search"
-        onFocus={() => setSearchIconActive(true)}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        value={searchTerm}
-      />
-      {searchTerm !== "" && (
-        <ul
-          style={{ display: activeSearchIcon ? "block" : "none" }}
-          className="datalist-for-search list-style-none"
+        <button
+          className="search-bar-btn link-no-style"
+          type="submit"
+          onClick={() => {
+            if (searchTerm !== "") {
+              navigate(`/search?searchTerm=${searchTerm}`);
+              setSearchIconActive(false);
+            }
+          }}
         >
-          {searchKeywordsOptions.length !== 0 ? (
-            searchKeywordsOptions
-          ) : (
-            <li className="suggestion-item">{`Oh! No search results for: "${searchTerm}"`}</li>
-          )}
-        </ul>
-      )}
-    </label>
+          <i className="fa fa-search"></i>
+        </button>
+        <input
+          className="search-bar-input"
+          type="text"
+          placeholder="Type to search"
+          onFocus={() => setSearchIconActive(true)}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          value={searchTerm}
+        />
+        {searchTerm !== "" && (
+          <button
+            className="search-clear-icon link-no-style"
+            onClick={() => {
+              setSearchTerm("");
+            }}
+          >
+            <i className="fas fa-times"></i>
+          </button>
+        )}
+        {searchTerm !== "" && (
+          <ul
+            style={{ display: activeSearchIcon ? "block" : "none" }}
+            className="datalist-for-search list-style-none"
+          >
+            {searchKeywordsOptions.length !== 0 ? (
+              searchKeywordsOptions
+            ) : (
+              <li className="suggestion-item">{`Oh! No search results for: "${searchTerm}"`}</li>
+            )}
+          </ul>
+        )}
+      </div>
+    </>
   );
 };

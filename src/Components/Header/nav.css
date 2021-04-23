@@ -14,7 +14,6 @@
 }
 .nav-logo {
   width: 100%;
-  /* padding: 0 3rem 0 2rem; */
   width: fit-content;
   box-sizing: border-box;
 }
@@ -61,34 +60,47 @@
 .search-bar {
   border-radius: 0.3rem;
   position: relative;
+  border: 1px solid rgb(245, 245, 246);
 }
 .search-bar-btn {
   padding: 0.625rem 1rem;
   border-radius: 0.3rem;
 }
-.activeSearchIcon {
-  background-color: rgb(105, 110, 121);
-  color: white;
+.activeSearchBar {
+  background-color: white;
+  border: 1px solid rgb(199, 199, 201);
 }
 
 .datalist-for-search {
   position: absolute;
-  top: 2.25rem;
+  top: calc(2.4rem + 2px);
   padding: 1rem 0rem;
-  background-color: rgb(245, 245, 246);
-  border-top: 1px solid var(--dark-secondary-text-color);
+  background-color: white;
+  box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
   width: 100%;
   overflow-y: auto;
 }
 .suggestion-item {
-  padding: 0.25rem 1rem 0.25rem 4rem;
+  padding: 0.25rem 1rem;
 }
 .suggestion-item:hover {
   background-color: rgb(225, 225, 226);
 }
+
+.search-clear-icon {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.5rem;
+  z-index: 1;
+}
+.hide-in-desktop {
+  display: none;
+}
+
 @media screen and (max-width: 1024px) {
   .nav-bar {
     padding: 0.8rem 0.8rem 0.8rem 0rem;
+    margin-bottom: 1.5rem;
   }
   .nav-bar-links {
     box-shadow: 0px 0px 10px 4px rgb(0 0 0 / 5%);
@@ -99,5 +111,20 @@
   .search-bar-btn {
     font-size: 1.1rem;
     padding-right: 0.5rem;
+  }
+  .search-bar {
+    position: absolute;
+    top: 4rem;
+    left: 0;
+    width: 100%;
+    background-color: white;
+  }
+
+  .search-bar-input {
+    display: inline-block;
+    position: relative;
+  }
+  .hide-in-desktop {
+    display: inline;
   }
 }

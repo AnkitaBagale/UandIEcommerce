@@ -19,6 +19,7 @@ import {
   ProductDetailPage,
   ErrorPage
 } from "./Components";
+import { SearchResultPage } from "./Components/Product-listing/SearchResultPage";
 
 export default function App() {
   const { dispatch } = useStateContext();
@@ -77,6 +78,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<ProductListing />} />
           <Route path="/shop/:id" element={<ProductDetailPage />} />
+          <Route path="/search" element={<SearchResultPage />} />
 
           <PrivateRoute path="/wishlist" element={<Wishlist />} />
           <PrivateRoute path="/cart" element={<Cart />} />

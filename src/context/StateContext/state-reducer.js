@@ -1,21 +1,21 @@
 import { isAlreadyAdded, addNewItem } from "../../utils";
 
-export const stateReducer = (state, action) => {
-  switch (action.type) {
+export const stateReducer = (state, { type, payload }) => {
+  switch (type) {
     case "SET_PRODUCTS":
-      return { ...state, products: action.payload };
+      return { ...state, products: payload };
 
     case "SET_WISHLIST":
-      return { ...state, itemsInWishlist: action.payload };
+      return { ...state, itemsInWishlist: payload };
 
     case "SET_CART":
-      return { ...state, itemsInCart: action.payload };
+      return { ...state, itemsInCart: payload };
 
     case "SORT": {
-      if (action.payload === "HIGH_TO_LOW_PRICE") {
+      if (payload === "HIGH_TO_LOW_PRICE") {
         return { ...state, sortBy: "HIGH_TO_LOW_PRICE" };
       }
-      if (action.payload === "LOW_TO_HIGH_PRICE")
+      if (payload === "LOW_TO_HIGH_PRICE")
         return { ...state, sortBy: "LOW_TO_HIGH_PRICE" };
       return { ...state, sortBy: "" };
     }
@@ -23,18 +23,18 @@ export const stateReducer = (state, action) => {
     case "INCLUDE_OUT_OF_STOCK": {
       return {
         ...state,
-        dataFilter: { ...state.dataFilter, includeOutOfStock: action.payload }
+        dataFilter: { ...state.dataFilter, includeOutOfStock: payload }
       };
     }
 
     case "FILTER_BY_CATEGORIES": {
-      return state.dataFilter.filterByCategories.includes(action.payload)
+      return state.dataFilter.filterByCategories.includes(payload)
         ? {
             ...state,
             dataFilter: {
               ...state.dataFilter,
               filterByCategories: state.dataFilter.filterByCategories.filter(
-                (item) => item !== action.payload
+                (item) => item !== payload
               )
             }
           }
@@ -43,19 +43,19 @@ export const stateReducer = (state, action) => {
             dataFilter: {
               ...state.dataFilter,
               filterByCategories: state.dataFilter.filterByCategories.concat(
-                action.payload
+                payload
               )
             }
           };
     }
     case "FILTER_BY_BRANDS": {
-      return state.dataFilter.filterByBrands.includes(action.payload)
+      return state.dataFilter.filterByBrands.includes(payload)
         ? {
             ...state,
             dataFilter: {
               ...state.dataFilter,
               filterByBrands: state.dataFilter.filterByBrands.filter(
-                (item) => item !== action.payload
+                (item) => item !== payload
               )
             }
           }
@@ -63,9 +63,7 @@ export const stateReducer = (state, action) => {
             ...state,
             dataFilter: {
               ...state.dataFilter,
-              filterByBrands: state.dataFilter.filterByBrands.concat(
-                action.payload
-              )
+              filterByBrands: state.dataFilter.filterByBrands.concat(payload)
             }
           };
     }
@@ -78,6 +76,19 @@ export const stateReducer = (state, action) => {
           filterByCategories: [],
           filterByBrands: []
         }
+      };
+    }
+
+    case "APPLY_SEARCH": {
+      return {
+        ...state,
+        applySearch: payload
+      };
+    }
+    case "CLEAR_SEARCH": {
+      return {
+        ...state,
+        applySearch: ""
       };
     }
 

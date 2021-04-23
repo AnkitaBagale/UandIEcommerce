@@ -8,6 +8,7 @@ export const AuthenticationProvider = ({ children }) => {
   const [isUserLoggedIn, setLogin] = useState(false);
   const [username, setUsername] = useState("");
   const [userId, setUserId] = useState("");
+  const [userDetails, setUserDetails] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -124,7 +125,9 @@ export const AuthenticationProvider = ({ children }) => {
         logOutUser,
         signUpNewUser,
         updateUserDetails,
-        userId
+        userId,
+        userDetails,
+        setUserDetails
       }}
     >
       {children}
