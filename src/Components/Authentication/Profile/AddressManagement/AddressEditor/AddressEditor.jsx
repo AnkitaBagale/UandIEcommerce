@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from "react";
-import { statesInCountryWise, countries } from "/src/database";
+import { statesInCountryWise, countries } from "../../../../../database";
 import { formReducer, errorsReducer } from "./reducers";
 import { useAuthentication } from "/src/context";
 import axios from "axios";
