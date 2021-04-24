@@ -9,6 +9,7 @@ export const AuthenticationProvider = ({ children }) => {
   const [username, setUsername] = useState("");
   const [userId, setUserId] = useState("");
   const [userDetails, setUserDetails] = useState(null);
+  const [addressDetails, setAddressDetails] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -127,7 +128,9 @@ export const AuthenticationProvider = ({ children }) => {
         updateUserDetails,
         userId,
         userDetails,
-        setUserDetails
+        setUserDetails,
+        addressDetails,
+        setAddressDetails
       }}
     >
       {children}
