@@ -1,0 +1,130 @@
+@import "https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500&display=swap";
+
+.nav-title {
+  margin-top: 1rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  box-sizing: border-box;
+}
+.avatar-in-nav-links i {
+  color: white;
+}
+.nav-section {
+  width: 50%;
+}
+.nav-logo {
+  width: 100%;
+  width: fit-content;
+  box-sizing: border-box;
+}
+.logo-title {
+  font-size: 2rem;
+  font-family: "Roboto Slab", serif;
+  font-weight: 500;
+  box-sizing: border-box;
+}
+.nav-bar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.625rem 1rem;
+}
+
+.logo-and-symbol-style {
+  font-size: 1rem;
+  margin-right: 3px;
+}
+.logo-tagline {
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  display: block;
+  width: fit-content;
+}
+.navlinks-style {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.navlinks-active {
+  color: var(--primary-color);
+}
+
+.nav-icons {
+  box-sizing: border-box;
+  padding: 0 1rem;
+}
+
+.search-bar {
+  border-radius: 0.3rem;
+  position: relative;
+  border: 1px solid rgb(245, 245, 246);
+}
+.search-bar-btn {
+  padding: 0.625rem 1rem;
+  border-radius: 0.3rem;
+}
+.activeSearchBar {
+  background-color: white;
+  border: 1px solid rgb(199, 199, 201);
+}
+
+.datalist-for-search {
+  position: absolute;
+  top: calc(2.4rem + 2px);
+  padding: 1rem 0rem;
+  background-color: white;
+  box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
+  width: 100%;
+  overflow-y: auto;
+}
+.suggestion-item {
+  padding: 0.25rem 1rem;
+}
+.suggestion-item:hover {
+  background-color: rgb(225, 225, 226);
+}
+
+.search-clear-icon {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.5rem;
+  z-index: 1;
+}
+.hide-in-desktop {
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .nav-bar {
+    padding: 0.8rem 0.8rem 0.8rem 0rem;
+    margin-bottom: 1.5rem;
+  }
+  .nav-bar-links {
+    box-shadow: 0px 0px 10px 4px rgb(0 0 0 / 5%);
+  }
+  .nav-section {
+    width: auto;
+  }
+  .search-bar-btn {
+    font-size: 1.1rem;
+    padding-right: 0.5rem;
+  }
+  .search-bar {
+    position: absolute;
+    top: 4rem;
+    left: 0;
+    width: 100%;
+    background-color: white;
+  }
+
+  .search-bar-input {
+    display: inline-block;
+    position: relative;
+  }
+  .hide-in-desktop {
+    display: inline;
+  }
+}

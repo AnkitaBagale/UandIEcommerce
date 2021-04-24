@@ -1,24 +1,22 @@
 import { StrictMode } from "react";
 import React from "react";
 import ReactDOM from "react-dom";
-import setupMockServer from "./api/mock.server";
+
 import { BrowserRouter as Router } from "react-router-dom";
 
 import App from "./App";
-import { AuthContextProvider, CartContextProvider } from "./context";
-
-setupMockServer();
+import { AuthenticationProvider, StateProvider } from "./context";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <StrictMode>
-    <CartContextProvider>
+    <StateProvider>
       <Router>
-        <AuthContextProvider>
+        <AuthenticationProvider>
           <App />
-        </AuthContextProvider>
+        </AuthenticationProvider>
       </Router>
-    </CartContextProvider>
+    </StateProvider>
   </StrictMode>,
   rootElement
 );

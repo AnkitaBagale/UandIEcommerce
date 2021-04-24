@@ -1,14 +1,12 @@
-import faker from "faker";
-import brand1 from "./Home/Images/brand-bianyo.jpg";
-import brand2 from "./Home/Images/brand-brusto.png";
-import brand3 from "./Home/Images/brand-camlin.png";
-import brand4 from "./Home/Images/brand-doms.png";
-import category1 from "./Home/Images/category1.jpg";
-import category2 from "./Home/Images/category2.jpg";
-import category4 from "./Home/Images/category4.jpg";
-import category5 from "./Home/Images/category5.jpg";
+import brand1 from "./Components/Home/Images/brand-bianyo.jpg";
+import brand2 from "./Components/Home/Images/brand-brusto.png";
+import brand3 from "./Components/Home/Images/brand-camlin.png";
+import brand4 from "./Components/Home/Images/brand-doms.png";
+import category1 from "./Components/Home/Images/category1.jpg";
+import category2 from "./Components/Home/Images/category2.jpg";
+import category4 from "./Components/Home/Images/category4.jpg";
+import category5 from "./Components/Home/Images/category5.jpg";
 
-faker.seed(0);
 export const coupons = [
   { coupon: "NEW USER", off: 500, minOrder: 1500 },
   { coupon: "DIWALI OFFER", off: 300, minOrder: 1000 }
@@ -35,32 +33,6 @@ export const categories = [
   "Painting Knives"
 ];
 
-export const database = [...Array(30)].map((id) => ({
-  id: faker.random.uuid(),
-  name: faker.commerce.productName(),
-  image: faker.random.image(),
-  price: faker.commerce.price(),
-  category: faker.random.arrayElement([...categories]),
-  brand: faker.random.arrayElement([...brands]),
-  inStock: faker.random.boolean(),
-  fastDelivery: faker.random.boolean(),
-  ratings: faker.random.arrayElement([1, 2, 3, 4, 5]),
-  offer: faker.random.arrayElement(["20", "50", "70"]),
-  level: faker.random.arrayElement([
-    "beginner",
-    "amateur",
-    "intermediate",
-    "advanced",
-    "professional"
-  ]),
-  color: faker.commerce.color(),
-  rating: {
-    starRating: faker.random.arrayElement([1, 2, 3, 4, 5]),
-    totalReviews: faker.random.arrayElement([10, 15, 20, 25])
-  },
-  avalQty: faker.random.arrayElement([10, 11, 12, 13, 14, 15])
-}));
-
 export const featuredCategories = [
   { name: "Drawing Boards", img: category5 },
   { name: "Drawing Pencils", img: category2 },
@@ -74,17 +46,25 @@ export const featuredBrands = [
   { name: "DOMS", img: brand4 }
 ];
 
-export const users = [
-  {
-    username: "Ankita",
-    password: "Ankita"
-  },
-  {
-    username: "Admin",
-    password: "Admin"
-  },
-  {
-    username: "Pooja",
-    password: "Pooja"
-  }
-];
+export const statesInCountryWise = {
+  India: [
+    "Maharashtra",
+    "Gujrat",
+    "Madhya Pradesh",
+    "West Bengal",
+    "Bihar",
+    "Rajasthan",
+    "Andhra Pradesh",
+    "Karnataka",
+    "Tamil Nadu"
+  ],
+  Australia: [
+    "New South Wales",
+    "Queensland",
+    "South Australia",
+    "Tasmania",
+    "Victoria",
+    "Western Australia"
+  ]
+};
+export const countries = Object.keys(statesInCountryWise);
