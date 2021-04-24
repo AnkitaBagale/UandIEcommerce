@@ -7,7 +7,7 @@ export const AddressCard = ({ address }) => {
   const [isEditMode, setEditMode] = useState(false);
   const { userId, setAddressDetails } = useAuthentication();
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState("");
+  // const [loading, setLoading] = useState("");
 
   const removeAddress = async () => {
     try {

@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useReducer, useState } from "react";
 import { statesInCountryWise, countries } from "/src/database";
 import { formReducer, errorsReducer } from "./reducers";
 import { useAuthentication } from "/src/context";
@@ -38,7 +38,7 @@ export const AddressEditor = ({
   };
 
   const [apiError, setApiError] = useState("");
-  const [loading, setLoading] = useState("");
+  // const [loading, setLoading] = useState("");
   const [fieldErrors, errorsDispatch] = useReducer(
     errorsReducer,
     defaultErrors
@@ -323,7 +323,7 @@ export const AddressEditor = ({
                 Cancel
               </button>
             </div>
-            {loading}
+
             <div
               className="form-validation-msg form-field-error"
               style={{ display: apiError === "" ? "none" : "block" }}
