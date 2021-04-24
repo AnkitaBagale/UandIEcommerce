@@ -7,7 +7,9 @@
 .Container {
   padding: 1rem;
 }
-
+.margin-0 {
+  margin: 0;
+}
 .padding-1rem-borderbox {
   box-sizing: border-box;
   padding: 1rem;
@@ -63,9 +65,6 @@ label {
   margin: auto;
 }
 
-.margin-auto {
-  margin: auto;
-}
 @media screen and (max-width: 768px) {
   .grid-4-column-layout {
     gap: 1rem;

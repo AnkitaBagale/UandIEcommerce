@@ -8,7 +8,10 @@ export {
   ForgotPasswordPage,
   Login,
   PrivateRoute,
+  ProfilePage,
   Profile,
+  AddressList,
+  Settings,
   SignUp
 } from "./Authentication";
 export { ProductDetailPage } from "./Product-detail";

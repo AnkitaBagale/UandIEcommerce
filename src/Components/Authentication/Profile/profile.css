@@ -1,0 +1,13 @@
+.user-profile-container {
+  max-width: 50rem;
+  width: calc(100% - 2rem);
+  margin: auto;
+}
+.border-right-2px {
+  border-right: 2px solid #edebef;
+}
+
+.styled-list li:not(:last-child) {
+  margin-bottom: 0.625rem;
+  padding-bottom: 0;
+}

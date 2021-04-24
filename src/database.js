@@ -45,3 +45,26 @@ export const featuredBrands = [
   { name: "Camel", img: brand3 },
   { name: "DOMS", img: brand4 }
 ];
+
+export const statesInCountryWise = {
+  India: [
+    "Maharashtra",
+    "Gujrat",
+    "Madhya Pradesh",
+    "West Bengal",
+    "Bihar",
+    "Rajasthan",
+    "Andhra Pradesh",
+    "Karnataka",
+    "Tamil Nadu"
+  ],
+  Australia: [
+    "New South Wales",
+    "Queensland",
+    "South Australia",
+    "Tasmania",
+    "Victoria",
+    "Western Australia"
+  ]
+};
+export const countries = Object.keys(statesInCountryWise);

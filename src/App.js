@@ -17,7 +17,10 @@ import {
   Profile,
   SignUp,
   ProductDetailPage,
-  ErrorPage
+  ErrorPage,
+  AddressList,
+  Settings,
+  ProfilePage
 } from "./Components";
 import { SearchResultPage } from "./Components/Product-listing/SearchResultPage";
 
@@ -85,7 +88,11 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/forgot" element={<ForgotPasswordPage />} />
           <Route path="/signup" element={<SignUp />} />
-          <PrivateRoute path="/profile" element={<Profile />} />
+          <PrivateRoute path="/profile" element={<ProfilePage />}>
+            <PrivateRoute path="/" element={<Profile />} />
+            <PrivateRoute path="/address" element={<AddressList />} />
+            <PrivateRoute path="/settings" element={<Settings />} />
+          </PrivateRoute>
           <Route path="*" element={<ErrorPage />} />
           <Route path="/error" element={<ErrorPage />} />
         </Routes>
