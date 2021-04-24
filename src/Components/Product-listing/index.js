@@ -1,1 +1,2 @@
-export { ProductListing, SearchResultPage } from "./ProductListing";
+export { ProductListing } from "./ProductListing";
+export { SearchResultPage } from "./SearchResultPage";
