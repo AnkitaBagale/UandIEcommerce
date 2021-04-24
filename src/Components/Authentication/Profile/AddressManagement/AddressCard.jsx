@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { AddressEditor } from "./AddressEditor";
-import { useAuthentication } from "/src/context";
+import { useAuthentication } from "../../../../context";
 
 export const AddressCard = ({ address }) => {
   const [isEditMode, setEditMode] = useState(false);

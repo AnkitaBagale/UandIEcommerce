@@ -1,8 +1,8 @@
 import { AddressCard } from "./AddressCard";
 import React, { useEffect, useState } from "react";
-import { addressesData } from "/src/database";
+
 import { AddressEditor } from "./AddressEditor";
-import { useAuthentication } from "/src/context";
+import { useAuthentication } from "../../../../context";
 import axios from "axios";
 
 export const AddressList = ({ setAddresses, addresses = addressesData }) => {

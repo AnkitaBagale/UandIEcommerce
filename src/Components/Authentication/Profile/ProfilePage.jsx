@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import { useAuthentication } from "/src/context";
+import { useAuthentication } from "../../../context";
 import "./profile.css";
 export const ProfilePage = () => {
   const { userId, setUserDetails, userDetails } = useAuthentication();

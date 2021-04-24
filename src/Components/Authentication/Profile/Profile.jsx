@@ -1,4 +1,4 @@
-import { useAuthentication } from "/src/context";
+import { useAuthentication } from "../../../context";
 import avatarImg from "./Images/user.svg";
 
 export const Profile = () => {
