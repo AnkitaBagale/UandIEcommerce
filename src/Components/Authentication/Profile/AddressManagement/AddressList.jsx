@@ -5,7 +5,7 @@ import { AddressEditor } from "./AddressEditor";
 import { useAuthentication } from "../../../../context";
 import axios from "axios";
 
-export const AddressList = ({ setAddresses, addresses = addressesData }) => {
+export const AddressList = () => {
   const [isAddNew, setAddNew] = useState(false);
   const { userId, addressDetails, setAddressDetails } = useAuthentication();
   useEffect(() => {
