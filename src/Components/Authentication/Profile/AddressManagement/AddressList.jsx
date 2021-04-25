@@ -32,12 +32,7 @@ export const AddressList = () => {
       <ul className="list-style-none styled-list">
         {addressDetails &&
           addressDetails.map((address) => (
-            <AddressCard
-              key={address._id}
-              address={address}
-              addresses={addresses}
-              setAddresses={setAddresses}
-            />
+            <AddressCard key={address._id} address={address} />
           ))}
       </ul>
 
