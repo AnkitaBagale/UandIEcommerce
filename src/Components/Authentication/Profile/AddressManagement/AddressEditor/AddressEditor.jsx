@@ -18,9 +18,7 @@ const defaultAddress = {
 export const AddressEditor = ({
   existingAddress = defaultAddress,
   setEditMode,
-  setAddNew,
-  isAddNew = false,
-  isEditMode = false
+  setAddNew
 }) => {
   const [formState, formDispatch] = useReducer(formReducer, {
     ...existingAddress
