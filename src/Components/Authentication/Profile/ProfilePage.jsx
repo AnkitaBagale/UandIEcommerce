@@ -47,7 +47,7 @@ export const ProfilePage = () => {
             <li>
               <NavLink
                 to="/profile/address"
-                activeClassName="text-green"
+                activeClassName="text-green text-regular-weight"
                 className="link-no-style"
               >
                 Addresses
@@ -56,7 +56,7 @@ export const ProfilePage = () => {
             <li>
               <NavLink
                 to="/profile/settings"
-                activeClassName="text-green"
+                activeClassName="text-green text-regular-weight"
                 className="link-no-style"
               >
                 Settings
