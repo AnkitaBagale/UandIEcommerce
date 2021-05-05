@@ -46,7 +46,7 @@ export const SearchBar = () => {
             className="suggestion-item text-light-weight"
             key={item}
             onClick={(e) => {
-              navigate(`/search?searchTerm=${item}`);
+              navigate(`/search?searchTerm=${encodeURIComponent(item)}`);
               setSearchTerm("");
               setSearchIconActive(false);
             }}
@@ -69,8 +69,9 @@ export const SearchBar = () => {
           type="submit"
           onClick={() => {
             if (searchTerm !== "") {
-              navigate(`/search?searchTerm=${searchTerm}`);
+              navigate(`/search?searchTerm=${encodeURIComponent(searchTerm)}`);
               setSearchIconActive(false);
+              setSearchTerm("");
             }
           }}
         >
