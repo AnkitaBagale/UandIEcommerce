@@ -15,7 +15,7 @@ export const AddressCard = ({ address }) => {
 
       const {
         data: { response }
-      } = await axios.post(url, { _id: address._id, active: false });
+      } = await axios.delete(url);
 
       setAddressDetails(response);
     } catch (error) {
@@ -23,7 +23,7 @@ export const AddressCard = ({ address }) => {
     }
   };
   return (
-    <li className="card-horizontal shadow-box">
+    <li className="card-horizontal">
       <div className="text-container secondary-text-color">
         <h4 className="body-cp-rg">{address.name}</h4>
 

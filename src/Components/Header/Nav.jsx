@@ -131,7 +131,7 @@ export const Nav = () => {
                   className="status-badge status-badge-number"
                   style={{ display: isUserLoggedIn ? "flex" : "none" }}
                 >
-                  {state?.itemsInCart?.length}
+                  {state?.itemsInCart?.products?.length || "0"}
                 </span>
               </span>
               <span className="nav-icon-text">Cart</span>

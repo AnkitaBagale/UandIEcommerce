@@ -119,10 +119,7 @@ export const AddressEditor = ({
   return (
     <>
       <div className="modal-interstitial active">
-        <div
-          className="modal-content vertical-middle"
-          style={{ height: "auto" }}
-        >
+        <div className="modal-content vertical-middle">
           <div>
             <h2 className="body-cp-rg padding-bottom-1rem">ADD NEW ADDRESS</h2>
             <div className="row">

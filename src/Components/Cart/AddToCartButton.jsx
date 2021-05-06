@@ -39,7 +39,7 @@ export const AddToCartButton = ({
         }
         onClick={() => {
           isUserLoggedIn
-            ? isAlreadyAdded(state.itemsInCart, product._id)
+            ? isAlreadyAdded(state.itemsInCart.products, product._id)
               ? navigate("/cart")
               : addProductToCart({
                   setMessage,
@@ -61,7 +61,7 @@ export const AddToCartButton = ({
         </span>
         {!product.inStock
           ? "Out of Stock"
-          : isAlreadyAdded(state.itemsInCart, product._id)
+          : isAlreadyAdded(state.itemsInCart.products, product._id)
           ? "Go to Cart"
           : "Add to Cart"}
       </button>

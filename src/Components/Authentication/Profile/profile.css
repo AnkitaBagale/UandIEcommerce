@@ -11,3 +11,15 @@
   margin-bottom: 0.625rem;
   padding-bottom: 0;
 }
+.modal-content {
+  height: 100%;
+  overflow-y: auto;
+}
+.address-list-title {
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  margin: 0;
+}
+.modal-interstitial {
+  padding: 1rem;
+}

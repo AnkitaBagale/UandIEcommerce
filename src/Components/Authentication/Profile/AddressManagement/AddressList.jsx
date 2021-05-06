@@ -8,6 +8,7 @@ import axios from "axios";
 export const AddressList = () => {
   const [isAddNew, setAddNew] = useState(false);
   const { userId, addressDetails, setAddressDetails } = useAuthentication();
+
   useEffect(() => {
     (async () => {
       try {
@@ -17,7 +18,7 @@ export const AddressList = () => {
           } = await axios.get(
             `https://uandistoreapi.herokuapp.com/users/${userId}/addresses`
           );
-          console.log(response);
+
           setAddressDetails(response);
         }
       } catch (error) {
@@ -25,10 +26,10 @@ export const AddressList = () => {
       }
     })();
   }, []);
+
   return (
     <>
-      <h2 className="body-cp-rg padding-bottom-1rem margin-0">My Addresses</h2>
-
+      <h2 className="body-cp-rg address-list-title">My Addresses</h2>
       <ul className="list-style-none styled-list">
         {addressDetails &&
           addressDetails.map((address) => (

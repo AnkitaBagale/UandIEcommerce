@@ -1,5 +1,3 @@
-import { isAlreadyAdded, addNewItem } from "../../utils";
-
 export const stateReducer = (state, { type, payload }) => {
   switch (type) {
     case "SET_PRODUCTS":
