@@ -11,6 +11,7 @@ Functionalities-
 - Address management
 - Search with brand or category
 - Responsive design
+- Loader, Toast, Error page
 
 React JS -
 
