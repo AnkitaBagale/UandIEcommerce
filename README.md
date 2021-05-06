@@ -25,3 +25,5 @@ Upcoming features-
 
 - User details edit section in settings section
 - Auth using JWT token
+
+u-and-i-store.netlify.app/
