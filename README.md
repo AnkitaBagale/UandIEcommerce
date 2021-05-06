@@ -11,6 +11,7 @@ Functionalities-
 - Address management
 - Search with brand or category
 - Responsive design
+- Loader, Toast, Error page
 
 React JS -
 
@@ -25,3 +26,5 @@ Upcoming features-
 
 - User details edit section in settings section
 - Auth using JWT token
+
+https://u-and-i-store.netlify.app/
