@@ -5,3 +5,28 @@
 .greyed-out label {
   cursor: default;
 }
+.margin-top-8px {
+  margin-top: 0.5rem;
+}
+
+.display-flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.display-flex-row .btn {
+  height: fit-content;
+}
+
+.address-list-item {
+  width: calc(100% - 1.25rem);
+}
+.select-address-radio {
+  margin-top: 1rem;
+}
+.margin-bottom-8px {
+  margin-bottom: 0.5rem;
+}
+.modal-interstitial {
+  padding: 1rem;
+}

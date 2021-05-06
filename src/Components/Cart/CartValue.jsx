@@ -27,7 +27,7 @@ export const CartValueDetails = () => {
       },
       { totalMRP: 0, discount: 0 }
     );
-  const cartDetails = cartDetailsCalculator(state.itemsInCart);
+  const cartDetails = cartDetailsCalculator(state.itemsInCart.products);
   const cartTotalWithoutOffer = cartDetails.totalMRP - cartDetails.discount;
   const cartTotal =
     cartDetails.totalMRP -
@@ -45,7 +45,7 @@ export const CartValueDetails = () => {
       }
     };
     checkOffersValid();
-  }, [state.itemsInCart]);
+  }, [state.itemsInCart.products]);
 
   return (
     <>
@@ -64,7 +64,7 @@ export const CartValueDetails = () => {
         </button>
 
         <div className="p text-regular-weight body-cp-md">
-          PRICE DETAILS: ({state.itemsInCart.length} items)
+          PRICE DETAILS: ({state.itemsInCart.products.length} items)
         </div>
 
         <div className="row body-cp-md ">
