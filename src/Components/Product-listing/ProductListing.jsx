@@ -19,9 +19,10 @@ export const ProductListing = () => {
           <Filter />
         </div>
         <div className="grid-4-column-layout grid-right-of-filter padding-around-1rem">
-          {filterdData.map((product) => {
-            return <ProductCard key={product._id} product={product} />;
-          })}
+          {filterdData.length !== 0 &&
+            filterdData.map((product) => {
+              return <ProductCard key={product._id} product={product} />;
+            })}
         </div>
       </div>
     </>
