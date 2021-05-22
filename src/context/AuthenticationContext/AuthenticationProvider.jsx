@@ -110,11 +110,14 @@ export const AuthenticationProvider = ({ children }) => {
     }
   };
 
-  const logOutUser = () => {
+  const logOutUser = (dispatch) => {
     localStorage?.removeItem("session");
     setUsername("");
     setUserId("");
     setLogin(false);
+    setUserDetails(null);
+    dispatch({ type: "RESET_DATA_ON_LOGOUT" });
+    setAddressDetails(null);
   };
   return (
     <AuthenticationContext.Provider

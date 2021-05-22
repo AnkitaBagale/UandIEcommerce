@@ -90,6 +90,10 @@ export const stateReducer = (state, { type, payload }) => {
       };
     }
 
+    case "RESET_DATA_ON_LOGOUT": {
+      return { ...state, itemsInCart: [], itemsInWishlist: [] };
+    }
+
     default:
       return state;
   }
