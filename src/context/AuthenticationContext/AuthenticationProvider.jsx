@@ -101,7 +101,7 @@ export const AuthenticationProvider = ({ children }) => {
         );
 
         setUsername(data.response.firstname);
-        setUserId(userId);
+        setUserId(data.response.userId);
         setLogin(true);
         return { status };
       }
