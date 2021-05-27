@@ -1,104 +1,77 @@
-import "./styles.css";
-import { useEffect } from "react";
-import { useStateContext, useAuthentication } from "./context";
-import { getProductsFromServer } from "./utils";
-import { Routes, Route } from "react-router-dom";
+import './styles.css';
+import { useEffect } from 'react';
+import { useStateContext, useAuthentication } from './Context';
+import {
+	API_URL,
+	getProductsFromServer,
+	getWishlistFromServer,
+	getCartFromServer,
+} from './utils';
+import { Routes, Route } from 'react-router-dom';
 
 import {
-  ProductListing,
-  Cart,
-  Wishlist,
-  Nav,
-  Home,
-  Footer,
-  ForgotPasswordPage,
-  Login,
-  PrivateRoute,
-  Profile,
-  SignUp,
-  ProductDetailPage,
-  ErrorPage,
-  AddressList,
-  Settings,
-  ProfilePage
-} from "./Components";
-import { SearchResultPage } from "./Components/Product-listing/SearchResultPage";
+	ProductListing,
+	Cart,
+	Wishlist,
+	Nav,
+	Home,
+	Footer,
+	ForgotPasswordPage,
+	Login,
+	PrivateRoute,
+	Profile,
+	SignUp,
+	ProductDetailPage,
+	ErrorPage,
+	AddressList,
+	Settings,
+	ProfilePage,
+} from './Components';
+import { SearchResultPage } from './Components/Product-listing/SearchResultPage';
 
 export default function App() {
-  const { dispatch } = useStateContext();
-  const { isUserLoggedIn, userId } = useAuthentication();
+	const { dispatch } = useStateContext();
+	const {
+		state: { token },
+	} = useAuthentication();
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const {
-          data: { response }
-        } = await getProductsFromServer(
-          "https://uandistoreapi.herokuapp.com/products"
-        );
-        dispatch({ type: "SET_PRODUCTS", payload: response });
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, []);
+	useEffect(() => {
+		getProductsFromServer(dispatch);
+	}, []);
 
-  useEffect(() => {
-    if (isUserLoggedIn) {
-      (async () => {
-        try {
-          const {
-            data: { response }
-          } = await getProductsFromServer(
-            `https://uandistoreapi.herokuapp.com/carts/${userId}/cart`
-          );
+	useEffect(() => {
+		if (token) {
+			getCartFromServer(dispatch, token);
+			getWishlistFromServer(dispatch, token);
+		}
+	}, [token]);
 
-          dispatch({ type: "SET_CART", payload: response });
-        } catch (error) {
-          console.log(error);
-        }
+	return (
+		<div className='App'>
+			<div className='App-container'>
+				<Nav />
+				<Routes>
+					<Route path='/' element={<Home />} />
+					<Route path='/shop' element={<ProductListing />} />
+					<Route path='/shop/:id' element={<ProductDetailPage />} />
+					<Route path='/search' element={<SearchResultPage />} />
 
-        try {
-          const {
-            data: { response }
-          } = await getProductsFromServer(
-            `https://uandistoreapi.herokuapp.com/wishlists/${userId}/wishlist`
-          );
-
-          dispatch({ type: "SET_WISHLIST", payload: response });
-        } catch (error) {
-          console.log(error);
-        }
-      })();
-    }
-  }, [isUserLoggedIn]);
-
-  return (
-    <div className="App">
-      <div className="App-container">
-        <Nav />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/shop" element={<ProductListing />} />
-          <Route path="/shop/:id" element={<ProductDetailPage />} />
-          <Route path="/search" element={<SearchResultPage />} />
-
-          <PrivateRoute path="/wishlist" element={<Wishlist />} />
-          <PrivateRoute path="/cart" element={<Cart />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/forgot" element={<ForgotPasswordPage />} />
-          <Route path="/signup" element={<SignUp />} />
-          <PrivateRoute path="/profile" element={<ProfilePage />}>
-            <PrivateRoute path="/" element={<Profile />} />
-            <PrivateRoute path="/address" element={<AddressList />} />
-            <PrivateRoute path="/settings" element={<Settings />} />
-          </PrivateRoute>
-          <Route path="*" element={<ErrorPage />} />
-          <Route path="/error" element={<ErrorPage />} />
-        </Routes>
-        <div className="spacer-3rem"></div>
-      </div>
-      <Footer />
-    </div>
-  );
+					<PrivateRoute path='/wishlist' element={<Wishlist />} />
+					<PrivateRoute path='/cart' element={<Cart />} />
+					<Route path='/login' element={<Login />} />
+					<Route path='/forgot' element={<ForgotPasswordPage />} />
+					<Route path='/signup' element={<SignUp />} />
+					<PrivateRoute path='/profile' element={<ProfilePage />}>
+						<PrivateRoute path='/' element={<Profile />} />
+						<PrivateRoute path='/address' element={<AddressList />} />
+						<PrivateRoute path='/settings' element={<Settings />} />
+					</PrivateRoute>
+					<Route path='*' element={<ErrorPage />} />
+					<Route path='/error' element={<ErrorPage />} />
+				</Routes>
+				<div className='spacer-3rem'></div>
+			</div>
+			<Footer />
+		</div>
+	);
 }

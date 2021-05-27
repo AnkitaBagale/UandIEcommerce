@@ -1,10 +1,5 @@
-export { isAlreadyAdded, addNewItem } from "./array-update-functions";
+export { isAlreadyAdded, addNewItem } from './array-update-functions';
 
-export {
-  getProductsFromServer,
-  addProductToCart,
-  increaseQtyOfProductInCart,
-  decreaseQtyOfProductInCart,
-  removeProductFromCart,
-  addProductToWishlist
-} from "./server-request";
+export * from './server-request';
+
+export { API_URL } from './constants';

@@ -1,63 +1,64 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
-import { useAuthentication, useStateContext } from "../../context";
+import { useAuthentication, useStateContext } from '../../Context';
 import {
-  addProductToWishlist,
-  isAlreadyAdded,
-  removeProductFromCart
-} from "../../utils";
+	addProductToWishlist,
+	isAlreadyAdded,
+	removeProductFromCart,
+} from '../../utils';
 
 export const MoveToWishlistButton = ({
-  product,
-  setMessage,
-  disableButtonWhileProcessing,
-  setDisableButton
+	product,
+	setMessage,
+	disableButtonWhileProcessing,
+	setDisableButton,
 }) => {
-  const { state, dispatch } = useStateContext();
+	const { state, dispatch } = useStateContext();
 
-  let isRendered = useRef(false);
-  const { userId } = useAuthentication();
+	let isRendered = useRef(false);
+	const {
+		state: { token },
+	} = useAuthentication();
 
-  useEffect(() => {
-    isRendered.current = true;
-    return () => {
-      isRendered.current = false;
-    };
-  }, []);
+	useEffect(() => {
+		isRendered.current = true;
+		return () => {
+			isRendered.current = false;
+		};
+	}, []);
 
-  return (
-    <button
-      disabled={disableButtonWhileProcessing}
-      className={
-        disableButtonWhileProcessing
-          ? "btn btn-outline-secondary btn-disabled"
-          : "btn btn-outline-secondary"
-      }
-      onClick={() => {
-        if (!isAlreadyAdded(state.itemsInWishlist, product._id)) {
-          addProductToWishlist({
-            state,
-            dispatch,
-            setMessage,
-            setDisableButton,
-            product,
-            isRendered,
-            userId
-          });
-        }
+	return (
+		<button
+			disabled={disableButtonWhileProcessing}
+			className={
+				disableButtonWhileProcessing
+					? 'btn btn-outline-secondary btn-disabled'
+					: 'btn btn-outline-secondary'
+			}
+			onClick={() => {
+				if (!isAlreadyAdded(state.itemsInWishlist, product._id)) {
+					addProductToWishlist({
+						state,
+						dispatch,
+						setMessage,
+						setDisableButton,
+						product,
+						isRendered,
+						token,
+					});
+				}
 
-        removeProductFromCart({
-          state,
-          dispatch,
-          setMessage,
-          setDisableButton,
-          product,
-          isRendered,
-          userId
-        });
-      }}
-    >
-      Move to Wishlist
-    </button>
-  );
+				removeProductFromCart({
+					state,
+					dispatch,
+					setMessage,
+					setDisableButton,
+					product,
+					isRendered,
+					token,
+				});
+			}}>
+			Move to Wishlist
+		</button>
+	);
 };
