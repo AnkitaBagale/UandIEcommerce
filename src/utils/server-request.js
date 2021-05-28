@@ -28,7 +28,7 @@ export const getCartFromServer = async (dispatch, token) => {
 			method: 'GET',
 			url: `${API_URL}/cart`,
 			headers: {
-				Authorization: token,
+				Authorization: `Bearer ${token}`,
 			},
 		});
 
@@ -51,7 +51,7 @@ export const getWishlistFromServer = async (dispatch, token) => {
 			method: 'GET',
 			url: `${API_URL}/wishlist`,
 			headers: {
-				Authorization: token,
+				Authorization: `Bearer ${token}`,
 			},
 		});
 
@@ -93,7 +93,7 @@ export const addProductToWishlist = async ({
 				_id: product._id,
 			},
 			headers: {
-				Authorization: token,
+				Authorization: `Bearer ${token}`,
 			},
 		});
 
@@ -142,7 +142,7 @@ export const addProductToCart = async ({
 				active: true,
 			},
 			headers: {
-				Authorization: token,
+				Authorization: `Bearer ${token}`,
 			},
 		});
 		if (status === 200 || status === 201) {
@@ -190,7 +190,7 @@ export const increaseQtyOfProductInCart = async ({
 				active: true,
 			},
 			headers: {
-				Authorization: token,
+				Authorization: `Bearer ${token}`,
 			},
 		});
 		if (status === 200 || status === 201) {
@@ -238,7 +238,7 @@ export const decreaseQtyOfProductInCart = async ({
 				active: true,
 			},
 			headers: {
-				Authorization: token,
+				Authorization: `Bearer ${token}`,
 			},
 		});
 		if (status === 200 || status === 201) {
@@ -286,7 +286,7 @@ export const removeProductFromCart = async ({
 				active: false,
 			},
 			headers: {
-				Authorization: token,
+				Authorization: `Bearer ${token}`,
 			},
 		});
 		if (status === 200 || status === 201) {

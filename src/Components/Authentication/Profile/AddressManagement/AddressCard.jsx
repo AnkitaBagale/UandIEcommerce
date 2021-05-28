@@ -21,7 +21,7 @@ export const AddressCard = ({ address }) => {
 			} = await axios({
 				method: 'DELETE',
 				url,
-				headers: { Authorization: token },
+				headers: { Authorization: `Bearer ${token}` },
 			});
 
 			dispatch({

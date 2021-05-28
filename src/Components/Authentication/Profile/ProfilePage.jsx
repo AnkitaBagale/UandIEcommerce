@@ -19,7 +19,7 @@ export const ProfilePage = () => {
 						status,
 					} = await axios.get(`${API_URL}/users/self`, {
 						headers: {
-							Authorization: token,
+							Authorization: `Bearer ${token}`,
 						},
 					});
 

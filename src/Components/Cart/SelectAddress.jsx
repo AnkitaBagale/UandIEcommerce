@@ -34,7 +34,7 @@ export const SelectAddress = () => {
 				url: `${API_URL}/cart/address`,
 				data: { _id: addressId },
 				headers: {
-					Authorization: token,
+					Authorization: `Bearer ${token}`,
 				},
 			});
 			if (status === 200) {
@@ -60,7 +60,7 @@ export const SelectAddress = () => {
 						method: 'GET',
 						url: `${API_URL}/addresses`,
 						headers: {
-							Authorization: token,
+							Authorization: `Bearer ${token}`,
 						},
 					});
 

@@ -20,7 +20,7 @@ export const AddressList = () => {
 					const {
 						data: { response },
 					} = await axios.get(`${API_URL}/addresses`, {
-						headers: { Authorization: token },
+						headers: { Authorization: `Bearer ${token}` },
 					});
 
 					dispatch({

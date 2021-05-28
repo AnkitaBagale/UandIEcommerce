@@ -64,7 +64,7 @@ export const AddressEditor = ({
 					url,
 					data: addAddress,
 					headers: {
-						Authorization: token,
+						Authorization: `Bearer ${token}`,
 					},
 				});
 
