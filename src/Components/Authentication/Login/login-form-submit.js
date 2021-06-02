@@ -12,12 +12,8 @@ export const loginFormSubmit = async (
 		from,
 	});
 
-	if (res?.status === 401) {
+	if (res?.status !== 200) {
 		setError(res?.data?.message || 'please try again!');
-		setLoading(false);
-	}
-	if (res?.status === 500) {
-		setError('please try again!');
 		setLoading(false);
 	}
 };
