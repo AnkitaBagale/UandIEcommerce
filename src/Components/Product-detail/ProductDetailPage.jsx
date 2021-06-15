@@ -1,19 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import {
-	addProductToWishlist,
-	API_URL,
-	getProductsFromServer,
-} from '../../utils';
+import { addProductToWishlist, API_URL } from '../../utils';
 import { AddToCartButton } from '../Cart';
 import { Toast } from '../Toast';
 import { isAlreadyAdded } from '../../utils';
 import './product-detail.css';
 import { useAuthentication, useStateContext } from '../../Context';
+import axios from 'axios';
 
 const ratingArray = [1, 2, 3, 4, 5];
 
-export const ProductDetailPage = ({ product }) => {
+export const ProductDetailPage = () => {
 	const navigate = useNavigate();
 	const [message, setMessage] = useState({ msg: '', msgType: '' });
 	const [disableButtonWhileProcessing, setDisableButton] = useState(false);
@@ -44,9 +41,10 @@ export const ProductDetailPage = ({ product }) => {
 			try {
 				const {
 					data: { response },
-				} = await getProductsFromServer(`${API_URL}/products/${productId?.id}`);
+				} = await axios.get(`${API_URL}/products/${productId?.id}`);
 				setProduct(response);
-			} catch {
+			} catch (error) {
+				console.log(error);
 				navigate('/error');
 			}
 		})();
