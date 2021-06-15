@@ -1,6 +1,9 @@
 # U&I Store
 
-Language - React JS
+Tech Stack - 
+- React
+- Express JS (https://github.com/AnkitaBagale/uandistore/tree/sm-development)
+- Mongoose + MongoDB
 
 Functionalities-
 
