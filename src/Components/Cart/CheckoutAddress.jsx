@@ -1,4 +1,4 @@
-import { useSelectedAddress } from './useSelectedAddress';
+import { useSelectedAddress } from './utils';
 
 export const CheckoutAddress = () => {
 	const { selectedAddress } = useSelectedAddress();

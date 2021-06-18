@@ -1,5 +1,5 @@
 import '../Authentication/Profile/profile.css';
-import { useSelectedAddress } from './useSelectedAddress';
+import { useSelectedAddress } from './utils';
 export const SelectAddress = ({ setShowModal }) => {
 	const { selectedAddress } = useSelectedAddress();
 

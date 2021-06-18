@@ -3,8 +3,8 @@ import { useStateContext } from '../../Context';
 import './cart.css';
 import { Link } from 'react-router-dom';
 import { OffersModal } from './OffersModal';
-import { cartDetailsCalculator } from './utils';
 import { INDIAN_RUPEE } from '../../utils';
+import { useOrderSummary } from './utils/useOrderSummary';
 
 export const CartValue = () => {
 	const { state } = useStateContext();
@@ -13,14 +13,11 @@ export const CartValue = () => {
 		couponPrice: 0,
 		minOrderValue: '',
 	});
+
 	const [showOfferModal, setOfferModal] = useState(false);
 
-	const cartDetails = cartDetailsCalculator(state.itemsInCart.products);
-	const cartTotalWithoutOffer = cartDetails.totalMRP - cartDetails.discount;
-	const cartTotal =
-		cartDetails.totalMRP -
-		cartDetails.discount -
-		Number(userSelectedCoupon.couponPrice);
+	const { total, discount, couponDiscount, cartTotalWithoutOffer, cartTotal } =
+		useOrderSummary({ userSelectedCoupon });
 
 	useEffect(() => {
 		const checkOffersValid = () => {
@@ -58,14 +55,14 @@ export const CartValue = () => {
 					<div className='column-80-pc'>Total MRP</div>
 					<div className='column-20-pc text-right'>
 						{INDIAN_RUPEE}
-						{cartDetails.totalMRP.toFixed(2)}
+						{total}
 					</div>
 				</div>
 				<div className='row body-cp-md '>
 					<div className='column-80-pc'>Discount on MRP</div>
 					<div className='column-20-pc text-right text-green'>
 						{INDIAN_RUPEE}
-						{cartDetails.discount.toFixed(2)}
+						{discount}
 					</div>
 				</div>
 				{userSelectedCoupon.couponPrice !== 0 && (
@@ -73,7 +70,7 @@ export const CartValue = () => {
 						<div className='column-80-pc'>Coupon Discount</div>
 						<div className='column-20-pc text-right text-green'>
 							{INDIAN_RUPEE}
-							{userSelectedCoupon.couponPrice}
+							{couponDiscount}
 						</div>
 					</div>
 				)}
@@ -88,7 +85,7 @@ export const CartValue = () => {
 					<div className='column-80-pc'>Total Amount</div>
 					<div className='column-20-pc text-right'>
 						{INDIAN_RUPEE}
-						{cartTotal.toFixed(2)}
+						{cartTotal}
 					</div>
 				</div>
 				<Link to='/checkout' className='btn btn-solid-primary'>

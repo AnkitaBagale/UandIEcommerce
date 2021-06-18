@@ -17,7 +17,10 @@ export const Checkout = () => {
 	return (
 		<PayPalScriptProvider options={options}>
 			<div className='width-800px'>
-				<CheckoutAddress />
+				<div className='grid-50-50-layout'>
+					<CheckoutAddress />
+					<OrderSummary />
+				</div>
 				<PayPalButtons style={{ layout: 'horizontal' }} />
 			</div>
 		</PayPalScriptProvider>

@@ -5,7 +5,7 @@ import { API_URL } from '../../utils';
 import { AddressCard } from '../Authentication/Profile/AddressManagement/AddressCard';
 import { AddressEditor } from '../Authentication/Profile/AddressManagement/AddressEditor';
 import '../Authentication/Profile/profile.css';
-import { useSelectedAddress } from './useSelectedAddress';
+import { useSelectedAddress } from './utils';
 export const SelectAddressModal = ({ children }) => {
 	const { dispatch } = useStateContext();
 	const {
