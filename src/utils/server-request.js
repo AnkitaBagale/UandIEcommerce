@@ -332,3 +332,49 @@ export const getUserAddressDetails = async ({
 		console.log(error);
 	}
 };
+
+export const getUserDetailsFromServer = async ({ token, dispatch }) => {
+	try {
+		const {
+			data: { response },
+			status,
+		} = await axios.get(`${API_URL}/users/self`, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
+
+		if (status === 200) {
+			dispatch({
+				type: 'SET_USER_DETAILS',
+				payload: { userDetails: response },
+			});
+		}
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const placeOrder = async ({ token, dispatch, orderDetails }) => {
+	try {
+		const {
+			data: { response },
+			status,
+		} = await axios.post(`${API_URL}/orders`, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+			data: orderDetails,
+		});
+
+		dispatch({
+			type: 'SET_CART',
+			payload: {
+				products: [],
+				addressId: null,
+			},
+		});
+	} catch (error) {
+		console.log(error);
+	}
+};

@@ -1,5 +1,4 @@
 import { coupons } from '../../database';
-import { INDIAN_RUPEE } from '../../utils';
 import { OfferCard } from './OfferCard';
 
 export const OffersModal = ({

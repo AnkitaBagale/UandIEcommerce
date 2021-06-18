@@ -6,6 +6,7 @@ import {
 	getWishlistFromServer,
 	getCartFromServer,
 	getUserAddressDetails,
+	getUserDetailsFromServer,
 } from './utils';
 import { Routes, Route } from 'react-router-dom';
 
@@ -26,7 +27,6 @@ import {
 	AddressList,
 	Settings,
 	ProfilePage,
-	Checkout,
 	SearchResultPage,
 } from './Components';
 
@@ -46,6 +46,7 @@ export default function App() {
 			getCartFromServer(dispatch, token);
 			getWishlistFromServer(dispatch, token);
 			getUserAddressDetails({ dispatch: authDispatch, token, addressDetails });
+			getUserDetailsFromServer({ token, dispatch: authDispatch });
 		}
 	}, [token]);
 
@@ -61,7 +62,7 @@ export default function App() {
 
 					<PrivateRoute path='/wishlist' element={<Wishlist />} />
 					<PrivateRoute path='/cart' element={<Cart />} />
-					<PrivateRoute path='/checkout' element={<Checkout />} />
+
 					<Route path='/login' element={<Login />} />
 					<Route path='/forgot' element={<ForgotPasswordPage />} />
 					<Route path='/signup' element={<SignUp />} />

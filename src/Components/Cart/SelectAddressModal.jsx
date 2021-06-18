@@ -5,8 +5,9 @@ import { API_URL } from '../../utils';
 import { AddressCard } from '../Authentication/Profile/AddressManagement/AddressCard';
 import { AddressEditor } from '../Authentication/Profile/AddressManagement/AddressEditor';
 import '../Authentication/Profile/profile.css';
+import { SelectAddress } from './SelectedAddress';
 import { useSelectedAddress } from './utils';
-export const SelectAddressModal = ({ children }) => {
+export const SelectAddressModal = () => {
 	const { dispatch } = useStateContext();
 	const {
 		state: { token, addressDetails },
@@ -16,8 +17,6 @@ export const SelectAddressModal = ({ children }) => {
 	const [isAddNew, setAddNew] = useState(false);
 
 	const { selectedAddress } = useSelectedAddress();
-
-	const childrenCopy = cloneElement(children, { setShowModal });
 
 	const changeAddress = async (addressId) => {
 		try {
@@ -48,7 +47,7 @@ export const SelectAddressModal = ({ children }) => {
 
 	return (
 		<>
-			{childrenCopy}
+			<SelectAddress setShowModal={setShowModal} />
 			{showModal && (
 				<div className='modal-interstitial active'>
 					<div className='modal-content vertical-middle'>

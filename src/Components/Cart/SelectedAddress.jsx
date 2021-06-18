@@ -33,6 +33,18 @@ export const SelectAddress = ({ setShowModal }) => {
 						</button>
 					</div>
 				</div>
+				{!selectedAddress && (
+					<div
+						style={{
+							display: 'block',
+						}}
+						className='form-validation-msg form-field-error'>
+						<span className='form-field-symbol'>
+							<i className='fas fa-exclamation-circle'></i>
+						</span>
+						Select address to checkout!
+					</div>
+				)}
 			</div>
 		</>
 	);
