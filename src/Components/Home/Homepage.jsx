@@ -10,15 +10,6 @@ export const Home = () => {
 	return (
 		<>
 			<div>
-				<div className='alert-box alert-secondary text-center'>
-					Bestsellers at 70% off. Offer till midnight{' '}
-					<Link
-						to='/shop'
-						className='link-no-style link-text link-text-secondary'>
-						Shop Now.
-					</Link>
-				</div>
-
 				<div
 					style={{
 						background: `url(${heroImg}) no-repeat center/100% 100%`,
@@ -42,7 +33,7 @@ export const Home = () => {
 							</h5>
 						</div>
 						<div>
-							<Link to='/shop' className='btn btn-solid-primary'>
+							<Link to='/shop' className='btn btn-solid-primary btn-lg-size'>
 								Shop Now
 							</Link>
 						</div>
@@ -54,6 +45,9 @@ export const Home = () => {
 
 				<div className='homepage-container'>
 					<h2 className='text-center'>Featured Categories</h2>
+					<div className='title-underline'></div>
+					<div className='spacer-1rem'></div>
+					<div className='spacer-1rem'></div>
 					<div className='spacer-1rem'></div>
 					<div className='grid-4-column-layout'>
 						{featuredCategories.map((category) => {
@@ -84,18 +78,19 @@ export const Home = () => {
 							);
 						})}
 					</div>
-
+					<div className='spacer-3rem'></div>
 					<div className='spacer-3rem'></div>
 					<div className='spacer-3rem'></div>
 
 					<h2 className='text-center'>Featured Brands</h2>
+					<div className='title-underline'></div>
 
 					<div className='grid-4-column-layout brand-list'>
 						{featuredBrands.map((brand) => {
 							return (
 								<div
 									key={brand.name}
-									className='card-vertical cursor-pointer'
+									className='card-vertical cursor-pointer card-hover'
 									onClick={() => {
 										dispatch({
 											type: 'FILTER_BY_BRANDS',

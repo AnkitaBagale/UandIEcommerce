@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-
-import { coupons } from '../../database';
 import { useStateContext } from '../../Context';
 import './cart.css';
+import { Link } from 'react-router-dom';
+import { OffersModal } from './OffersModal';
+import { cartDetailsCalculator } from './utils';
+import { INDIAN_RUPEE } from '../../utils';
 
-const indianRupeeSymbol = `\u20B9`;
-
-export const CartValueDetails = () => {
+export const CartValue = () => {
 	const { state } = useStateContext();
 	const [userSelectedCoupon, setCoupon] = useState({
 		couponName: '',
@@ -15,18 +15,6 @@ export const CartValueDetails = () => {
 	});
 	const [showOfferModal, setOfferModal] = useState(false);
 
-	const cartDetailsCalculator = (data) =>
-		data.reduce(
-			(sum, { productId: { price, offer }, quantity }) => {
-				return {
-					totalMRP: sum.totalMRP + Number(price) * Number(quantity),
-					discount:
-						sum.discount +
-						(Number(price) * Number(quantity) * Number(offer)) / 100,
-				};
-			},
-			{ totalMRP: 0, discount: 0 },
-		);
 	const cartDetails = cartDetailsCalculator(state.itemsInCart.products);
 	const cartTotalWithoutOffer = cartDetails.totalMRP - cartDetails.discount;
 	const cartTotal =
@@ -69,14 +57,14 @@ export const CartValueDetails = () => {
 				<div className='row body-cp-md '>
 					<div className='column-80-pc'>Total MRP</div>
 					<div className='column-20-pc text-right'>
-						{indianRupeeSymbol}
+						{INDIAN_RUPEE}
 						{cartDetails.totalMRP.toFixed(2)}
 					</div>
 				</div>
 				<div className='row body-cp-md '>
 					<div className='column-80-pc'>Discount on MRP</div>
 					<div className='column-20-pc text-right text-green'>
-						{indianRupeeSymbol}
+						{INDIAN_RUPEE}
 						{cartDetails.discount.toFixed(2)}
 					</div>
 				</div>
@@ -84,14 +72,14 @@ export const CartValueDetails = () => {
 					<div className='row body-cp-md '>
 						<div className='column-80-pc'>Coupon Discount</div>
 						<div className='column-20-pc text-right text-green'>
-							{indianRupeeSymbol}
+							{INDIAN_RUPEE}
 							{userSelectedCoupon.couponPrice}
 						</div>
 					</div>
 				)}
 				<div className='row body-cp-md '>
 					<div className='column-80-pc'>Convenience Fee</div>
-					<span className='text-strike-through'>{indianRupeeSymbol}99</span>
+					<span className='text-strike-through'>{INDIAN_RUPEE}99</span>
 					<span className='text-green'>FREE</span>
 					<div className='column-20-pc text-right'></div>
 				</div>
@@ -99,86 +87,23 @@ export const CartValueDetails = () => {
 				<div className='row body-cp-rg text-regular-weight'>
 					<div className='column-80-pc'>Total Amount</div>
 					<div className='column-20-pc text-right'>
-						{indianRupeeSymbol}
+						{INDIAN_RUPEE}
 						{cartTotal.toFixed(2)}
 					</div>
 				</div>
-				<button className='btn btn-solid-primary'>Place Order</button>
+				<Link to='/checkout' className='btn btn-solid-primary'>
+					Place Order
+				</Link>
 			</div>
 
-			{/* Modal- for offers */}
-
-			<div
-				className={
-					showOfferModal ? 'modal-interstitial active' : 'modal-interstitial'
-				}>
-				<div className='modal-content display-flex-items'>
-					<button
-						onClick={() => setOfferModal(false)}
-						type='button'
-						className='btn-close modal-close'></button>
-					<div className='text-container'>
-						<div className='text-container-title text-center'>
-							<h4 className='p'>Apply Coupon</h4>
-						</div>
-						<div className='text-container-desc'>
-							<ul className='stacked-list text-left'>
-								{coupons.map(({ coupon, off, minOrder }) => (
-									<li
-										className={
-											Number(cartTotalWithoutOffer) <= Number(minOrder)
-												? 'padding-1rem-borderbox greyed-out'
-												: 'padding-1rem-borderbox'
-										}
-										key={coupon}>
-										<label className='field-label' htmlFor={coupon}>
-											<input
-												disabled={
-													Number(cartTotalWithoutOffer) <= Number(minOrder)
-												}
-												id={coupon}
-												type='checkbox'
-												className='form-checkbox-field'
-												name='couponCode'
-												value={off}
-												checked={coupon === userSelectedCoupon.couponName}
-												onChange={(e) => {
-													if (!e.target.checked) {
-														setCoupon({
-															couponName: '',
-															couponPrice: 0,
-															minOrderValue: '',
-														});
-													} else {
-														setCoupon({
-															couponName: coupon,
-															couponPrice: off,
-															minOrderValue: minOrder,
-														});
-													}
-												}}
-											/>
-
-											<span>{coupon}</span>
-										</label>
-										<div className='body-cp-md'>
-											Save {indianRupeeSymbol}
-											{off} on minimum purchase of {minOrder}
-										</div>
-									</li>
-								))}
-							</ul>
-							<div className='text-center'>
-								<button
-									onClick={() => setOfferModal(false)}
-									className='btn btn-outline-primary btn-sm-size'>
-									apply
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			{showOfferModal && (
+				<OffersModal
+					setOfferModal={setOfferModal}
+					cartTotalWithoutOffer={cartTotalWithoutOffer}
+					userSelectedCoupon={userSelectedCoupon}
+					setCoupon={setCoupon}
+				/>
+			)}
 		</>
 	);
 };

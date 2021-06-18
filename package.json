@@ -6,7 +6,9 @@
   "main": "src/index.js",
   "dependencies": {
     "@babel/runtime": "7.13.10",
+    "@paypal/react-paypal-js": "^7.0.0",
     "axios": "0.21.1",
+    "dotenv": "^10.0.0",
     "faker": "5.4.0",
     "history": "5.0.0",
     "miragejs": "0.1.41",

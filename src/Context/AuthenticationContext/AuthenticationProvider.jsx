@@ -65,10 +65,7 @@ export const AuthenticationProvider = ({ children }) => {
 
 	const signUpNewUser = async ({ email, password, firstname, lastname }) => {
 		try {
-			const {
-				data: { message },
-				status,
-			} = await axios({
+			const { status } = await axios({
 				method: 'POST',
 				url: `${API_URL}/users`,
 				data: {

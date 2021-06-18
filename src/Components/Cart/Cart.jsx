@@ -1,7 +1,8 @@
 import { useStateContext } from '../../Context';
 import { CartItemCard } from './CartItemCard';
-import { CartValueDetails } from './CartValue';
-import { SelectAddress } from './SelectAddress';
+import { CartValue } from './CartValue';
+import { SelectAddressModal } from './SelectAddressModal';
+import { SelectAddress } from './SelectedAddress';
 
 export const Cart = () => {
 	const { state } = useStateContext();
@@ -16,7 +17,9 @@ export const Cart = () => {
 				<>
 					<div className='display-flex width-800px'>
 						<ul className='column-60-pc list-style-none styled-list padding-1rem-borderbox'>
-							<SelectAddress />
+							<SelectAddressModal>
+								<SelectAddress />
+							</SelectAddressModal>
 							{state.itemsInCart.products.map(
 								({ productId: product, quantity }) => {
 									return (
@@ -30,7 +33,7 @@ export const Cart = () => {
 								},
 							)}
 						</ul>
-						<CartValueDetails />
+						<CartValue />
 					</div>
 				</>
 			)}

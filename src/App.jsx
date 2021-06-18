@@ -2,10 +2,10 @@ import './styles.css';
 import { useEffect } from 'react';
 import { useStateContext, useAuthentication } from './Context';
 import {
-	API_URL,
 	getProductsFromServer,
 	getWishlistFromServer,
 	getCartFromServer,
+	getUserAddressDetails,
 } from './utils';
 import { Routes, Route } from 'react-router-dom';
 
@@ -26,13 +26,15 @@ import {
 	AddressList,
 	Settings,
 	ProfilePage,
+	Checkout,
+	SearchResultPage,
 } from './Components';
-import { SearchResultPage } from './Components/Product-listing/SearchResultPage';
 
 export default function App() {
 	const { dispatch } = useStateContext();
 	const {
-		state: { token },
+		state: { token, addressDetails },
+		dispatch: authDispatch,
 	} = useAuthentication();
 
 	useEffect(() => {
@@ -43,6 +45,7 @@ export default function App() {
 		if (token) {
 			getCartFromServer(dispatch, token);
 			getWishlistFromServer(dispatch, token);
+			getUserAddressDetails({ dispatch: authDispatch, token, addressDetails });
 		}
 	}, [token]);
 
@@ -58,6 +61,7 @@ export default function App() {
 
 					<PrivateRoute path='/wishlist' element={<Wishlist />} />
 					<PrivateRoute path='/cart' element={<Cart />} />
+					<PrivateRoute path='/checkout' element={<Checkout />} />
 					<Route path='/login' element={<Login />} />
 					<Route path='/forgot' element={<ForgotPasswordPage />} />
 					<Route path='/signup' element={<SignUp />} />

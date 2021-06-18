@@ -309,3 +309,26 @@ export const removeProductFromCart = async ({
 		}
 	}
 };
+
+export const getUserAddressDetails = async ({
+	addressDetails,
+	token,
+	dispatch,
+}) => {
+	try {
+		if (!addressDetails && token) {
+			const {
+				data: { response },
+			} = await axios.get(`${API_URL}/addresses`, {
+				headers: { Authorization: `Bearer ${token}` },
+			});
+
+			dispatch({
+				type: 'SET_ADDRESS_DETAILS',
+				payload: { addressDetails: response },
+			});
+		}
+	} catch (error) {
+		console.log(error);
+	}
+};
