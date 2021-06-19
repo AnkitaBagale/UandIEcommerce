@@ -1,4 +1,5 @@
 import '../Authentication/Profile/profile.css';
+import { ErrorMessage } from './ErrorMessage';
 import { useSelectedAddress } from './utils';
 export const SelectAddress = ({ setShowModal }) => {
 	const { selectedAddress } = useSelectedAddress();
@@ -34,16 +35,7 @@ export const SelectAddress = ({ setShowModal }) => {
 					</div>
 				</div>
 				{!selectedAddress && (
-					<div
-						style={{
-							display: 'block',
-						}}
-						className='form-validation-msg form-field-error'>
-						<span className='form-field-symbol'>
-							<i className='fas fa-exclamation-circle'></i>
-						</span>
-						Select address to checkout!
-					</div>
+					<ErrorMessage message='Select address to checkout!' />
 				)}
 			</div>
 		</>

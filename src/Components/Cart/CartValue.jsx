@@ -8,8 +8,10 @@ import { useOrderSummary } from './utils/useOrderSummary';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import { Checkout } from './Checkout';
 import { OrderSummary } from './OrderSummary';
+import { useSelectedAddress } from './utils';
+import { ErrorMessage } from './ErrorMessage';
 
-export const CartValue = () => {
+export const CartValue = ({ status, setStatus, setOrderId }) => {
 	const { state } = useStateContext();
 	const [userSelectedCoupon, setCoupon] = useState({
 		couponName: '',
@@ -17,11 +19,12 @@ export const CartValue = () => {
 		minOrderValue: '',
 	});
 	const [showOfferModal, setOfferModal] = useState(false);
-	const [status, setStatus] = useState();
+	const [showPaymentOptions, setPaymentOptions] = useState(false);
 
 	const { cartTotalWithoutOffer, cartTotal } = useOrderSummary({
 		userSelectedCoupon,
 	});
+	const { selectedAddress } = useSelectedAddress();
 
 	const options = {
 		'client-id': process.env.REACT_APP_CLIENT_ID,
@@ -56,22 +59,39 @@ export const CartValue = () => {
 			</button>
 
 			<OrderSummary userSelectedCoupon={userSelectedCoupon} />
+			<button
+				disabled={selectedAddress ? false : true}
+				onClick={() => setPaymentOptions(true)}
+				className={`btn btn-solid-primary ${
+					selectedAddress ? '' : 'btn-disabled'
+				}`}>
+				Place Order
+			</button>
+			{!selectedAddress && (
+				<ErrorMessage message='Select address to checkout!' />
+			)}
 
-			<PayPalScriptProvider options={options}>
-				<Checkout cartTotal={cartTotal} setStatus={setStatus} />
-			</PayPalScriptProvider>
+			{showPaymentOptions && (
+				<div className={'modal-interstitial active'}>
+					<div className='modal-content display-flex-items'>
+						<button
+							onClick={() => setPaymentOptions(false)}
+							type='button'
+							className='btn-close modal-close'></button>
+
+						<PayPalScriptProvider options={options}>
+							<Checkout
+								userSelectedCoupon={userSelectedCoupon}
+								setStatus={setStatus}
+								setOrderId={setOrderId}
+							/>
+						</PayPalScriptProvider>
+					</div>
+				</div>
+			)}
 
 			{status === 'FAILURE' && (
-				<div
-					style={{
-						display: 'block',
-					}}
-					className='form-validation-msg form-field-error'>
-					<span className='form-field-symbol'>
-						<i className='fas fa-exclamation-circle'></i>
-					</span>
-					Payment is cancelled or failed! Please try again!
-				</div>
+				<ErrorMessage message='Payment is cancelled or failed! Please try again!' />
 			)}
 
 			{showOfferModal && (

@@ -28,6 +28,7 @@ import {
 	Settings,
 	ProfilePage,
 	SearchResultPage,
+	Orders,
 } from './Components';
 
 export default function App() {
@@ -68,6 +69,7 @@ export default function App() {
 					<Route path='/signup' element={<SignUp />} />
 					<PrivateRoute path='/profile' element={<ProfilePage />}>
 						<PrivateRoute path='/' element={<Profile />} />
+						<PrivateRoute path='/orders' element={<Orders />} />
 						<PrivateRoute path='/address' element={<AddressList />} />
 						<PrivateRoute path='/settings' element={<Settings />} />
 					</PrivateRoute>

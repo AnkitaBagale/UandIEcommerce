@@ -355,26 +355,32 @@ export const getUserDetailsFromServer = async ({ token, dispatch }) => {
 	}
 };
 
-export const placeOrder = async ({ token, dispatch, orderDetails }) => {
+export const placeOrder = async ({
+	token,
+	dispatch,
+	orderDetails,
+	setStatus,
+	setOrderId,
+}) => {
 	try {
 		const {
 			data: { response },
-			status,
-		} = await axios.post(`${API_URL}/orders`, {
+		} = await axios({
+			method: 'POST',
+			url: `${API_URL}/orders`,
 			headers: {
 				Authorization: `Bearer ${token}`,
 			},
 			data: orderDetails,
 		});
-
+		setStatus('SUCCESS');
+		setOrderId(response);
 		dispatch({
-			type: 'SET_CART',
-			payload: {
-				products: [],
-				addressId: null,
-			},
+			type: 'PLACE_ORDER',
 		});
 	} catch (error) {
 		console.log(error);
+		setStatus('FAILURE');
+		setOrderId('');
 	}
 };

@@ -7,6 +7,7 @@ const StateContext = createContext();
 export const StateProvider = ({ children }) => {
 	const initialState = {
 		products: [],
+		orders: [],
 		itemsInCart: {
 			products: [],
 			addressId: null,

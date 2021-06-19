@@ -1,17 +1,25 @@
 import { PayPalButtons } from '@paypal/react-paypal-js';
 import { useAuthentication, useStateContext } from '../../Context';
 import { statesInCountryWise } from '../../database';
+import { placeOrder } from '../../utils';
+import { OrderSummary } from './OrderSummary';
 import { useSelectedAddress } from './utils';
+import { useOrderSummary } from './utils/useOrderSummary';
+import { SelectedAddressOnCheckout } from './SelectedAddressOnCheckout';
 
-export const Checkout = ({ cartTotal, setStatus }) => {
+export const Checkout = ({ userSelectedCoupon, setStatus, setOrderId }) => {
 	const {
-		state: { userDetails },
+		state: { userDetails, token },
 	} = useAuthentication();
+
 	const {
 		state: { itemsInCart },
 		dispatch,
 	} = useStateContext();
 	const { selectedAddress } = useSelectedAddress();
+	const { total, discount, couponDiscount, cartTotal } = useOrderSummary({
+		userSelectedCoupon,
+	});
 
 	const userAddress = {
 		address_line_1: selectedAddress?.streetAddress,
@@ -27,7 +35,8 @@ export const Checkout = ({ cartTotal, setStatus }) => {
 			purchase_units: [
 				{
 					amount: {
-						value: Math.round(cartTotal * 0.01368),
+						value: (cartTotal * 0.01368).toFixed(2),
+						currency_code: 'USD',
 					},
 					shipping: {
 						name: {
@@ -49,9 +58,35 @@ export const Checkout = ({ cartTotal, setStatus }) => {
 		});
 	};
 
+	console.log({ orderDetails });
+
+	const placedOrderDetails = {
+		payment: {
+			mrp: total,
+			discount,
+			couponDiscount,
+			totalPaid: cartTotal,
+		},
+		items: itemsInCart?.products?.map(({ productId, quantity }) => {
+			const placedOrderItem = {
+				productId: productId._id,
+				payment: { amount: productId.price, offer: productId.offer },
+				quantity,
+			};
+			return placedOrderItem;
+		}),
+		addressId: itemsInCart?.addressId,
+	};
+
 	const paymentSuccessful = async (data, actions) => {
 		await actions.order.capture();
-		setStatus('SUCCESS');
+		await placeOrder({
+			orderDetails: placedOrderDetails,
+			token,
+			dispatch,
+			setStatus,
+			setOrderId,
+		});
 	};
 
 	const paymentFailure = (data) => {
@@ -59,7 +94,9 @@ export const Checkout = ({ cartTotal, setStatus }) => {
 	};
 
 	return (
-		<div style={{ zIndex: 0, margin: '1.5rem 0 0' }}>
+		<div style={{ zIndex: 0, margin: '1.5rem 0 0', margin: 'auto' }}>
+			<SelectedAddressOnCheckout />
+			<OrderSummary userSelectedCoupon={userSelectedCoupon} />
 			<PayPalButtons
 				style={{
 					color: 'silver',
@@ -67,24 +104,11 @@ export const Checkout = ({ cartTotal, setStatus }) => {
 					tagline: false,
 					layout: 'horizontal',
 				}}
-				disabled={!selectedAddress}
 				createOrder={orderDetails}
 				onApprove={paymentSuccessful}
 				onError={paymentFailure}
 				onCancel={paymentFailure}
 			/>
-			{!selectedAddress && (
-				<div
-					style={{
-						display: 'block',
-					}}
-					className='form-validation-msg form-field-error'>
-					<span className='form-field-symbol'>
-						<i className='fas fa-exclamation-circle'></i>
-					</span>
-					Select address to checkout!
-				</div>
-			)}
 		</div>
 	);
 };
