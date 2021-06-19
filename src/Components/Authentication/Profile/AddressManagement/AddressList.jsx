@@ -12,7 +12,7 @@ export const AddressList = () => {
 
 	return (
 		<>
-			<h2 className='body-cp-rg address-list-title'>My Addresses</h2>
+			<h2 className='profile-list-title'>My Addresses</h2>
 			<ul className='list-style-none styled-list'>
 				{addressDetails &&
 					addressDetails.map((address) => (

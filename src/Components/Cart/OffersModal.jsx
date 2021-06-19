@@ -37,7 +37,7 @@ export const OffersModal = ({
 				<div className='text-container'>
 					<h4 className='modal-title text-center'>Apply Coupon</h4>
 
-					<div className='text-container-desc'>
+					<div className='text-container-desc display-flex-column'>
 						<ul className='stacked-list text-left'>
 							{coupons.map((offer) => (
 								<OfferCard
@@ -48,13 +48,12 @@ export const OffersModal = ({
 								/>
 							))}
 						</ul>
-						<div className='text-center'>
-							<button
-								onClick={() => setOfferModal(false)}
-								className='btn btn-outline-primary'>
-								apply
-							</button>
-						</div>
+
+						<button
+							onClick={() => setOfferModal(false)}
+							className='btn btn-solid-primary'>
+							Apply
+						</button>
 					</div>
 				</div>
 			</div>

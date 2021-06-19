@@ -1,4 +1,4 @@
-import '../Authentication/Profile/profile.css';
+import '../Authentication/Profile/styles.css';
 import { ErrorMessage } from './ErrorMessage';
 import { useSelectedAddress } from './utils';
 export const SelectAddress = ({ setShowModal }) => {

@@ -58,8 +58,6 @@ export const Checkout = ({ userSelectedCoupon, setStatus, setOrderId }) => {
 		});
 	};
 
-	console.log({ orderDetails });
-
 	const placedOrderDetails = {
 		payment: {
 			mrp: total,

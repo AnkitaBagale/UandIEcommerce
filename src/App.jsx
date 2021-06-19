@@ -20,7 +20,7 @@ import {
 	ForgotPasswordPage,
 	Login,
 	PrivateRoute,
-	Profile,
+	ProfileCard,
 	SignUp,
 	ProductDetailPage,
 	ErrorPage,
@@ -68,7 +68,7 @@ export default function App() {
 					<Route path='/forgot' element={<ForgotPasswordPage />} />
 					<Route path='/signup' element={<SignUp />} />
 					<PrivateRoute path='/profile' element={<ProfilePage />}>
-						<PrivateRoute path='/' element={<Profile />} />
+						<PrivateRoute path='/' element={<ProfileCard />} />
 						<PrivateRoute path='/orders' element={<Orders />} />
 						<PrivateRoute path='/address' element={<AddressList />} />
 						<PrivateRoute path='/settings' element={<Settings />} />

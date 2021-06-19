@@ -15,6 +15,13 @@ export const stateReducer = (state, { type, payload }) => {
 				itemsInCart: { products: [], addressId: null },
 			};
 
+		case 'SET_ORDERS': {
+			return {
+				...state,
+				orders: payload,
+			};
+		}
+
 		case 'SORT': {
 			if (payload === 'HIGH_TO_LOW_PRICE') {
 				return { ...state, sortBy: 'HIGH_TO_LOW_PRICE' };
@@ -100,6 +107,7 @@ export const stateReducer = (state, { type, payload }) => {
 				...state,
 				itemsInCart: { products: [], addressId: null },
 				itemsInWishlist: [],
+				orders: [],
 			};
 		}
 

@@ -65,6 +65,23 @@ export const getWishlistFromServer = async (dispatch, token) => {
 	}
 };
 
+export const getOrdersFromServer = async ({ dispatch, token }) => {
+	try {
+		const {
+			data: { response },
+		} = await axios({
+			method: 'GET',
+			url: `${API_URL}/orders`,
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
+		dispatch({ type: 'SET_ORDERS', payload: response });
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 export const addProductToWishlist = async ({
 	state,
 	dispatch,

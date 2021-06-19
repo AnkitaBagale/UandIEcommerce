@@ -4,7 +4,7 @@ import { useAuthentication, useStateContext } from '../../Context';
 import { API_URL } from '../../utils';
 import { AddressCard } from '../Authentication/Profile/AddressManagement/AddressCard';
 import { AddressEditor } from '../Authentication/Profile/AddressManagement/AddressEditor';
-import '../Authentication/Profile/profile.css';
+import '../Authentication/Profile/styles.css';
 import { SelectAddress } from './SelectedAddress';
 import { useSelectedAddress } from './utils';
 export const SelectAddressModal = () => {

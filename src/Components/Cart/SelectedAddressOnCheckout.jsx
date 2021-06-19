@@ -1,4 +1,4 @@
-import '../Authentication/Profile/profile.css';
+import '../Authentication/Profile/styles.css';
 import { useSelectedAddress } from './utils';
 export const SelectedAddressOnCheckout = ({ setShowModal }) => {
 	const { selectedAddress } = useSelectedAddress();

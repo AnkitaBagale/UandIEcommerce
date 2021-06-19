@@ -1,6 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom';
-
-import './profile.css';
+import './styles.css';
 export const ProfilePage = () => {
 	const items = [
 		{
@@ -20,15 +19,16 @@ export const ProfilePage = () => {
 			link: '/profile/settings',
 		},
 	];
+
 	return (
 		<div className='user-profile-container padding-around-1rem'>
 			<h1 className='h4 text-center padding-bottom-1rem'>Account</h1>
-			<div className='filter-divider-line'></div>
+			<div className='filter-divider-line margin-0'></div>
 			<div className='display-flex'>
-				<div className='column-20-pc column1 border-right-2px '>
-					<ul className='styled-list list-style-none margin-1rem'>
+				<div className='column-20-pc column1 border-right-2px hide-in-mobile'>
+					<div>
 						{items.map(({ text, link }) => (
-							<li key={text}>
+							<div key={text} className='profile-page-link'>
 								<NavLink
 									to={link}
 									end
@@ -36,12 +36,12 @@ export const ProfilePage = () => {
 									className='link-no-style'>
 									{text}
 								</NavLink>
-							</li>
+							</div>
 						))}
-					</ul>
+					</div>
 				</div>
 
-				<div className='column-80-pc'>
+				<div className='column-80-pc profile-page-content-area'>
 					<Outlet />
 				</div>
 			</div>
