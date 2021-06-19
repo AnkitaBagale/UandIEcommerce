@@ -13,6 +13,15 @@ export const Nav = () => {
 		state: { token, userName },
 	} = useAuthentication();
 
+	const navItems = [
+		{ text: 'Home', link: '/', hideInDesktop: false },
+		{ text: 'Shop Now', link: '/shop', hideInDesktop: false },
+		{ text: 'Profile', link: '/profile', hideInDesktop: true },
+		{ text: 'Orders', link: '/profile/orders', hideInDesktop: true },
+		{ text: 'Addresses', link: '/profile/address', hideInDesktop: true },
+		{ text: 'Settings', link: '/profile/settings', hideInDesktop: true },
+	];
+
 	return (
 		<nav ref={navRef} className='nav-bar shadow-box'>
 			<div className='nav-section'>
@@ -65,24 +74,20 @@ export const Nav = () => {
 						</Link>
 					</li>
 
-					<li className='list-inline-item'>
-						<NavLink
-							end
-							to='/'
-							activeClassName='navlinks-active'
-							className='navlinks-style text-left'>
-							Home
-						</NavLink>
-					</li>
-					<li className='list-inline-item'>
-						<NavLink
-							end
-							activeClassName='navlinks-active'
-							to='/shop'
-							className='navlinks-style text-left'>
-							Shop Now
-						</NavLink>
-					</li>
+					{navItems.map(({ text, link, hideInDesktop }) => (
+						<li
+							className={`list-inline-item ${
+								hideInDesktop ? 'hide-in-desktop' : ''
+							}`}>
+							<NavLink
+								end
+								to={link}
+								activeClassName='navlinks-active'
+								className='navlinks-style text-left'>
+								{text}
+							</NavLink>
+						</li>
+					))}
 				</ul>
 			</div>
 

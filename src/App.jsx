@@ -2,10 +2,11 @@ import './styles.css';
 import { useEffect } from 'react';
 import { useStateContext, useAuthentication } from './Context';
 import {
-	API_URL,
 	getProductsFromServer,
 	getWishlistFromServer,
 	getCartFromServer,
+	getUserAddressDetails,
+	getUserDetailsFromServer,
 } from './utils';
 import { Routes, Route } from 'react-router-dom';
 
@@ -19,20 +20,22 @@ import {
 	ForgotPasswordPage,
 	Login,
 	PrivateRoute,
-	Profile,
+	ProfileCard,
 	SignUp,
 	ProductDetailPage,
 	ErrorPage,
 	AddressList,
 	Settings,
 	ProfilePage,
+	SearchResultPage,
+	Orders,
 } from './Components';
-import { SearchResultPage } from './Components/Product-listing/SearchResultPage';
 
 export default function App() {
 	const { dispatch } = useStateContext();
 	const {
-		state: { token },
+		state: { token, addressDetails },
+		dispatch: authDispatch,
 	} = useAuthentication();
 
 	useEffect(() => {
@@ -43,6 +46,8 @@ export default function App() {
 		if (token) {
 			getCartFromServer(dispatch, token);
 			getWishlistFromServer(dispatch, token);
+			getUserAddressDetails({ dispatch: authDispatch, token, addressDetails });
+			getUserDetailsFromServer({ token, dispatch: authDispatch });
 		}
 	}, [token]);
 
@@ -58,11 +63,13 @@ export default function App() {
 
 					<PrivateRoute path='/wishlist' element={<Wishlist />} />
 					<PrivateRoute path='/cart' element={<Cart />} />
+
 					<Route path='/login' element={<Login />} />
 					<Route path='/forgot' element={<ForgotPasswordPage />} />
 					<Route path='/signup' element={<SignUp />} />
 					<PrivateRoute path='/profile' element={<ProfilePage />}>
-						<PrivateRoute path='/' element={<Profile />} />
+						<PrivateRoute path='/' element={<ProfileCard />} />
+						<PrivateRoute path='/orders' element={<Orders />} />
 						<PrivateRoute path='/address' element={<AddressList />} />
 						<PrivateRoute path='/settings' element={<Settings />} />
 					</PrivateRoute>

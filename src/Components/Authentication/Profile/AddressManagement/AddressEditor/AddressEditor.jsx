@@ -47,7 +47,7 @@ export const AddressEditor = ({
 					city: formState.city,
 					state: formState.state
 						? formState.state
-						: statesInCountryWise[formState.country][0],
+						: statesInCountryWise[formState.country].states[0],
 					country: formState.country,
 					zipCode: formState.zipCode,
 					phoneNumber: formState.phoneNumber,
@@ -193,11 +193,13 @@ export const AddressEditor = ({
 										payload: e.target.value,
 									});
 								}}>
-								{statesInCountryWise[formState.country].map((stateName) => (
-									<option key={stateName} value={stateName}>
-										{stateName}
-									</option>
-								))}
+								{statesInCountryWise[formState.country].states.map(
+									(stateName) => (
+										<option key={stateName} value={stateName}>
+											{stateName}
+										</option>
+									),
+								)}
 							</select>
 						</div>
 						<div className='row'>

@@ -63,7 +63,7 @@ export const Filter = () => {
 			</div>
 
 			<ul className='list-style-none filter-section'>
-				<hr className='filter-divider-line' />
+				<div className='filter-divider-line'></div>
 				<li className='text-regular-weight filter-section-title'>Sort by</li>
 				<li>
 					<label className='form-label'>
@@ -91,7 +91,7 @@ export const Filter = () => {
 						Price Low to High
 					</label>
 				</li>
-				<hr className='filter-divider-line' />
+				<div className='filter-divider-line'></div>
 				<li className='text-regular-weight filter-section-title'>Categories</li>
 
 				{categories.map((category) => {
@@ -117,7 +117,7 @@ export const Filter = () => {
 					);
 				})}
 
-				<hr className='filter-divider-line' />
+				<div className='filter-divider-line'></div>
 				<li className='text-regular-weight filter-section-title'>Brands</li>
 
 				{brands.map((brand) => {
@@ -141,7 +141,7 @@ export const Filter = () => {
 					);
 				})}
 
-				<hr className='filter-divider-line' />
+				<div className='filter-divider-line'></div>
 				<li className='text-regular-weight filter-section-title'>Other</li>
 				<li>
 					<label className='form-label'>

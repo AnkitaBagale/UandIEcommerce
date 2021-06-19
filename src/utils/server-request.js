@@ -65,6 +65,23 @@ export const getWishlistFromServer = async (dispatch, token) => {
 	}
 };
 
+export const getOrdersFromServer = async ({ dispatch, token }) => {
+	try {
+		const {
+			data: { response },
+		} = await axios({
+			method: 'GET',
+			url: `${API_URL}/orders`,
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
+		dispatch({ type: 'SET_ORDERS', payload: response });
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 export const addProductToWishlist = async ({
 	state,
 	dispatch,
@@ -307,5 +324,80 @@ export const removeProductFromCart = async ({
 		if (isRendered.current) {
 			setDisableButton(false);
 		}
+	}
+};
+
+export const getUserAddressDetails = async ({
+	addressDetails,
+	token,
+	dispatch,
+}) => {
+	try {
+		if (!addressDetails && token) {
+			const {
+				data: { response },
+			} = await axios.get(`${API_URL}/addresses`, {
+				headers: { Authorization: `Bearer ${token}` },
+			});
+
+			dispatch({
+				type: 'SET_ADDRESS_DETAILS',
+				payload: { addressDetails: response },
+			});
+		}
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const getUserDetailsFromServer = async ({ token, dispatch }) => {
+	try {
+		const {
+			data: { response },
+			status,
+		} = await axios.get(`${API_URL}/users/self`, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
+
+		if (status === 200) {
+			dispatch({
+				type: 'SET_USER_DETAILS',
+				payload: { userDetails: response },
+			});
+		}
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const placeOrder = async ({
+	token,
+	dispatch,
+	orderDetails,
+	setStatus,
+	setOrderId,
+}) => {
+	try {
+		const {
+			data: { response },
+		} = await axios({
+			method: 'POST',
+			url: `${API_URL}/orders`,
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+			data: orderDetails,
+		});
+		setStatus('SUCCESS');
+		setOrderId(response);
+		dispatch({
+			type: 'PLACE_ORDER',
+		});
+	} catch (error) {
+		console.log(error);
+		setStatus('FAILURE');
+		setOrderId('');
 	}
 };

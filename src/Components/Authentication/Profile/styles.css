@@ -1,0 +1,54 @@
+.user-profile-container {
+	max-width: 50rem;
+	width: calc(100% - 2rem);
+	margin: auto;
+}
+.border-right-2px {
+	border-right: 1px solid var(--dark-secondary-color);
+}
+
+.styled-list li:not(:last-child) {
+	margin-bottom: 0.625rem;
+	padding-bottom: 0;
+}
+.modal-content {
+	height: 100%;
+	overflow-y: auto;
+}
+.profile-list-title {
+	padding-bottom: 1rem;
+	padding-left: 1rem;
+	margin: 0;
+	font-size: 1rem;
+}
+.modal-interstitial {
+	padding: 1rem;
+}
+.profile-page-link {
+	margin-right: 1.5rem;
+	padding: 1.5rem 0;
+	border-bottom: 1px solid var(--dark-secondary-color);
+}
+
+.filter-divider-line.margin-0 {
+	margin: 0;
+}
+.profile-page-content-area {
+	padding: 2rem 2rem 2rem 0;
+}
+.order-card .card-horizontal .image-container {
+	height: auto;
+}
+.order-card button.link-no-style {
+	font-size: 0.8rem;
+	color: var(--primary-color);
+}
+.margin-bottom-1rem {
+	margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 1024px) {
+	.profile-page-content-area {
+		width: 100%;
+	}
+}
