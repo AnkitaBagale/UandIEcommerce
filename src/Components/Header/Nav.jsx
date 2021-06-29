@@ -76,6 +76,7 @@ export const Nav = () => {
 
 					{navItems.map(({ text, link, hideInDesktop }) => (
 						<li
+							key={text}
 							className={`list-inline-item ${
 								hideInDesktop ? 'hide-in-desktop' : ''
 							}`}>

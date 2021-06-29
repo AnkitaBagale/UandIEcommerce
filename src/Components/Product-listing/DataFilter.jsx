@@ -56,15 +56,16 @@ export const Filter = () => {
 				<button
 					onClick={() => {
 						dispatch({ type: 'CLEAR_ALL_FILTERS' });
+						setFilter((openFilter) => false);
 					}}
-					className='link-text p link-no-style link-text-primary text-regular-weight'>
+					className='link-no-style link-text-primary clear-all-link'>
 					CLEAR ALL
 				</button>
 			</div>
 
 			<ul className='list-style-none filter-section'>
 				<div className='filter-divider-line'></div>
-				<li className='text-regular-weight filter-section-title'>Sort by</li>
+				<li className='text-regular-weight filter-section-title'>SORT</li>
 				<li>
 					<label className='form-label'>
 						<input
@@ -92,7 +93,7 @@ export const Filter = () => {
 					</label>
 				</li>
 				<div className='filter-divider-line'></div>
-				<li className='text-regular-weight filter-section-title'>Categories</li>
+				<li className='text-regular-weight filter-section-title'>CATEGORIES</li>
 
 				{categories.map((category) => {
 					return (
@@ -118,7 +119,7 @@ export const Filter = () => {
 				})}
 
 				<div className='filter-divider-line'></div>
-				<li className='text-regular-weight filter-section-title'>Brands</li>
+				<li className='text-regular-weight filter-section-title'>BRANDS</li>
 
 				{brands.map((brand) => {
 					return (
@@ -142,7 +143,7 @@ export const Filter = () => {
 				})}
 
 				<div className='filter-divider-line'></div>
-				<li className='text-regular-weight filter-section-title'>Other</li>
+				<li className='text-regular-weight filter-section-title'>OTHER</li>
 				<li>
 					<label className='form-label'>
 						<input

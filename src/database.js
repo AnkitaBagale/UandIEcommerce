@@ -12,21 +12,11 @@ export const coupons = [
 	{ coupon: 'DIWALI OFFER', off: 300, minOrder: 1000 },
 ];
 
-export const brands = [
-	'Brustro',
-	'Bianyo',
-	'Camel',
-	'DOMS',
-	'Faber Castell',
-	'Staedtler',
-];
+export const brands = ['Brustro', 'Bianyo', 'Camel', 'DOMS', 'Faber Castell'];
 export const categories = [
-	'Blenders',
 	'Colours',
-	'Colour Palettes',
 	'Drawing Boards',
 	'Drawing Pencils',
-	'Drawing Surfaces',
 	'Eraser',
 	'Portfolio Storage',
 	'Painting Brush',

@@ -1,5 +1,4 @@
 import '../Authentication/Profile/styles.css';
-import { ErrorMessage } from './ErrorMessage';
 import { useSelectedAddress } from './utils';
 export const SelectAddress = ({ setShowModal }) => {
 	const { selectedAddress } = useSelectedAddress();
@@ -34,9 +33,6 @@ export const SelectAddress = ({ setShowModal }) => {
 						</button>
 					</div>
 				</div>
-				{!selectedAddress && (
-					<ErrorMessage message='Select address to checkout!' />
-				)}
 			</div>
 		</>
 	);
