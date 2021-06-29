@@ -1,5 +1,6 @@
 .text-container .product-title {
 	font-size: 1rem;
+	color: #282c3f;
 }
 .vertical-card {
 	width: 100%;
@@ -36,21 +37,22 @@
 	display: flex;
 	width: 100%;
 }
-
+button.clear-all-link {
+	font-weight: 400;
+	font-size: 0.85rem;
+}
 .filter-section {
 	padding: 0 1rem;
 	overflow-y: auto;
 	max-height: calc(100vh - 8rem);
+	font-size: 0.9rem;
+	font-weight: 300;
+}
+.filter-section input {
+	margin-right: 0.5rem;
 }
 .filter-section::-webkit-scrollbar {
-	width: 0.25rem;
-}
-
-.filter-section::-webkit-scrollbar-thumb {
-	background-color: rgb(216, 215, 216);
-}
-.filter-section::-webkit-scrollbar-track {
-	background: #edebef;
+	width: 0;
 }
 
 .filter-divider-line {
@@ -59,6 +61,12 @@
 	border: none;
 	height: 0.5px;
 	margin: 0.5rem 0 1rem 0;
+}
+.image-container {
+	text-align: center;
+}
+.product-card-img {
+	height: 12.75rem;
 }
 @media screen and (max-width: 1024px) {
 	.grid-left-filter {
@@ -116,19 +124,12 @@
 		position: fixed;
 		width: 100%;
 		bottom: 0;
-		z-index: var(--z-index-4);
+		z-index: var(--z-index-2);
 		background-color: #edebef;
 	}
 
 	.filter-section::-webkit-scrollbar {
-		width: 0.25rem;
-	}
-
-	.filter-section::-webkit-scrollbar-thumb {
-		background-color: rgb(185, 184, 185);
-	}
-	.filter-section::-webkit-scrollbar-track {
-		background: rgb(214, 212, 216);
+		width: 0;
 	}
 }
 

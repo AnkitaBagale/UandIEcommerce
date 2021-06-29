@@ -133,4 +133,7 @@
 	.hide-in-mobile {
 		display: none;
 	}
+	.avatar-in-nav-links {
+		background-color: var(--dark-secondary-text-color);
+	}
 }

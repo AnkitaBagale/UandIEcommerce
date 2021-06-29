@@ -10,20 +10,23 @@ export const ProductListing = () => {
 
 	return (
 		<>
-			<h1 className='text-center h6 page-title'>
-				Accessories for Sketching{' '}
-				<span className='text-light-weight'> - {filterdData.length} items</span>
-			</h1>
+			<div className='spacer-3rem'></div>
 			<div className='display-flex-filter'>
 				<div className='grid-left-filter'>
 					<Filter />
 				</div>
-				<div className='grid-4-column-layout grid-right-of-filter padding-around-1rem'>
-					{filterdData.length !== 0 &&
-						filterdData.map((product) => {
+
+				{filterdData.length === 0 ? (
+					<h6 className='p text-center grid-right-of-filter padding-around-1rem'>
+						No Products Found
+					</h6>
+				) : (
+					<div className='grid-3-column-layout grid-right-of-filter padding-around-1rem'>
+						{filterdData.map((product) => {
 							return <ProductCard key={product._id} product={product} />;
 						})}
-				</div>
+					</div>
+				)}
 			</div>
 		</>
 	);

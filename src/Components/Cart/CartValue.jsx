@@ -68,7 +68,7 @@ export const CartValue = ({ status, setStatus, setOrderId }) => {
 				Place Order
 			</button>
 			{!selectedAddress && (
-				<ErrorMessage message='Select address to checkout!' />
+				<ErrorMessage message='Select address to check out!' />
 			)}
 
 			{showPaymentOptions && (

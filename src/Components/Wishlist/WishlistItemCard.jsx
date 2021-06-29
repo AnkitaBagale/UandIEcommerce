@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { useAuthentication, useStateContext } from '../../Context';
 import { AddToCartButton } from '../Cart';
-import { addProductToWishlist } from '../../utils';
+import { addProductToWishlist, trimCharacters } from '../../utils';
 import { Toast } from '../Toast';
 import { Link } from 'react-router-dom';
 
@@ -29,9 +29,7 @@ export const WishlistItemCard = ({ product }) => {
 			{message.msgType === 'toast-success' && <Toast {...message} />}
 			{message.msgType === 'toast-error' && <Toast {...message} />}
 
-			<div
-				to={`/shop/${product._id}`}
-				className='card-vertical border-width-1px'>
+			<div to={`/shop/${product._id}`} className='card-vertical shadow-box'>
 				<button
 					disabled={disableButtonWhileProcessing}
 					type='button'
@@ -54,7 +52,7 @@ export const WishlistItemCard = ({ product }) => {
 				<div className='image-container badge-container'>
 					<Link to={`/shop/${product._id}`} className='link-no-style'>
 						<img
-							className='img-responsive card-img'
+							className='img-responsive card-img product-card-img'
 							src={product.image}
 							alt={product.name}
 						/>
@@ -68,13 +66,13 @@ export const WishlistItemCard = ({ product }) => {
 				<div className='text-container'>
 					<div className='text-container-title'>
 						<Link to={`/shop/${product._id}`} className='link-no-style'>
-							<h6 className='text-regular-weight product-title'>
-								{product.name}
+							<h6 className='p text-regular-weight product-title'>
+								{product.brand}
 							</h6>
 						</Link>
 					</div>
 					<div className='text-container-desc'>
-						<p className='body-cp-md'>{product.brand}</p>
+						<p className='body-cp-md'>{trimCharacters(product.name)}</p>
 						<p className='text-regular-weight body-cp-md'>
 							Rs.{product.price}
 							<span className='text-light-weight'>

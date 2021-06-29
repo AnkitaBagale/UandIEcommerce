@@ -61,7 +61,7 @@ export const ProductDetailPage = () => {
 					<div className='grid-50-50-layout product-detail-card shadow-box'>
 						<div>
 							<img
-								className='img-responsive'
+								className='img-responsive product-detail-image'
 								alt='product'
 								src={productDetails?.image}
 							/>
