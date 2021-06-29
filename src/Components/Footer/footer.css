@@ -1,10 +1,8 @@
 .footer {
 	background-color: var(--secondary-color);
-	/* background-color: var(--dark-secondary-text-color); */
 	min-height: 7rem;
 	width: 100%;
 	padding: 2.5rem;
-	/* color: white; */
 	font-size: 1.5rem;
 	box-sizing: border-box;
 }
@@ -25,7 +23,4 @@
 .footer-header {
 	font-size: 1rem;
 	letter-spacing: 0.5px;
-}
-.footer-copy {
-	/* color: rgb(167, 167, 167); */
 }
