@@ -124,7 +124,7 @@ button.clear-all-link {
 		position: fixed;
 		width: 100%;
 		bottom: 0;
-		z-index: var(--z-index-2);
+		z-index: var(--z-index-4);
 		background-color: #edebef;
 	}
 
