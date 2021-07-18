@@ -72,7 +72,12 @@ export const Login = () => {
 						<button
 							className='btn btn-outline-primary'
 							type='button'
-							onClick={(event) =>
+							onClick={(event) => {
+								formDispatch({ type: 'SET_EMAIL', payload: 'test@test.com' });
+								formDispatch({
+									type: 'SET_PASSWORD',
+									payload: 'Test1234',
+								});
 								loginFormSubmit(event, {
 									loginUser,
 									setError,
@@ -80,8 +85,8 @@ export const Login = () => {
 									email: 'test@test.com',
 									password: 'Test1234',
 									from: navigateToPathState,
-								})
-							}>
+								});
+							}}>
 							Login With Test Credentials
 						</button>
 
