@@ -85,6 +85,9 @@ label {
 .margin-auto {
 	margin: auto;
 }
+.margin-top-0 {
+	margin-top: 0;
+}
 
 .grid-3-column-layout {
 	display: grid;

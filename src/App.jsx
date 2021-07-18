@@ -17,7 +17,6 @@ import {
 	Nav,
 	Home,
 	Footer,
-	ForgotPasswordPage,
 	Login,
 	PrivateRoute,
 	ProfileCard,
@@ -65,7 +64,6 @@ export default function App() {
 					<PrivateRoute path='/cart' element={<Cart />} />
 
 					<Route path='/login' element={<Login />} />
-					<Route path='/forgot' element={<ForgotPasswordPage />} />
 					<Route path='/signup' element={<SignUp />} />
 					<PrivateRoute path='/profile' element={<ProfilePage />}>
 						<PrivateRoute path='/' element={<ProfileCard />} />

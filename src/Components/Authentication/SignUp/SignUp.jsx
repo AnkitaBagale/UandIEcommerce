@@ -377,6 +377,15 @@ export const SignUp = () => {
 									}>
 									REGISTER
 								</button>
+								<div className='body-cp-md padding-bottom-1rem'>
+									Already registered?{' '}
+									<Link
+										to='/login'
+										state={navigateToPathState}
+										className='link-text link-text-primary'>
+										Login here
+									</Link>
+								</div>
 							</form>
 							<div
 								style={{

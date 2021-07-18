@@ -71,24 +71,23 @@ export const CartValue = ({ status, setStatus, setOrderId }) => {
 				<ErrorMessage message='Select address to check out!' />
 			)}
 
-			{showPaymentOptions && (
-				<div className={'modal-interstitial active'}>
-					<div className='modal-content display-flex-items'>
-						<button
-							onClick={() => setPaymentOptions(false)}
-							type='button'
-							className='btn-close modal-close'></button>
+			<div
+				className={`modal-interstitial ${showPaymentOptions ? 'active' : ''}`}>
+				<div className='modal-content display-flex-items'>
+					<button
+						onClick={() => setPaymentOptions(false)}
+						type='button'
+						className='btn-close modal-close'></button>
 
-						<PayPalScriptProvider options={options}>
-							<Checkout
-								userSelectedCoupon={userSelectedCoupon}
-								setStatus={setStatus}
-								setOrderId={setOrderId}
-							/>
-						</PayPalScriptProvider>
-					</div>
+					<PayPalScriptProvider options={options} key={cartTotal}>
+						<Checkout
+							userSelectedCoupon={userSelectedCoupon}
+							setStatus={setStatus}
+							setOrderId={setOrderId}
+						/>
+					</PayPalScriptProvider>
 				</div>
-			)}
+			</div>
 
 			{status === 'FAILURE' && (
 				<ErrorMessage message='Payment is cancelled or failed! Please try again!' />
