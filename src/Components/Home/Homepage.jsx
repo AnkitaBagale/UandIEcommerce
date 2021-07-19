@@ -65,6 +65,7 @@ export const Home = () => {
 									<div className='overlay-container'>
 										<div className='image-container'>
 											<img
+												loading='lazy'
 												className='img-responsive'
 												src={category.img}
 												alt={category.name}
@@ -100,6 +101,7 @@ export const Home = () => {
 									}}>
 									<div className='image-container'>
 										<img
+											loading='lazy'
 											className='img-responsive'
 											src={brand.img}
 											alt={brand.name}

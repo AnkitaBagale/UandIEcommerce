@@ -3,8 +3,8 @@ import brand2 from './Components/Home/Images/brand-brusto.png';
 import brand3 from './Components/Home/Images/brand-camlin.png';
 import brand4 from './Components/Home/Images/brand-doms.png';
 import category1 from './Components/Home/Images/category1.jpg';
-import category2 from './Components/Home/Images/category2.jpg';
-import category4 from './Components/Home/Images/category4.jpg';
+import category2 from './Components/Home/Images/category2-re.jpg';
+import category4 from './Components/Home/Images/category4-re.jpg';
 import category5 from './Components/Home/Images/category5.jpg';
 
 export const coupons = [
