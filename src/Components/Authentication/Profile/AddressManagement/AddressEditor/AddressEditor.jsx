@@ -268,6 +268,16 @@ export const AddressEditor = ({
 							<button
 								className='btn btn-outline-primary btn-sm-size'
 								onClick={() => {
+									errorsDispatch({ type: 'CLEAR_ERRORS' });
+									formDispatch({ type: 'FILL_DUMMY_ADDRESS' });
+								}}
+								type='button'>
+								Fill with Dummy Address
+							</button>
+
+							<button
+								className='btn btn-outline-primary btn-sm-size'
+								onClick={() => {
 									document.body.style.overflow = 'visible';
 									existingAddress._id !== null
 										? setEditMode(false)

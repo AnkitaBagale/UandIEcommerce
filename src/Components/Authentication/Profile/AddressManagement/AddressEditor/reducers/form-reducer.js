@@ -34,6 +34,19 @@ export const formReducer = (state, { type, payload }) => {
 		case 'SET_PHONE_NUMBER': {
 			return { ...state, phoneNumber: payload };
 		}
+		case 'FILL_DUMMY_ADDRESS': {
+			return {
+				...state,
+				name: 'John Doe',
+				streetAddress:
+					'#1/4 , 100ft Ring Road, Jp Nagar - 4 Phase, Dollars Colony',
+				city: 'Bangalore',
+				state: statesInCountryWise[countries[0]][7],
+				country: countries[0],
+				zipCode: '560078',
+				phoneNumber: '5120995324',
+			};
+		}
 		default:
 			return state;
 	}
