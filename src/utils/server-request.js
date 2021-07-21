@@ -35,7 +35,7 @@ export const getCartFromServer = async (dispatch, token) => {
 		if (status === 200 || status === 201) {
 			dispatch({ type: 'SET_CART', payload: response });
 		} else {
-			throw new Error('Failed to get cart');
+			throw new Error('Failed to load cart');
 		}
 	} catch (error) {
 		console.log(error);
@@ -58,7 +58,7 @@ export const getWishlistFromServer = async (dispatch, token) => {
 		if (status === 200 || status === 201) {
 			dispatch({ type: 'SET_WISHLIST', payload: response });
 		} else {
-			throw new Error('Failed to get products');
+			throw new Error('Failed to load wishlist');
 		}
 	} catch (error) {
 		console.log(error);
@@ -174,7 +174,7 @@ export const addProductToCart = async ({
 	} catch (error) {
 		console.error(error);
 		if (isRendered.current) {
-			setMessage({ msg: 'failed to add', msgType: 'toast-error' });
+			setMessage({ msg: 'failed to add!', msgType: 'toast-error' });
 		}
 	} finally {
 		if (isRendered.current) {
@@ -216,13 +216,13 @@ export const increaseQtyOfProductInCart = async ({
 				payload: response,
 			});
 			if (isRendered.current) {
-				setMessage({ msg: 'added!', msgType: 'toast-success' });
+				setMessage({ msg: 'Quantity Updated!', msgType: 'toast-success' });
 			}
 		}
 	} catch (error) {
 		console.error(error);
 		if (isRendered.current) {
-			setMessage({ msg: 'failed to add', msgType: 'toast-error' });
+			setMessage({ msg: 'failed to update!', msgType: 'toast-error' });
 		}
 	} finally {
 		if (isRendered.current) {
@@ -264,13 +264,13 @@ export const decreaseQtyOfProductInCart = async ({
 				payload: response,
 			});
 			if (isRendered.current) {
-				setMessage({ msg: 'added!', msgType: 'toast-success' });
+				setMessage({ msg: 'Quantity Updated!', msgType: 'toast-success' });
 			}
 		}
 	} catch (error) {
 		console.error(error);
 		if (isRendered.current) {
-			setMessage({ msg: 'failed to add', msgType: 'toast-error' });
+			setMessage({ msg: 'failed to update!', msgType: 'toast-error' });
 		}
 	} finally {
 		if (isRendered.current) {
@@ -287,7 +287,7 @@ export const removeProductFromCart = async ({
 	isRendered,
 	token,
 }) => {
-	setMessage({ msg: 'updating..', msgType: 'toast-inform' });
+	setMessage({ msg: 'removing..', msgType: 'toast-inform' });
 
 	try {
 		setDisableButton(true);
@@ -312,13 +312,13 @@ export const removeProductFromCart = async ({
 				payload: response,
 			});
 			if (isRendered.current) {
-				setMessage({ msg: 'added!', msgType: 'toast-success' });
+				setMessage({ msg: 'Item Removed!', msgType: 'toast-success' });
 			}
 		}
 	} catch (error) {
 		console.error(error);
 		if (isRendered.current) {
-			setMessage({ msg: 'failed to add', msgType: 'toast-error' });
+			setMessage({ msg: 'failed to remove!', msgType: 'toast-error' });
 		}
 	} finally {
 		if (isRendered.current) {
