@@ -3,12 +3,9 @@ import { useStateContext } from '../../Context';
 import './cart.css';
 
 import { OffersModal } from './OffersModal';
-
 import { useOrderSummary } from './utils/useOrderSummary';
-import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import { Checkout } from './Checkout';
 import { OrderSummary } from './OrderSummary';
-import { useSelectedAddress } from './utils';
 import { ErrorMessage } from './ErrorMessage';
 
 export const CartValue = ({ status, setStatus, setOrderId }) => {
@@ -19,17 +16,10 @@ export const CartValue = ({ status, setStatus, setOrderId }) => {
 		minOrderValue: '',
 	});
 	const [showOfferModal, setOfferModal] = useState(false);
-	const [showPaymentOptions, setPaymentOptions] = useState(false);
 
-	const { cartTotalWithoutOffer, cartTotal } = useOrderSummary({
+	const { cartTotalWithoutOffer } = useOrderSummary({
 		userSelectedCoupon,
 	});
-	const { selectedAddress } = useSelectedAddress();
-
-	const options = {
-		'client-id': process.env.REACT_APP_CLIENT_ID,
-		currency: 'USD',
-	};
 
 	useEffect(() => {
 		const checkOffersValid = () => {
@@ -59,35 +49,11 @@ export const CartValue = ({ status, setStatus, setOrderId }) => {
 			</button>
 
 			<OrderSummary userSelectedCoupon={userSelectedCoupon} />
-			<button
-				disabled={selectedAddress ? false : true}
-				onClick={() => setPaymentOptions(true)}
-				className={`btn btn-solid-primary ${
-					selectedAddress ? '' : 'btn-disabled'
-				}`}>
-				Place Order
-			</button>
-			{!selectedAddress && (
-				<ErrorMessage message='Select address to check out!' />
-			)}
-
-			<div
-				className={`modal-interstitial ${showPaymentOptions ? 'active' : ''}`}>
-				<div className='modal-content display-flex-items'>
-					<button
-						onClick={() => setPaymentOptions(false)}
-						type='button'
-						className='btn-close modal-close'></button>
-
-					<PayPalScriptProvider options={options} key={cartTotal}>
-						<Checkout
-							userSelectedCoupon={userSelectedCoupon}
-							setStatus={setStatus}
-							setOrderId={setOrderId}
-						/>
-					</PayPalScriptProvider>
-				</div>
-			</div>
+			<Checkout
+				userSelectedCoupon={userSelectedCoupon}
+				setStatus={setStatus}
+				setOrderId={setOrderId}
+			/>
 
 			{status === 'FAILURE' && (
 				<ErrorMessage message='Payment is cancelled or failed! Please try again!' />

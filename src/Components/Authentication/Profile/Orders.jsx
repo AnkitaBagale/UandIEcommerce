@@ -19,8 +19,11 @@ export const Orders = () => {
 		<>
 			<h2 className='profile-list-title'>My Orders</h2>
 
-			{orders.length !== 0 &&
-				orders.map((order) => <OrderCard order={order} />)}
+			{orders.length === 0 ? (
+				<span style={{ paddingLeft: '1rem' }}>No orders yet</span>
+			) : (
+				orders.map((order) => <OrderCard order={order} />)
+			)}
 		</>
 	);
 };
@@ -35,13 +38,13 @@ const OrderCard = ({ order }) => {
 					Order Confirmed
 					<br />
 					<span className='body-cp-md secondary-text-color text-light-weight'>
-						{new Date(order.createdAt).toDateString()}
+						{new Date(order?.createdAt).toDateString()}
 					</span>
 				</h6>
-				<p className='body-cp-md'>Order# {order._id}</p>
+				<p className='body-cp-md'>Order# {order?._id}</p>
 				<p className='body-cp-md'>
 					Total: {INDIAN_RUPEE}
-					{order.payment.totalPaid}{' '}
+					{order?.payment.totalPaid}{' '}
 					<button
 						onClick={() => setPaymentDetails(true)}
 						className='link-no-style'>
@@ -50,13 +53,10 @@ const OrderCard = ({ order }) => {
 				</p>
 
 				<p className='body-cp-md'>
-					Deliver to:{' '}
-					<span>
-						{`${order.addressId.name}, ${order.addressId.streetAddress}, ${order.addressId.city}, ${order.addressId.zipCode}`}
-					</span>
+					Deliver to: <span>{order?.address}</span>
 				</p>
 
-				{order.items.map((item) => (
+				{order?.items.map((item) => (
 					<OrderItem item={item} />
 				))}
 			</div>
@@ -64,8 +64,8 @@ const OrderCard = ({ order }) => {
 			{showPaymentDetails && (
 				<PaymentDetailsModal
 					setPaymentDetails={setPaymentDetails}
-					payment={order.payment}
-					items={order.items}
+					payment={order?.payment}
+					items={order?.items}
 				/>
 			)}
 		</>

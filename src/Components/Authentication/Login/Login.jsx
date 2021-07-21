@@ -13,12 +13,13 @@ export const Login = () => {
 		loginUser,
 		state: { token },
 	} = useAuthentication();
-	const { state } = useLocation();
 
 	const [error, setError] = useState('');
 	const [isLoading, setLoading] = useState(false);
 
 	const [formState, formDispatch] = useReducer(formReducer, initialState);
+
+	const { state } = useLocation();
 	const navigateToPathState = { from: state?.from ? state.from : '/' };
 	const errorStyle = {
 		display: error !== '' ? 'block' : 'none',
