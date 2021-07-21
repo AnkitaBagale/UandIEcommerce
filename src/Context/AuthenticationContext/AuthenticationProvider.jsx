@@ -54,6 +54,7 @@ export const AuthenticationProvider = ({ children }) => {
 				});
 
 				axios.defaults.headers.common['Authorization'] = token;
+
 				navigate(from);
 			}
 		} catch (error) {
